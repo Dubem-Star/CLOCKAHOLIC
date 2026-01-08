@@ -1,0 +1,224 @@
+/* ************************************************ */
+/* General Root Styling*/
+/* ************************************************ */
+
+:root {
+  --sauce-color: #b8860b;
+  --sauce-color-transparent: #b8870ba2;
+  --h1-size: 25px;
+  --default-font-family: "Stack Sans Text", sans-serif;
+}
+
+/* ************************************************ */
+/* Underline Transition Styling*/
+/* ************************************************ */
+
+.underline:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--sauce-color);
+  transform-origin: center;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+.dubby {
+  color: var(--sauce-color);
+}
+
+/* ****************** Body ****************************** */
+/* ****************** Body ****************************** */
+body,
+html {
+  font-family: var(--default-font-family);
+  width: 100%;
+  height: 100%;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+/* ****************Explore Banner Section****************************** */
+/* ****************Explore Banner Section****************************** */
+
+.ExploreBanner-Container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 150px 0 50px 0;
+}
+
+.ExploreBanner-Container .img-container {
+  width: 50%;
+  overflow: hidden;
+  height: 450px;
+  flex-shrink: 0;
+}
+
+.ExploreBanner-Container .img-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.ExploreBanner-Container .description {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 60px 10px 0 50px;
+  font-family: var(--default-font-family);
+  background-image: url("@/assets/images/wallpapers/section_wallpaper2.png");
+  background-position: center;
+  background-size: contain;
+}
+
+.ExploreBanner-Container .description .title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
+
+.ExploreBanner-Container .description .title-container .sub-heading {
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.ExploreBanner-Container .description button {
+  width: 25%;
+  background-color: var(--sauce-color);
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 16px;
+  color: white;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  padding: 10px 5px;
+}
+
+.ExploreBanner-Container .description button:hover {
+  background-color: #f3b200;
+  border-color: white;
+}
+
+/* ****************Footer Section****************************** */
+/* ****************Footer Section****************************** */
+
+.Footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url("@/assets/images/wallpapers/section_wallpaper2.png");
+  background-position: center;
+  background-size: contain;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0 25px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.116);
+  font-family: var(--default-font-family);
+  margin-top: 100px;
+}
+
+.Footer .inner-cont {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Footer .inner-cont h1 {
+  font-size: 17px;
+  margin-bottom: 13px;
+}
+
+.Footer .inner-cont li {
+  list-style: none;
+}
+
+.Footer .inner-cont li:hover .underline:before {
+  transform: scaleX(1);
+}
+
+.Footer .inner-cont a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 300;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.Footer .inner-cont .about-us {
+  width: 23%;
+  position: relative;
+  padding-top: 80px;
+}
+
+.Footer .inner-cont .about-us a {
+  width: 90px;
+  position: absolute;
+  top: -25px;
+  left: 0;
+}
+
+.Footer .inner-cont .about-us img {
+  width: 100%;
+}
+
+.Footer .inner-cont .about-us p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.Footer .inner-cont .about-us p span {
+  color: var(--sauce-color);
+}
+
+.Footer .inner-cont .footer-lists {
+  display: flex;
+  flex-direction: column;
+}
+
+.Footer .inner-cont .footer-lists ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 7px;
+}
+
+.Footer .inner-cont .social-links ul {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+  padding: 0;
+}
+
+.Footer .inner-cont .social-links ul li img {
+  width: 25px;
+}
+
+.Footer .bottom-cont {
+  width: 92%;
+  border-top: 1px solid #72716e61;
+  margin: 30px auto 0 auto;
+  padding-top: 20px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.Footer .bottom-cont p {
+  color: #646463;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+}
+
+.Footer .bottom-cont .message {
+  color: #646463;
+  font-size: 12px;
+}
