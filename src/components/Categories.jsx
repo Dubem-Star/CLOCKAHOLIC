@@ -25,7 +25,11 @@ function Categories() {
 
   return (
     <>
-      <div className="Categories" data-aos="fade-up" data-aos-delay="200">
+      <div
+        className="Categories"
+        // data-aos="fade-up"
+        // data-aos-delay="200"
+      >
         <div className="left-liner">
           <h1>Shop By Categories</h1>
         </div>

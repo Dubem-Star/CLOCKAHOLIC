@@ -8,17 +8,8 @@ import sideView from "@/assets/images/watch_wallpapers/watch_side-view.jpg";
 import anneKleinWatch from "@/assets/images/watch_wallpapers/watch_anne_klein.jpg";
 import timexWatch from "@/assets/images/watch_wallpapers/watch_timex.jpg";
 import fiyreLeurWatch from "@/assets/images/watch_wallpapers/watch_fiyre-leur.jpg";
-function Hero() {
-  // const images = [
-  //   "/images/watch_wallpapers/watch_brown.jpg",
-  //   "/images/watch_wallpapers/watch_fossil.jpg",
-  //   "/images/watch_wallpapers/watch_nature.jpg",
-  //   "/images/watch_wallpapers/watch_side-view.jpg",
-  //   "/images/watch_wallpapers/watch_anne_klein.jpg",
-  //   "/images/watch_wallpapers/watch_timex.jpg",
-  //   "/images/watch_wallpapers/watch_fiyre-leur.jpg",
-  // ];
 
+function Hero() {
   const images = [
     seikoWatch,
     fossilWatch,
@@ -55,7 +46,9 @@ function Hero() {
   const [currentBgImg, setCurrentBgImg] = useState(0);
   const [currentTitle, setCurrentTitle] = useState(0);
   const [h1TotalHeight, setH1Height] = useState(0);
+  const Hero = useRef(null);
   const h1Ref = useRef(null);
+
   const contRef = useRef(null);
   let middleman;
 
@@ -102,10 +95,33 @@ function Hero() {
     }
   }, [currentTitle]);
 
+  // .intro-space center logic *******************************************
+
+  useEffect(() => {
+    const isLargeScreen = window.innerWidth >= 2000;
+    Hero.current.classList.toggle("middle", isLargeScreen);
+
+    function isLarge() {
+      const isLargeScreen = window.innerWidth >= 2000;
+      Hero.current.classList.toggle("middle", isLargeScreen);
+    }
+    window.addEventListener("resize", isLarge);
+
+    return () => {
+      window.removeEventListener("resize", isLarge);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  // console.log(window.innerWidth);
+
   // *******************************Virtual DOM***********************************************
   return (
     <>
-      <section className="Hero">
+      <section className="Hero" ref={Hero}>
         {images.map((img, index) => (
           <div
             key={index}
@@ -116,8 +132,11 @@ function Hero() {
           ></div>
         ))}
 
-        <div className="intro-space">
+        {/* .intro-space div */}
+        <div className="intro-space" style={{ maxWidth: "1809px" }}>
+          {/* .inner-space div */}
           <div className="inner-space">
+            {/* .text-measurement-container div */}
             <div
               className="text-measurement-container"
               style={{
@@ -127,6 +146,7 @@ function Hero() {
                     : `${currentContainerHeight}px`,
               }}
             >
+              {/* .inner-wrapper div */}
               <div ref={contRef} className="inner-wrapper">
                 <h1 className="invicibleH1">{titles[currentTitle].title}</h1>
                 <p

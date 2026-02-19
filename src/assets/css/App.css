@@ -19,6 +19,7 @@
   gap: 15px;
   width: 94%;
   margin-bottom: 15px;
+  /* max-width: 1320px; */
 }
 
 .left-liner::after {
@@ -124,24 +125,24 @@
 
 .back-to-top-wrapper {
   position: fixed;
-  bottom: 70px;
-  right: 45px;
   z-index: 2000;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid var(--sauce-color);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  bottom: 100px;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
+  max-width: 2000px;
 }
 
 .back-to-top-wrapper img {
-  width: 100%;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--sauce-color);
+  border-radius: 50%;
+  padding: 10px;
+  /* bottom: 70px; */
+  right: 45px;
+  position: absolute;
 }
 
 .back-to-top-wrapper.show {
@@ -223,6 +224,76 @@
   right: 2px;
 }
 
+.main-page-wrapper {
+  max-width: 2000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ************************************************ */
+/* Ad Banner Styling*/
+/* ************************************************ */
+
+.banner-img-container {
+  width: 50%;
+  overflow: hidden;
+  height: 450px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.205);
+  box-shadow: 0 10px 10px 2px rgba(0, 0, 0, 0.261);
+}
+
+.banner-img-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-description {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 60px 10px 0 50px;
+  font-family: var(--default-font-family);
+  background-image: url("@/assets/images/wallpapers/section_wallpaper2.png");
+  background-position: center;
+  background-size: contain;
+  border: 1px solid rgba(0, 0, 0, 0.205);
+  box-shadow: 0 10px 10px 2px rgba(0, 0, 0, 0.261);
+}
+
+.banner-description .title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+  /* width: clamp(50%, 35vw, 90%); */
+}
+
+.banner-heading {
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.banner-button {
+  width: 25%;
+  background-color: var(--sauce-color);
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  font-weight: 200;
+  font-size: 16px;
+  color: white;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+  padding: 10px 5px;
+}
+
+.banner-button:hover {
+  background-color: #f3b200;
+  border-color: white;
+}
+
 /* ************************************* Body ******************************************** */
 /* ************************************* Body ******************************************** */
 body,
@@ -258,6 +329,11 @@ html {
   top: -90px;
 }
 
+.Navbar .navbar-image-cont {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 .Navbar .navbar-image {
   width: 90px;
 }
@@ -347,6 +423,11 @@ html {
   background-position: center;
 }
 
+.Hero.middle {
+  display: flex;
+  justify-content: center;
+}
+
 .hero-bg {
   position: absolute;
   top: 0;
@@ -357,7 +438,9 @@ html {
   background-position: center;
   opacity: 0;
   transform-origin: center;
-  transition: opacity 1s ease-in-out, transform 30s ease-in-out;
+  transition:
+    opacity 1s ease-in-out,
+    transform 30s ease-in-out;
   z-index: 1000;
 }
 
@@ -411,7 +494,9 @@ html {
   margin-bottom: 25px;
   color: white;
   font-weight: bolder;
-  transition: transform 1.2s ease-in-out, opacity 0.4s ease-in-out;
+  transition:
+    transform 1.2s ease-in-out,
+    opacity 0.4s ease-in-out;
   transform-origin: right;
   position: absolute;
   top: 0;
@@ -448,7 +533,9 @@ html {
   color: white;
   opacity: 0;
   transform-origin: right;
-  transition: transform 1.2s ease-in-out, opacity 0.4s ease-in-out;
+  transition:
+    transform 1.2s ease-in-out,
+    opacity 0.4s ease-in-out;
   position: absolute;
   z-index: 1500;
 }
@@ -474,7 +561,9 @@ html {
   margin-top: 40px;
   padding: 13px 30px !important;
   font-weight: 500;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0);
   letter-spacing: 1px;
   border-radius: 15px;
@@ -508,24 +597,20 @@ html {
   position: relative;
 }
 
-/* .Categories .cat-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  height: auto;
-  flex-wrap: wrap;
-} */
+.Categories .cat-container {
+  gap: 30px;
+}
 
-/* .Categories .cat-container a {
+.Categories .cat-container a {
   width: 30%;
-} */
+  aspect-ratio: 1/1;
+}
 
 .Categories .cat-container .cat-grid {
   position: relative;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: 1/1;
+
   background-image: url("@/assets/images/wallpapers/transparent_wallpaper_cat.jpg");
   background-repeat: repeat;
   border: 1px solid rgba(0, 0, 0, 0.164);
@@ -543,7 +628,9 @@ html {
   text-align: center;
   color: white;
   font-weight: 300;
-  transition: transform 0.5s ease-in-out, font-weight 0.5s ease-in-out;
+  transition:
+    transform 0.5s ease-in-out,
+    font-weight 0.5s ease-in-out;
   padding: 5px 0;
   font-family: var(--default-font-family);
   margin-bottom: 0 !important;
@@ -589,8 +676,11 @@ html {
   font-family: var(--default-font-family);
   font-weight: 400;
   padding: 3% 4% !important;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
-    opacity 0.4s ease-in-out, transform 0.5s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    opacity 0.4s ease-in-out,
+    transform 0.5s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0);
   position: absolute;
   top: 60%;
@@ -619,7 +709,7 @@ html {
 .Featured-Brand-Container {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 95% !important;
   margin: 0 auto;
   margin-top: 85px;
   align-items: center;
@@ -637,6 +727,7 @@ html {
   border: 1px solid rgba(0, 0, 0, 0.164);
   border-radius: 10px;
   margin-bottom: 30px;
+  /* max-width: 1320px; */
 }
 
 .Featured-Brand-Container .brand-cont {
@@ -792,7 +883,9 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out,
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.4s ease-in-out,
     visibility 0.3s ease-in-out;
 }
 
@@ -824,7 +917,9 @@ html {
   top: 0;
   left: 0;
   transform-origin: center;
-  transition: opacity 0.3s ease-in-out, transform 2s ease-in-out;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 2s ease-in-out;
   height: 100%;
 }
 
@@ -893,7 +988,9 @@ html {
   color: white;
   border-radius: 7px;
   font-weight: 200;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
   border: 1px solid rgba(255, 255, 255, 0);
 }
 
@@ -912,7 +1009,6 @@ html {
   flex-direction: column;
   align-items: center;
   margin: 130px auto 50px auto;
-  margin-bottom: 50px;
   scroll-margin-top: 50px;
 }
 
@@ -941,184 +1037,57 @@ html {
 /* ******************Ad Banner Section****************************** */
 /* ******************Ad Banner Section****************************** */
 
-.Ad-Banner-Wallpaper {
-  width: 100%;
-  height: 90vh;
-  background-image: url("@/assets/images/wallpapers/section_wallpaper2.png");
-  display: flex;
-  align-items: center;
-  margin-bottom: 60px;
-
-  background-position: center;
-  background-size: contain;
-  margin-top: 160px;
-}
-
 .Ad-Banner-Container {
-  width: 98%;
-  margin: 0 auto;
-  height: 80%;
-  overflow: hidden;
-  border-radius: 20px;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  margin-bottom: 60px;
+  margin-top: 160px;
+  align-items: stretch;
 }
 
-.Ad-Banner-Container .banner-link {
-  color: white;
-}
-
-.Ad-Banner-Container .banner-item-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.Ad-Banner-Container .banner-item {
-  background-color: rgba(255, 255, 255, 0);
-  position: absolute;
+.ExploreBanner-Container {
   width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 500;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.Ad-Banner-Container .banner-link:hover .banner-item {
-  background-color: rgba(0, 0, 0, 0.411);
-}
-
-.Ad-Banner-Container .banner-link:hover img {
-  transform: scale(1, 1);
-}
-
-.Ad-Banner-Container .w-20 .banner-link:first-child:hover img {
-  transform: scale(1, 1);
-}
-
-.Ad-Banner-Container .w-20 .banner-link:nth-child(2):hover img {
-  transform: scale(1, 1);
-}
-
-.Ad-Banner-Container .banner-link-1 {
-  width: 45%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .banner-link-2 {
-  width: 35%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .banner-link-1 .w-40 {
-  width: 100%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .banner-link-2 .w-30 {
-  width: 100%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .banner-link-3 {
-  width: 25%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .banner-link-3 .w-20 {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.Ad-Banner-Container .w-40 img,
-.w-30 img {
-  width: 100%;
-  height: 100%;
-  transform: scale(1.05, 1.05);
-  transition: transform 0.4s ease-in-out;
-}
-
-.Ad-Banner-Container .w-20 .banner-link:first-child {
-  height: 70%;
-  width: 100%;
-}
-.Ad-Banner-Container .w-20 .banner-link:first-child div {
-  height: 100%;
-  width: 100%;
-}
-.Ad-Banner-Container .w-20 .banner-link:first-child img {
-  height: 100%;
-  width: 100%;
-  transform: scale(1.05, 1.05);
-  transition: transform 0.4s ease-in-out;
-  overflow: hidden;
-}
-
-.Ad-Banner-Container .w-20 .banner-link:nth-child(2) {
-  height: 30%;
-  width: 100%;
-}
-
-.Ad-Banner-Container .w-20 .banner-link:nth-child(2) div {
-  height: 100%;
-  width: 100%;
-}
-
-.Ad-Banner-Container .w-20 .banner-link:nth-child(2) img {
-  height: 100%;
-  width: 100%;
-  transform: scale(1.05, 1.05);
-  transition: transform 0.4s ease-in-out;
-}
-
-.Ad-Banner-Container .banner-link .ab-shop-btn {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--sauce-color);
-  color: white;
-  padding: 1% 4% 1% 4%;
-  font-size: 90%;
-  font-family: var(--default-font-family);
-  font-weight: 200;
-  border-color: rgba(255, 255, 255, 0);
-  z-index: 600;
-  opacity: 0;
-  transition: border-color 0.3s ease-in-out, opacity 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
-}
-
-.Ad-Banner-Container .banner-link .ab-shop-btn:hover {
-  background-color: #dda50a;
-  border-color: white;
-}
-
-.Ad-Banner-Container .banner-link:hover .ab-shop-btn {
-  transform: translate(-50%, -15px);
-  opacity: 1;
+  flex-direction: row;
+  margin: 150px 0 50px 0;
+  justify-content: center;
 }
 
 /* ******************Responsiveness Section****************************** */
 /* ******************Responsiveness Section****************************** */
 
-/* @media (max-width: 1250px) {
-  .products-container .atag {
-    width: 20%;
-   
+@media (max-width: 1130px) {
+  .banner-img-container {
+    width: clamp(60%, 50vw, 90%);
   }
-} */
+
+  .banner-description .title-container {
+    width: clamp(60%, 40vw, 90%);
+  }
+
+  .banner-description {
+    padding-left: 30px;
+  }
+
+  .banner-button {
+    width: clamp(35%, 20vw, 70%) !important;
+  }
+
+  .banner-heading {
+    font-size: clamp(28px, 3vw, 33px) !important;
+  }
+
+  .Categories .cat-container {
+    /* gap: 30px; */
+    gap: clamp(10px, 1.5vw, 30px);
+  }
+}
 
 @media (max-width: 1000px) {
-  .Categories .cat-container .cat-grid {
+  /* .Categories .cat-container .cat-grid {
     height: 300px;
-  }
+  } */
 
   .Navbar .navbar-links {
     gap: 20px;
@@ -1127,18 +1096,6 @@ html {
   .Hero {
     height: 550px;
   }
-
-  /* .Hero .intro-space h1 {
-    font-size: 60px;
-  }
-
-  .Hero .intro-space .inner-wrapper .invicibleH1 {
-    font-size: 60px;
-  } */
-
-  /* .Hero .intro-space p {
-    font-size: 15px;
-  } */
 
   .Hero .intro-space .shop-btn {
     margin-top: 30px;
@@ -1206,6 +1163,47 @@ html {
   }
 }
 
+@media (max-width: 768px) {
+  .ExploreBanner-Container,
+  .Ad-Banner-Container {
+    flex-direction: column;
+  }
+
+  .Ad-Banner-Container .banner-img-container {
+    order: 1;
+  }
+
+  .Ad-Banner-Container .banner-description {
+    order: 2;
+  }
+
+  .banner-heading {
+    font-size: 33px;
+  }
+
+  .banner-img-container,
+  .banner-description {
+    width: 100%;
+  }
+
+  .banner-description {
+    gap: 15px;
+    padding-bottom: 40px;
+  }
+
+  .banner-description .title-container {
+    width: clamp(50%, 65vh, 90%);
+  }
+
+  .banner-description .title-container p {
+    padding-right: 70px;
+  }
+
+  .banner-button {
+    width: 150px !important;
+  }
+}
+
 @media (max-width: 728px) {
   .Categories .cat-container a {
     padding: 0 6px !important ;
@@ -1223,7 +1221,3 @@ html {
     gap: 5px;
   }
 }
-
-/* .hero-title {
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-} */

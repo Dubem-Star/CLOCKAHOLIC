@@ -1,3 +1,6 @@
+/* ******************Ad Banner Section****************************** */
+/* ******************Ad Banner Section****************************** */
+
 /* ************************************************ */
 /* General Root Styling*/
 /* ************************************************ */
@@ -42,68 +45,6 @@ html {
   position: relative;
 }
 
-/* ****************Explore Banner Section****************************** */
-/* ****************Explore Banner Section****************************** */
-
-.ExploreBanner-Container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin: 150px 0 50px 0;
-}
-
-.ExploreBanner-Container .img-container {
-  width: 50%;
-  overflow: hidden;
-  height: 450px;
-  flex-shrink: 0;
-}
-
-.ExploreBanner-Container .img-container img {
-  width: 100%;
-  height: 100%;
-}
-
-.ExploreBanner-Container .description {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 60px 10px 0 50px;
-  font-family: var(--default-font-family);
-  background-image: url("@/assets/images/wallpapers/section_wallpaper2.png");
-  background-position: center;
-  background-size: contain;
-}
-
-.ExploreBanner-Container .description .title-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 50%;
-}
-
-.ExploreBanner-Container .description .title-container .sub-heading {
-  font-size: 33px;
-  font-weight: 500;
-}
-
-.ExploreBanner-Container .description button {
-  width: 25%;
-  background-color: var(--sauce-color);
-  border: 1px solid rgba(255, 255, 255, 0);
-  border-radius: 10px;
-  font-weight: 200;
-  font-size: 16px;
-  color: white;
-  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  padding: 10px 5px;
-}
-
-.ExploreBanner-Container .description button:hover {
-  background-color: #f3b200;
-  border-color: white;
-}
-
 /* ****************Footer Section****************************** */
 /* ****************Footer Section****************************** */
 
@@ -123,15 +64,16 @@ html {
 }
 
 .Footer .inner-cont {
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .Footer .inner-cont h1 {
-  font-size: 17px;
+  font-size: 18px;
   margin-bottom: 13px;
+  font-weight: 500;
 }
 
 .Footer .inner-cont li {
@@ -152,15 +94,14 @@ html {
 }
 
 .Footer .inner-cont .about-us {
-  width: 23%;
   position: relative;
-  padding-top: 80px;
+  padding-top: 100px;
 }
 
 .Footer .inner-cont .about-us a {
   width: 90px;
   position: absolute;
-  top: -25px;
+  top: -5px;
   left: 0;
 }
 
@@ -169,9 +110,10 @@ html {
 }
 
 .Footer .inner-cont .about-us p {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 25px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
+  padding-right: 60px;
 }
 
 .Footer .inner-cont .about-us p span {
@@ -181,25 +123,31 @@ html {
 .Footer .inner-cont .footer-lists {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 .Footer .inner-cont .footer-lists ul {
   display: flex;
   flex-direction: column;
   padding: 0;
-  gap: 7px;
+  gap: 10px;
+}
+
+.Footer .inner-cont .footer-lists a {
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .Footer .inner-cont .social-links ul {
   display: flex;
   flex-direction: row;
-  gap: 15px;
-  justify-content: center;
+  gap: 20px;
+  /* justify-content: center; */
   padding: 0;
 }
 
 .Footer .inner-cont .social-links ul li img {
-  width: 25px;
+  width: 30px;
 }
 
 .Footer .bottom-cont {
@@ -221,4 +169,84 @@ html {
 .Footer .bottom-cont .message {
   color: #646463;
   font-size: 12px;
+}
+
+.Footer p,
+a {
+  font-size: 15px;
+}
+
+@media (max-width: 991px) {
+  .Footer .inner-cont .social-links {
+    order: 2 !important;
+    padding-left: 100px;
+  }
+
+  .Footer .inner-cont .quick-links {
+    order: 3 !important;
+  }
+  .Footer .inner-cont .legal {
+    order: 4;
+    padding-left: 100px;
+  }
+
+  .Footer .inner-cont .about-us p {
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Footer .inner-cont {
+    row-gap: 25px;
+  }
+
+  .Footer .inner-cont .footer-lists {
+    padding-right: 0 !important;
+  }
+
+  .Footer .inner-cont .social-links {
+    transform: translateX(-70px);
+  }
+
+  .Footer .inner-cont .social-links,
+  .legal {
+    padding-left: 24px !important;
+  }
+
+  .Footer .inner-cont .about-us {
+    padding-right: 200px;
+  }
+
+  .Footer .inner-cont .quick-links {
+    order: 2 !important;
+  }
+
+  .Footer .inner-cont .legal {
+    order: 3;
+    padding-left: 100px;
+    transform: translateX(-38px);
+  }
+
+  .Footer .inner-cont .social-links {
+    order: 4 !important;
+    padding-left: 100px;
+  }
+}
+
+@media (max-width: 575px) {
+  .Footer .inner-cont {
+    gap: 0;
+  }
+  .Footer .inner-cont .legal,
+  .social-links {
+    transform: translateX(0) !important;
+  }
+
+  .Footer .inner-cont .about-us {
+    padding-right: clamp(50px, 15vw, 100px);
+  }
+
+  .banner-description .title-container p {
+    padding-right: clamp(10px, 10vw, 70px);
+  }
 }

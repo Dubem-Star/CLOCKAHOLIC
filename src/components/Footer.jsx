@@ -9,11 +9,11 @@ export const Footer = () => {
   return (
     <>
       <div className="Footer">
-        <div className="inner-cont">
+        <div className="inner-cont main-page-wrapper row gy-5 gx-5">
           {/* ****************About Clockaholic Section********************* */}
           {/* ****************About Clockaholic Section********************* */}
 
-          <div className="about-us">
+          <div className="about-us col-sm-12 col-md-6 col-lg-4">
             <a href="#">
               <img src={footerLogo} alt="footer-logo" />
             </a>
@@ -27,7 +27,7 @@ export const Footer = () => {
 
           {/* ***************Quick Links Section********************* */}
           {/* ***************Quick Links Section********************* */}
-          <div className="footer-lists quick-links">
+          <div className="col-sm-3 col-md-6 col-lg-2 footer-lists quick-links">
             <h1>Quick Links</h1>
             <ul>
               <li>
@@ -60,7 +60,7 @@ export const Footer = () => {
 
           {/* ***************Legal Section********************* */}
           {/* ***************Legal Section********************* */}
-          <div className="footer-lists legal">
+          <div className="col-sm-3 col-md-6 col-lg-2 footer-lists legal">
             <h1>Legal</h1>
             <ul>
               <li>
@@ -99,16 +99,16 @@ export const Footer = () => {
           {/* ***************Social Links Section********************* */}
           {/* ***************Social Links Section********************* */}
 
-          <div className="social-links">
+          <div className="col-sm-3 col-md-6 col-lg-3 social-links">
             <h1>Visit Us</h1>
             <ul>
               <li>
-                <a href="#">
+                <a href="https://instagram.com/Clockaholic_hq">
                   <img src={instagramLogo} />
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://tiktok.com/@Clockaholic89">
                   <img src={tiktokLogo} />
                 </a>
               </li>
@@ -126,13 +126,13 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="bottom-cont">
+        <div className="bottom-cont main-page-wrapper">
           <p> © 2025 Clockaholic. All Rights Reserved </p>
           <span className="message">
             made with ❤️ by{" "}
             <span className="dubby">
               <a
-                href="https://i.pinimg.com/1200x/44/38/88/443888be638e9c0f6af53609d383fa61.jpg"
+                href="https://dubem-star.github.io/PERSONAL-PORTFOLIO/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-reset text-decoration-none"

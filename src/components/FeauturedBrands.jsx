@@ -96,15 +96,15 @@ function FeaturedBrands() {
   return (
     <>
       <div
-        className="Featured-Brand-Container"
-        data-aos="fade-up"
-        data-aos-delay="200"
+        className="Featured-Brand-Container  "
+        // data-aos="fade-up"
+        // data-aos-delay="200"
       >
         <div className="left-liner FB">
           <h1>Featured Brands</h1>
         </div>
 
-        <div className="brand-cont-container">
+        <div className="brand-cont-container ">
           <div className="brand-cont" ref={brandContRef}>
             {/* *******************Individual Watch Logo Placement******************* */}
             <div className="logo-cont rolly-cont">

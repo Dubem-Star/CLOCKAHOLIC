@@ -13,16 +13,18 @@ import { Footer } from "./components/Footer";
 function App() {
   return (
     <>
-      <BackToTop />
       <Navbar />
       <Hero />
-      <Categories />
-      <FeaturedBrands />
-      <NewArrivals />
-      <BestSellers />
-      <AdBanner />
-      <OnSale />
-      <ExploreBanner />
+      <div className="main-page-wrapper">
+        <BackToTop />
+        <Categories />
+        <FeaturedBrands />
+        <NewArrivals />
+        <BestSellers />
+        <AdBanner />
+        <OnSale />
+        <ExploreBanner />
+      </div>
       <Footer />
     </>
   );

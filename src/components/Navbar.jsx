@@ -42,8 +42,11 @@ function Navbar() {
         }`}
         ref={navHeightRef}
       >
-        <nav className="navbar d-flex  justify-content-between">
-          <a href="#">
+        <nav
+          className="navbar d-flex  justify-content-between main-page-wrapper"
+          style={{ maxWidth: "1809px" }}
+        >
+          <a href="#" className="navbar-image-cont">
             <img src={brandLogo} className="navbar-image ms-2" alt="" />
           </a>
 
