@@ -24,19 +24,19 @@ function Hero() {
     {
       title: "MASTER EVERY SECOND",
       paragraph:
-        "At <span>Clockaholic</span> , we believe time isn’t just measured— it’s valued. Every second shapes <br /> who we become, and every moment is an opportunity. Our craft exists to remind you of <br />  one truth: time waits for no one.",
+        "At <span>Clockaholic</span> , we believe time isn’t just measured, it’s valued. Every second shapes  who we become, and every moment is an opportunity. Our craft exists to remind you of one truth: time waits for no one.",
     },
 
     {
       title: "THE ONLY CONSTANT IS PRECISION",
       paragraph:
-        "Each instrument we craft is a dedication to engineering excellence. Beyond mere aesthetics, <br /> this is the relentless accuracy required to command your schedule— the constant force <br /> driving your day forward.",
+        "Each instrument we craft is a dedication to engineering excellence. Beyond mere aesthetics, this is the relentless accuracy required to command your schedule the constant force driving your day forward.",
     },
 
     {
       title: "YOUR NEXT MOVE, ON TIME",
       paragraph:
-        "Stop chasing opportunities and start owning them. From the boardroom to the open road, <br /> <span>CLOCKAHOLIC</span> provides the definitive instrument built not just to keep up with your ambition, <br /> but to lead it.",
+        "Stop chasing opportunities and start owning them. From the boardroom to the open road, <span>CLOCKAHOLIC</span> provides the definitive instrument built not just to keep up with your ambition, but to lead it.",
     },
   ];
 
@@ -111,12 +111,6 @@ function Hero() {
       window.removeEventListener("resize", isLarge);
     };
   }, []);
-
-  useEffect(() => {
-    return () => {};
-  }, []);
-
-  // console.log(window.innerWidth);
 
   // *******************************Virtual DOM***********************************************
   return (

@@ -1,11 +1,11 @@
 import "@/assets/css/App.css";
-import "@/assets/css/App2.css";
 import footerLogo from "@/assets/images/Logo/clockaholic_navbar_logo.png";
 import instagramLogo from "@/assets/images/img_icons/instagram.png";
 import tiktokLogo from "@/assets/images/img_icons/tiktok.png";
 import facebookLogo from "@/assets/images/img_icons/facebook.png";
 import twitterLogo from "@/assets/images/img_icons/twitter.png";
-export const Footer = () => {
+
+function Footer() {
   return (
     <>
       <div className="Footer">
@@ -13,7 +13,7 @@ export const Footer = () => {
           {/* ****************About Clockaholic Section********************* */}
           {/* ****************About Clockaholic Section********************* */}
 
-          <div className="about-us col-sm-12 col-md-6 col-lg-4">
+          <div className="about-us col-sm-12 col-md-7 col-lg-4">
             <a href="#">
               <img src={footerLogo} alt="footer-logo" />
             </a>
@@ -99,7 +99,7 @@ export const Footer = () => {
           {/* ***************Social Links Section********************* */}
           {/* ***************Social Links Section********************* */}
 
-          <div className="col-sm-3 col-md-6 col-lg-3 social-links">
+          <div className="col-sm-3 col-md-5 col-lg-3 social-links">
             <h1>Visit Us</h1>
             <ul>
               <li>
@@ -145,4 +145,6 @@ export const Footer = () => {
       </div>
     </>
   );
-};
+}
+
+export default Footer;

@@ -1,8 +1,8 @@
 import "@/assets/css/App.css";
 
-import blackModelMan from "@/assets/images/Categories/transparentBg_black_model_man.png";
-import AsianModelWoman from "@/assets/images/Categories/transparentBg_asian_model_woman.png";
-import whiteModelWoman from "@/assets/images/Categories/transparentBg_woman_jewerlry_model.png";
+import blackModelMan from "@/assets/images/Categories/male_watch_2.jpg";
+import AsianModelWoman from "@/assets/images/Categories/female_watch.jpg";
+import whiteModelWoman from "@/assets/images/Categories/accessories.jpg";
 
 function Categories() {
   const categories = [

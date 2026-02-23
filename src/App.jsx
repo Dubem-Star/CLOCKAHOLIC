@@ -1,31 +1,19 @@
 import "./assets/css/App.css";
 import "./assets/css/App2.css";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Categories from "./components/Categories";
-import FeaturedBrands from "./components/FeauturedBrands";
-import NewArrivals from "./components/NewArrivals";
-import BestSellers from "./components/BestSellers";
-import { AdBanner, ExploreBanner } from "./components/AdBanner";
-import OnSale from "./components/OnSale";
-import BackToTop from "./components/BackToTop";
-import { Footer } from "./components/Footer";
+import Home from "./Home.jsx";
+import ProductDetails from "./ProductDetails.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <div className="main-page-wrapper">
-        <BackToTop />
-        <Categories />
-        <FeaturedBrands />
-        <NewArrivals />
-        <BestSellers />
-        <AdBanner />
-        <OnSale />
-        <ExploreBanner />
-      </div>
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route path="/product/:id" element={<ProductDetails />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
