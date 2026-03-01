@@ -121,6 +121,9 @@ export const newArrivedProducts = [
     images: [gShockCasio1, gShockCasio2],
     brandUrl: "/product/rolex",
     badge: "Hot",
+    strap: "Rubber",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -129,6 +132,9 @@ export const newArrivedProducts = [
     price: 75000,
     version: "Poedagar 892 Series (The Aviator Chronograph)",
     images: [poedagar1, poedagar2, poedagar3, poedagar4],
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -137,6 +143,9 @@ export const newArrivedProducts = [
     price: 85000,
     version: "Seiko 5 Sports SRPL95 Series (The Field Watch)",
     images: [seikoSport1, seikoSport2, seikoSport3],
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -146,6 +155,9 @@ export const newArrivedProducts = [
     version: "Seiko Prospex & 5 Sports Series (The Adventure Duo)",
     images: [seikoProspex1, seikoProspex2, seikoProspex3],
     badge: "Hot",
+    strap: "Nato",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -155,6 +167,9 @@ export const newArrivedProducts = [
     version:
       "Cartier Mens Santos de Medium Automatic 35 mm Stainless Steel Watch with Green Dial",
     images: [cartierGreen1, cartierGreen2, cartierGreen3],
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -163,15 +178,22 @@ export const newArrivedProducts = [
     price: 80000,
     version: "Tissot T-Classic Le Locle Powermatic 80",
     images: [tissotLeLocle1, tissotLeLocle2, tissotLeLocle3],
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
     id: 7,
     brandName: "CITIZEN",
     price: 59000,
-    version:
-      "Citizen CB0270-10A Men’s Eco-Drive White Dial Radio-Controlled Leather Strap Watch",
+    version: "Citizen CB0270-10A Men’s Eco-Drive White Leather Strap Watch",
     images: [citizen1, citizen2],
+    description:
+      "Elegant radio-controlled watch with stainless steel case and black leather strap, crystal glass and white dial with blue second hand. Equipped with caliber H145 with Eco-Drive power mechanism, radio controlled function, world time, date and 10 bar water resistance. Case diameter: 43 mm, strap lug width: 22 mm.",
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 
   {
@@ -180,6 +202,11 @@ export const newArrivedProducts = [
     price: 85000,
     version: "Cartier Santos-Dumont (WSSA0032)",
     images: [cartierBlue1, cartierBlue2],
+    description:
+      "The First Pilot's Watch. Created in 1904 by Louis Cartier for aviator Alberto Santos Dumont, the Santos de Cartier is a true horological icon. Defined by its signature rounded angles and exposed screws, this modern marvel blends 20th-century aviation history with timeless elegance.",
+    strap: "Leather",
+    gender: "Male",
+    status: "Newly arrived",
   },
 ];
 
@@ -191,6 +218,11 @@ export const bestSellingProducts = [
     price: 90000,
     version: "Tissot Classic Dream 40MM",
     images: [tissotChain1, tissotChain2, tissotChain3, tissotChain4],
+    description:
+      "The Tissot Classic Dream Automatic is a timeless and sophisticated Swiss-made watch reborn with the reliable Powermatic 80 automatic movement, offering an impressive 80 hours of power reserve. This elegant timepiece features a 40mm 316L stainless steel case with a rose gold PVD coating, protected by a scratch-resistant sapphire crystal.",
+    strap: "Staniless Steel",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -205,6 +237,9 @@ export const bestSellingProducts = [
       naviforceOrange4,
     ],
     badge: "Hot",
+    strap: "Rubber",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -213,6 +248,11 @@ export const bestSellingProducts = [
     price: 76500,
     version: "Cartier Ballon Bleu",
     images: [cartier1, cartier2, cartier3],
+    description:
+      "Cartier’s rich horological heritage dates back to 1847, and its cult timepieces have been adored for over a century. Despite its release only 15 years ago, the Ballon Bleu watch is undoubtedly on the same trajectory. Defined by curved lines and the blue sapphire cabochon safely nestled in its side, the exceptional piece is rendered in steel with a luxurious alligator leather strap.",
+    strap: "Leather",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -222,6 +262,9 @@ export const bestSellingProducts = [
     version: "CURREN 8106 Men’s Black Stainless Steel Quartz Watch",
     images: [currenBlackChain1, currenBlackChain2, currenBlackChain3],
     badge: "New",
+    strap: "Stainless Steel",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -231,6 +274,11 @@ export const bestSellingProducts = [
     version: "Tissot Supersport Chrono 45.5mm",
     images: [tissotBlue1, tissotBlue2, tissotBlue4, tissotBlue5],
     badge: "New",
+    description:
+      "The Tissot Supersport Chrono is a masculine, dynamic and futuristic collection, which offers a wide range of references giving everyone the possibility to pick the watch which fits best to their wrist.",
+    strap: "Nato",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -238,7 +286,12 @@ export const bestSellingProducts = [
     brandName: "NAVIFORCE",
     price: 60000,
     version: "Naviforce 7116 Volda Men Digital Watch",
+    description:
+      "The Naviforce Volda Men Digital Watch in grey is a sophisticated and reliable timepiece for the modern man. With the Naviforce 7116 digital movement, this watch provides precise and accurate timekeeping. The grey color adds a touch of elegance to any outfit, making it a versatile accessory for any occasion.",
     images: [naviforceGrey1, naviforceGrey2, naviforceGrey3, naviforceGrey4],
+    strap: "Rubber",
+    gender: "Male",
+    status: "Best selling",
   },
 
   {
@@ -247,12 +300,16 @@ export const bestSellingProducts = [
     price: 70000,
     version: "CURREN 8225 Coffee Brown Leather Men’s Watch",
     images: [currenBrown1, currenBrown2, currenBrown3],
+    strap: "Leather",
+    gender: "Male",
+    status: "Best selling",
   },
 ];
 
 // ON SALE PRODUCTS OBJECT
 export const onSaleProducts = [
   {
+    id: 16,
     brandName: "TOMMY HILFIGER",
     price: 60000,
     version: "Tommy Hilfiger Men's Multifunction Quartz Watch ",
@@ -264,9 +321,15 @@ export const onSaleProducts = [
       tommyHilfiger5,
     ],
     brandUrl: "/product/placeholder",
+    description:
+      "Make every second count with this racing-inspired watch. This sporty watch features a multi-layer dial with a sub-eye guard, and a multifunction movement that shows the weekday, hour, and date to keep you on track. The textured bezel sits on the 46 mm case, making it a top contender. ",
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 17,
     brandName: "NAVIFORCE",
     price: 55000,
     version: "Naviforce 7113 Prime Digital Men Watch",
@@ -276,24 +339,39 @@ export const onSaleProducts = [
       naviforcegoldBlack3,
       naviforcegoldBlack4,
     ],
+    description:
+      "Elevate your style with the Naviforce 7113 Prime Digital Men Watch in blue. This luxurious timepiece boasts a digital display, complete with date and day features, as well as an alarm function and many more. Timekeeping has never been more sophisticated and elegant. Make a statement with this exclusive watch.",
     badge: "New",
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 18,
     brandName: "TISSOT",
     price: 45000,
     version: "Tissot Supersport Chrono Basketball Edition 45.5MM ",
     images: [tissotBlack1, tissotBlack2, tissotBlack3, tissotBlack4],
+    description:
+      "The Supersport Chrono Basketball Edition is a modern and masculine sports chronograph watch that brings together quality Swiss watchmaking and design with the high-energy dynamics inspired by Tissot’s long association with basketball.",
+    strap: "Leather",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 19,
     brandName: "CHROME HEARTS",
     price: 35000,
     version: "Chrome Hearts Necklace Y2K Grunge Jewelry",
     images: [chromeHeart1, chromeHeart2, chromeHeart3],
+    gender: "Unisex",
+    status: "On sale",
   },
 
   {
+    id: 20,
     brandName: "CURREN",
     price: 35000,
     version: "CURREN Men’s Blue Leather Quartz Watch – 8324",
@@ -304,10 +382,16 @@ export const onSaleProducts = [
       currenBlueLeather4,
       currenBlueLeather5,
     ],
+    description:
+      "a perfect blend of elegance, precision, and resilience. Crafted to meet the multifaceted demands of the contemporary man, this chronograph watch seamlessly transitions from business meetings to outdoor adventures, making it the ultimate accessory for any setting.",
     badge: "New",
+    strap: "Leather",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 21,
     brandName: "CURREN",
     price: 45000,
     version: "CURREN Men’s Silver & Blue Stainless Steel Watch – 8444",
@@ -317,9 +401,15 @@ export const onSaleProducts = [
       currenSilverBlue3,
       currenSilverBlue4,
     ],
+    description:
+      "CURREN 8444 men’s quartz watch with a blue dial and silver stainless steel band. Stylish and modern—ideal for both formal and casual occasions.",
+    strap: "Stainless Steel",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 22,
     brandName: "CASIO",
     price: 35000,
     version: "Casio Illuminator AE1500WH Series ",
@@ -329,16 +419,26 @@ export const onSaleProducts = [
       casioIlluminator3,
       casioIlluminator4,
     ],
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 23,
     brandName: "CASIO",
     price: 35000,
     version: "Casio POP Bio-Based Renewable Band ",
     images: [casioAsh1, casioAsh2, casioAsh3],
+    description:
+      "This Band is made from  Bio-Based Resin, and is produced from renewable organic materials. It’s LED Backlight aids visibility in darker environments, World Time  function includes 31 unique times zones, 48 cities, and features a daylight saving on/off & Home City / World Time City Swapping.",
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 24,
     brandName: "WATCH ORGANIZER",
     price: 15000,
     version: "ProCase Watch Box, 6 Slot Watches Display Case with Drawer",
@@ -349,9 +449,12 @@ export const onSaleProducts = [
       watchOrganizerWine4,
     ],
     badge: "Hot",
+    gender: "Unisex",
+    status: "On sale",
   },
 
   {
+    id: 25,
     brandName: "CHROME HEARTS",
     price: 15000,
     version: "Chrome Hearts Glasses for Men and Women Square Frame Clear Lens ",
@@ -362,9 +465,12 @@ export const onSaleProducts = [
       chromeGlass4,
       chromeGlass5,
     ],
+    gender: "Unisex",
+    status: "On sale",
   },
 
   {
+    id: 26,
     brandName: "CURREN",
     price: 45000,
     version: "CURREN Mens Brown Leather  Quartz Watch 8324",
@@ -376,9 +482,12 @@ export const onSaleProducts = [
       currenBrownLeather5,
     ],
     badge: "New",
+    strap: "Leather",
+    status: "On sale",
   },
 
   {
+    id: 27,
     brandName: "POEDAGAR",
     price: 57000,
     version: "POEDAGAR 853 2025 Men’s Square Quartz Watch",
@@ -388,9 +497,12 @@ export const onSaleProducts = [
       poedagarBlackStrap3,
       poedagarBlackStrap4,
     ],
+    strap: "Leather",
+    status: "On sale",
   },
 
   {
+    id: 28,
     brandName: "POEDAGAR",
     price: 75000,
     version: "POEDAGAR 674 2025 Stainless Gold  Quartz Watch",
@@ -401,27 +513,45 @@ export const onSaleProducts = [
       poedagarStainlessGold4,
     ],
     badge: "Hot",
+    description:
+      "The POEDAGAR Model 674 is a quartz movement watch featuring a 43mm alloy case and a 22mm stainless steel strap with adjustable links, offering essential functions like date and day-of-the-week display, along with luminous hands for visibility. ",
+    strap: "Stainless Steel",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 29,
     brandName: "WATCH ORGANIZER",
     price: 20000,
     version: "ProCase Watch Box, 3 Slot Watches Display Case ",
     images: [watchOrganizerBrown1, watchOrganizerBrown2],
+    gender: "Unisex",
+    status: "On sale",
   },
 
   {
+    id: 30,
     brandName: "NAVIFORCE",
     price: 20000,
     version: "Naviforce 7110 Tonneau Sport Men Watch ",
     images: [naviforceBlue1, naviforceBlue2],
+    description:
+      "The Naviforce NF7110 Tonneau Sport Men Watch Let you gallop and feel the soaring adrenaline with a strong outline in high energy. Equipped with a high-quality digital movement. This watch has precise timing and long battery life, So you can master the tempo of the unequaled style",
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 
   {
+    id: 31,
     brandName: "ROLEX",
     price: 20000,
     version: "Rolex Original ",
     images: [rolexBlackStrap1, rolexBlackStrap2],
     badge: "New",
+    strap: "Rubber",
+    gender: "Male",
+    status: "On sale",
   },
 ];

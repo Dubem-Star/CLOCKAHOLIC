@@ -64,7 +64,12 @@ function NewArrivals() {
 
                   <div className="product-info">
                     <h2 className="brand-name">{product.brandName}</h2>
-                    <p className="version">{truncated}</p>
+                    <p
+                      className="version"
+                      style={{ color: "#72716e", fontWeight: "400" }}
+                    >
+                      {truncated}
+                    </p>
                     <p className="price">₦{product.price.toLocaleString()}</p>
                   </div>
                 </div>

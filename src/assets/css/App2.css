@@ -1,7 +1,123 @@
-/* h1.404-h1 {
-  margin-top: 200px !important;
-  text-align: center
+:root {
+  --sauce-color: #b8860b;
+  --sauce-color-transparent: #b8870ba2;
+  --h1-size: 25px;
+  --default-font-family: "Stack Sans Text", sans-serif;
+  color: #646463;
+}
+
+.Details-Page {
+  font-family: "Stack Sans Text", sans-serif;
+  height: 150%;
+}
+
+.product-container {
+  width: 95% !important;
+}
+
+.product-container .image-container {
+  background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
+  border-radius: 15px;
+  width: clamp(200px, 40vw, 500px);
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  height: clamp(200px, 40vw, 500px);
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.product-container .img-preview {
+  background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lay .overlay {
+  opacity: 1;
+}
+
+.cunt {
+  position: sticky;
+  top: 20px;
+}
+
+.overlay {
+  background-color: rgba(238, 238, 238, 0.526);
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+/* ***********************Product Buttons*********************** */
+/* ***********************Product Buttons*********************** */
+
+.quantity-buttons button {
+  border-width: 2px !important;
+  color: black;
+  transition:
+    0.2s background-color ease-in-out,
+    0.2s color ease-in-out;
+  width: 30%;
+}
+
+.quantity-buttons button:hover {
+  background-color: var(--sauce-color);
+  color: white;
+}
+
+.quantity-buttons .form-control {
+  border-width: 2px !important;
+}
+
+.quantity-buttons .form-control:active,
+.quantity-buttons .form-control:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ***********************Product Info*********************** */
+/* ***********************Product Info*********************** */
+
+/* .product-features h4{
+font-size: ;
 } */
+
+.product-features ul li {
+  list-style: none;
+  color: #72716e;
+  margin-bottom: 7px;
+}
+
+@media (max-width: 992px) {
+  .Buttons {
+    flex-direction: column;
+    gap: 5px !important;
+  }
+
+  .Buttons .quantity-buttons {
+    width: 23% !important;
+  }
+
+  .Buttons .purchase-btn {
+    width: 100% !important;
+  }
+}
 
 @media (max-width: 575px) {
   h1.not-found-page {

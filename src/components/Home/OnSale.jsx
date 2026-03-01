@@ -2,6 +2,7 @@ import "@/assets/css/App.css";
 import PaginationDots from "./PaginationDots";
 import { ProductCardNav } from "./productCardNav";
 import { NewBadge, HotBadge } from "./ProductCardBadges";
+import { Link } from "react-router-dom";
 
 import { onSaleProducts } from "../../data/products";
 function OnSale() {
@@ -24,8 +25,8 @@ function OnSale() {
                 : product.version;
 
             return (
-              <a
-                href="#"
+              <Link
+                to={`/product/${product.id}`}
                 className="atag text-reset text-decoration-none col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
                 key={index}
               >
@@ -60,11 +61,16 @@ function OnSale() {
 
                   <div className="product-info">
                     <h2 className="brand-name">{product.brandName}</h2>
-                    <p className="version">{truncated}</p>
+                    <p
+                      className="version"
+                      style={{ color: "#72716e", fontWeight: "400" }}
+                    >
+                      {truncated}
+                    </p>
                     <p className="price">₦{product.price.toLocaleString()}</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>

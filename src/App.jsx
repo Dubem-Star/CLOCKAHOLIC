@@ -1,7 +1,7 @@
 import "./assets/css/App.css";
 import "./assets/css/App2.css";
-import Home from "./Home.jsx";
-import ProductDetails from "./ProductDetails.jsx";
+import Home from "@/CLOCKAHOLIC/Home.jsx";
+import ProductDetails from "@/CLOCKAHOLIC/ProductDetails.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

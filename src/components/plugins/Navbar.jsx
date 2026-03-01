@@ -5,6 +5,7 @@ import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 import HamburgerIcon from "@/assets/icons/flaticons/hamburger.svg?react";
 import brandLogo from "@/assets/images/Logo/clockaholic_only_logo.png";
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isHidden, setHidden] = useState(false);
@@ -14,7 +15,12 @@ function Navbar() {
   useEffect(() => {
     function NavbarHider() {
       const currentScrollY = window.scrollY;
-      const navbarHeight = navHeightRef.current.offsetHeight / 2;
+      let navbarHeight;
+      if (navHeightRef.current) {
+        navbarHeight = navHeightRef.current.offsetHeight / 2;
+      } else {
+        return;
+      }
 
       if (
         currentScrollY > lastScrollY.current &&
@@ -44,18 +50,19 @@ function Navbar() {
       >
         <nav
           className="navbar d-flex  justify-content-between main-page-wrapper"
-          style={{ maxWidth: "1809px" }}
+          style={{ maxWidth: "2000px" }}
         >
-          <a href="#" className="navbar-image-cont">
+          <Link className="navbar-image-cont" to="/">
             <img src={brandLogo} className="navbar-image ms-2" alt="" />
-          </a>
+          </Link>
 
           {/* **********************Nav Links******************************* */}
           <ul className="navbar-links d-flex">
             <li>
-              <a className="underline" href="#">
+              <Link className="underline" to="/">
                 Home
-              </a>
+              </Link>
+
               <i className="bi bi-chevron-down   "></i>
             </li>
             <li>

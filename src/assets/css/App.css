@@ -274,21 +274,23 @@
 
 .banner-button {
   width: 25%;
-  background-color: var(--sauce-color);
-  border: 1px solid rgba(255, 255, 255, 0);
-  border-radius: 10px;
+  background-color: var(--sauce-color) !important;
+  border: 1px solid rgba(255, 255, 255, 0) !important;
+  border-radius: 10px !important;
   font-weight: 200;
   font-size: 16px;
-  color: white;
+  color: white !important;
   transition:
     background-color 0.2s ease-in-out,
     border-color 0.2s ease-in-out;
   padding: 10px 5px;
 }
 
-.banner-button:hover {
-  background-color: #f3b200;
-  border-color: white;
+.banner-button:hover,
+.atc-btn:hover {
+  background-color: #f3b200 !important;
+  border-color: white !important;
+  color: white !important;
 }
 
 /* ************************************* Body ******************************************** */
@@ -631,8 +633,8 @@ p.animated span {
   color: white;
   font-weight: 400;
   transition:
-    transform 0.5s ease-in-out,
-    font-weight 0.5s ease-in-out;
+    transform 0.3s ease-in-out,
+    font-weight 0.3s ease-in-out;
   padding: 5px 0;
   font-family: var(--default-font-family);
   margin-bottom: 0 !important;
@@ -649,7 +651,7 @@ p.animated span {
   object-fit: cover;
   object-position: center;
   transform-origin: center;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -681,8 +683,8 @@ p.animated span {
   transition:
     background-color 0.2s ease-in-out,
     border-color 0.2s ease-in-out,
-    opacity 0.4s ease-in-out,
-    transform 0.5s ease-in-out;
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
   /* border: 1px solid rgba(255, 255, 255, 0); */
   position: absolute;
   top: 60%;
@@ -1193,6 +1195,10 @@ p.animated span {
 .Footer .bottom-cont .message {
   color: #646463;
   font-size: 12px;
+}
+
+.Footer .bottom-cont .dubby {
+  color: var(--sauce-color);
 }
 
 .Footer p,
