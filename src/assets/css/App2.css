@@ -1,3 +1,6 @@
+/* *********************** General Root Styling*********************** */
+/* *********************** General Root Styling*********************** */
+
 :root {
   --sauce-color: #b8860b;
   --sauce-color-transparent: #b8870ba2;
@@ -5,6 +8,23 @@
   --default-font-family: "Stack Sans Text", sans-serif;
   color: #646463;
 }
+
+.cool-icon {
+  width: 27px;
+  aspect-ratio: 1/1;
+  border: 1px solid #b8860b;
+  padding: 3px;
+}
+
+.check.show-check {
+  display: flex !important;
+}
+.sauce {
+  color: var(--sauce-color) !important ;
+}
+
+/* *********************** Main Page Styling*********************** */
+/* *********************** Main Page Styling*********************** */
 
 .Details-Page {
   font-family: "Stack Sans Text", sans-serif;
@@ -18,11 +38,19 @@
 .product-container .image-container {
   background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
   border-radius: 15px;
-  width: clamp(200px, 40vw, 500px);
+  width: clamp(200px, 36vw, 550px);
   border: 1px solid rgba(0, 0, 0, 0.116);
-  height: clamp(200px, 40vw, 500px);
+  height: clamp(200px, 36vw, 550px);
   cursor: zoom-in;
   overflow: hidden;
+}
+
+/* .product-container .image-container img {
+  transform-origin: var(--mouse-x) var(--mouse-y);
+} */
+
+.product-container .image-container img.zoom-in {
+  transform: scale(2.3);
 }
 
 .product-container .img-preview {
@@ -91,19 +119,56 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.add-to-wishlist-box:hover .text {
+  color: var(--sauce-color) !important;
+}
+
+/* .add-to-wishlist-box .text:hover {
+  color: var(--sauce-color) !important;
+} */
+
 /* ***********************Product Info*********************** */
 /* ***********************Product Info*********************** */
 
-/* .product-features h4{
-font-size: ;
-} */
+.product-features h4 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
 
 .product-features ul li {
   list-style: none;
   color: #72716e;
   margin-bottom: 7px;
+  font-size: 15px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 
+.product-features ul li strong {
+  font-weight: 600 !important;
+}
+
+.share {
+  gap: 10px;
+}
+
+.share img {
+  width: 25px;
+  height: 25px;
+  line-height: 1px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.1s ease-in-out;
+  border-radius: 50%;
+}
+
+.share img:hover {
+  border-color: #000000;
+}
+
+/* ***********************Media Query*********************** */
+/* ***********************Media Query*********************** */
 @media (max-width: 992px) {
   .Buttons {
     flex-direction: column;

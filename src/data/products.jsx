@@ -17,8 +17,10 @@ import cartierGreen3 from "@/assets/images/watch_products/cartier/Cartier_Green_
 import tissotLeLocle1 from "@/assets/images/watch_products/tissot/Tissot_Le_Locle_1.png";
 import tissotLeLocle2 from "@/assets/images/watch_products/tissot/Tissot_Le_Locle_2.png";
 import tissotLeLocle3 from "@/assets/images/watch_products/tissot/Tissot_Le_Locle_3.png";
+import tissotLeLocle4 from "@/assets/images/watch_products/tissot/Tissot_Le_Locle_4.png";
 import citizen1 from "@/assets/images/watch_products/citizen/Citizen_1.png";
 import citizen2 from "@/assets/images/watch_products/citizen/Citizen_2.png";
+import citizen3 from "@/assets/images/watch_products/citizen/Citizen_3.png";
 import cartierBlue1 from "@/assets/images/watch_products/cartier/Cartier_Blue_1.png";
 import cartierBlue2 from "@/assets/images/watch_products/cartier/Cartier_Blue_2.png";
 
@@ -119,22 +121,36 @@ export const newArrivedProducts = [
     price: 60000,
     version: "G-SHOCK Submariner Tribute Original",
     images: [gShockCasio1, gShockCasio2],
+    description:
+      "The Casio G-Shock WR20BAR is a legendary tough timepiece built for extreme conditions. With 200-meter water resistance and G-SHOCK shock protection, it’s designed to withstand pressure, impact, and harsh weather without compromising performance.",
     brandUrl: "/product/rolex",
     badge: "Hot",
     strap: "Rubber",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Day-Date Analog",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
     id: 2,
     brandName: "POEDAGAR",
     price: 75000,
-    version: "Poedagar 892 Series (The Aviator Chronograph)",
+    version: "Poedagar 692 Series (The Aviator Chronograph)",
     images: [poedagar1, poedagar2, poedagar3, poedagar4],
+    description:
+      "The Poedegar Aviator Chronograph features a vintage dial as its design core, paired with exquisite craftsmanship to lock in a stylish aura. The multi-dial chronograph layout and leather strap blend retro sentiment with pioneering craftsmanship",
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Brown",
+    dialShape: "Circle",
+    strapColor: "Brown",
   },
 
   {
@@ -145,7 +161,12 @@ export const newArrivedProducts = [
     images: [seikoSport1, seikoSport2, seikoSport3],
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
@@ -154,10 +175,17 @@ export const newArrivedProducts = [
     price: 54000,
     version: "Seiko Prospex & 5 Sports Series (The Adventure Duo)",
     images: [seikoProspex1, seikoProspex2, seikoProspex3],
+    description:
+      "The Seiko 5 Sports SRPL95 is a limited-edition collaboration with Bamford Watch Department, blending classic Seiko heritage with bold modern design. Inspired by Bamford’s “Retro Future” concept, this exclusive release is limited to just 2,025 pieces worldwide, making it a standout collector’s piece.",
     badge: "Hot",
     strap: "Nato",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Day-Date Analog",
+    dialColor: "Blue",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
@@ -169,7 +197,12 @@ export const newArrivedProducts = [
     images: [cartierGreen1, cartierGreen2, cartierGreen3],
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog",
+    dialColor: "Green",
+    dialShape: "Square",
+    strapColor: "Green",
   },
 
   {
@@ -177,23 +210,35 @@ export const newArrivedProducts = [
     brandName: "TISSOT",
     price: 80000,
     version: "Tissot T-Classic Le Locle Powermatic 80",
-    images: [tissotLeLocle1, tissotLeLocle2, tissotLeLocle3],
+    images: [tissotLeLocle1, tissotLeLocle2, tissotLeLocle3, tissotLeLocle4],
+    description:
+      "The name Le Locle seems to be a reliable ingredient of success. As well as being the name of Tissot's home and heritage, nestled in the Swiss Jura Mountains, it is the name of a hugely popular automatic watch family. The models display exquisite elegance with details such as Roman numerals and a traditional Le Locle signature which complete the picture of classical chic. Discover this version with its deep blue dial for a colourful and chic look.",
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "White",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
     id: 7,
     brandName: "CITIZEN",
     price: 59000,
-    version: "Citizen CB0270-10A Men’s Eco-Drive White Leather Strap Watch",
-    images: [citizen1, citizen2],
+    version: "Citizen CB0270-10A Men’s Eco-Drive Perpetual Watch",
+    images: [citizen1, citizen2, citizen3],
     description:
       "Elegant radio-controlled watch with stainless steel case and black leather strap, crystal glass and white dial with blue second hand. Equipped with caliber H145 with Eco-Drive power mechanism, radio controlled function, world time, date and 10 bar water resistance. Case diameter: 43 mm, strap lug width: 22 mm.",
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "White",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -206,7 +251,12 @@ export const newArrivedProducts = [
       "The First Pilot's Watch. Created in 1904 by Louis Cartier for aviator Alberto Santos Dumont, the Santos de Cartier is a true horological icon. Defined by its signature rounded angles and exposed screws, this modern marvel blends 20th-century aviation history with timeless elegance.",
     strap: "Leather",
     gender: "Male",
-    status: "Newly arrived",
+    status: "Newly Arrived",
+    category: "Wrist Watch",
+    display: "Analog",
+    dialColor: "Silver",
+    dialShape: "Square",
+    strapColor: "Blue",
   },
 ];
 
@@ -220,9 +270,14 @@ export const bestSellingProducts = [
     images: [tissotChain1, tissotChain2, tissotChain3, tissotChain4],
     description:
       "The Tissot Classic Dream Automatic is a timeless and sophisticated Swiss-made watch reborn with the reliable Powermatic 80 automatic movement, offering an impressive 80 hours of power reserve. This elegant timepiece features a 40mm 316L stainless steel case with a rose gold PVD coating, protected by a scratch-resistant sapphire crystal.",
-    strap: "Staniless Steel",
+    strap: "Stainless Steel",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Silver",
+    dialShape: "Circle",
+    strapColor: "Silver and Rose Gold",
   },
 
   {
@@ -236,10 +291,17 @@ export const bestSellingProducts = [
       naviforceOrange3,
       naviforceOrange4,
     ],
+    description:
+      "The Naviforce NF7105 combines a high-impact, transparent orange aesthetic with a 3ATM water-resistant chronograph, precision Japanese quartz movement and an ultra-lightweight 54g design, making it the perfect statement piece for those who demand both bold style and effortless comfort.",
     badge: "Hot",
     strap: "Rubber",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Square",
+    strapColor: "Orange",
   },
 
   {
@@ -252,7 +314,12 @@ export const bestSellingProducts = [
       "Cartier’s rich horological heritage dates back to 1847, and its cult timepieces have been adored for over a century. Despite its release only 15 years ago, the Ballon Bleu watch is undoubtedly on the same trajectory. Defined by curved lines and the blue sapphire cabochon safely nestled in its side, the exceptional piece is rendered in steel with a luxurious alligator leather strap.",
     strap: "Leather",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog",
+    dialColor: "White",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
@@ -264,7 +331,12 @@ export const bestSellingProducts = [
     badge: "New",
     strap: "Stainless Steel",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
@@ -278,7 +350,12 @@ export const bestSellingProducts = [
       "The Tissot Supersport Chrono is a masculine, dynamic and futuristic collection, which offers a wide range of references giving everyone the possibility to pick the watch which fits best to their wrist.",
     strap: "Nato",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog",
+    dialColor: "Blue and Black",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -291,7 +368,12 @@ export const bestSellingProducts = [
     images: [naviforceGrey1, naviforceGrey2, naviforceGrey3, naviforceGrey4],
     strap: "Rubber",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Digital with Date",
+    dialColor: "Black",
+    dialShape: "Rectangle",
+    strapColor: "Grey",
   },
 
   {
@@ -300,9 +382,16 @@ export const bestSellingProducts = [
     price: 70000,
     version: "CURREN 8225 Coffee Brown Leather Men’s Watch",
     images: [currenBrown1, currenBrown2, currenBrown3],
+    description:
+      "Stay fashionable with Quartz watch from CURREN available on Clockaholic. This Analogue watch has Round Coffee dial with a dial diameter of 44mm The Brown colored straps in the watch are made of Leather",
     strap: "Leather",
     gender: "Male",
-    status: "Best selling",
+    status: "Best Selling",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Brown",
   },
 ];
 
@@ -326,6 +415,11 @@ export const onSaleProducts = [
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Day-Date Analog",
+    dialColor: "Blue",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -345,6 +439,11 @@ export const onSaleProducts = [
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Digital with Date",
+    dialColor: "Black",
+    dialShape: "Square",
+    strapColor: "Black",
   },
 
   {
@@ -358,6 +457,12 @@ export const onSaleProducts = [
     strap: "Leather",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 
   {
@@ -366,8 +471,12 @@ export const onSaleProducts = [
     price: 35000,
     version: "Chrome Hearts Necklace Y2K Grunge Jewelry",
     images: [chromeHeart1, chromeHeart2, chromeHeart3],
+    description:
+      "This silver cross pendant necklace features a bold Chrome Hearts inspired design with a distinctive Y2K aesthetic. It comes with a 55CM chain that adds a sleek, versatile touch, making it easy to pair with both casual and statement outfits. Designed to stand out while remaining wearable, this piece works effortlessly for both men and women.",
     gender: "Unisex",
     status: "On sale",
+    category: "Neck Wear",
+    Material: "Silver",
   },
 
   {
@@ -383,11 +492,16 @@ export const onSaleProducts = [
       currenBlueLeather5,
     ],
     description:
-      "a perfect blend of elegance, precision, and resilience. Crafted to meet the multifaceted demands of the contemporary man, this chronograph watch seamlessly transitions from business meetings to outdoor adventures, making it the ultimate accessory for any setting.",
+      "A perfect blend of elegance, precision, and resilience. Crafted to meet the multifaceted demands of the contemporary man, this chronograph watch seamlessly transitions from business meetings to outdoor adventures, making it the ultimate accessory for any setting.",
     badge: "New",
     strap: "Leather",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "White",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -406,6 +520,11 @@ export const onSaleProducts = [
     strap: "Stainless Steel",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Analog",
+    dialColor: "Blue",
+    dialShape: "Circle",
+    strapColor: "Silver and yellow",
   },
 
   {
@@ -419,9 +538,16 @@ export const onSaleProducts = [
       casioIlluminator3,
       casioIlluminator4,
     ],
+    description:
+      "Introducing the Casio Sports Watch, a reliable and versatile timepiece designed to cater to the active lifestyle of modern men. With its impressive range of features and rugged design, this watch is a perfect companion for both everyday wear and overseas travel.",
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Digital with Date",
+    dialColor: "Grey",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -435,11 +561,16 @@ export const onSaleProducts = [
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Ana-Digi",
+    dialColor: "Black",
+    dialShape: "Square",
+    strapColor: "Beige Green",
   },
 
   {
     id: 24,
-    brandName: "WATCH ORGANIZER",
+    brandName: "PROCASE",
     price: 15000,
     version: "ProCase Watch Box, 6 Slot Watches Display Case with Drawer",
     images: [
@@ -448,9 +579,12 @@ export const onSaleProducts = [
       watchOrganizerWine3,
       watchOrganizerWine4,
     ],
+    description:
+      "This premium watch organizer holds up to 6 watches with dial sizes up to 50mm. The top layer secures your watches, while the bottom drawer provides extra space for watchbands, cufflinks, bracelets, rings, and other accessories, keeping everything protected from dust, dampness, and scratches.",
     badge: "Hot",
     gender: "Unisex",
     status: "On sale",
+    category: "Watch Organizer",
   },
 
   {
@@ -458,6 +592,8 @@ export const onSaleProducts = [
     brandName: "CHROME HEARTS",
     price: 15000,
     version: "Chrome Hearts Glasses for Men and Women Square Frame Clear Lens ",
+    description:
+      "These premium Chrome Hearts acetate glasses blend a high-end gothic aesthetic with a modern, unisex fit for men and women. Designed for all-day comfort, the clear lenses can be easily swapped for prescriptions or blue-light protection.",
     images: [
       chromeGlass1,
       chromeGlass2,
@@ -465,8 +601,11 @@ export const onSaleProducts = [
       chromeGlass4,
       chromeGlass5,
     ],
+
     gender: "Unisex",
     status: "On sale",
+    category: "Eye Wear",
+    Lens: "Clear",
   },
 
   {
@@ -481,9 +620,17 @@ export const onSaleProducts = [
       currenBrownLeather4,
       currenBrownLeather5,
     ],
+    description:
+      "This CURREN men's quartz watch features a stylish oval case made of stainless steel, a leather band, and hardened mineral glass. With chronograph functionality, water resistance up to 3BAR, and date display, it combines luxury and practicality. Equipped with Japan movement for precision timekeeping, it weighs 95g and suits both business and sport occasions.",
     badge: "New",
+    gender: "Male",
     strap: "Leather",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Brown",
   },
 
   {
@@ -497,8 +644,16 @@ export const onSaleProducts = [
       poedagarBlackStrap3,
       poedagarBlackStrap4,
     ],
+    description:
+      "The Poedagar 853 Watch is a statement of refined taste and timeless elegance. Designed for men who appreciate style and sophistication, this watch combines premium materials, precise timekeeping, and a sleek design perfect for both business and casual wear.",
     strap: "Leather",
+    gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Day-Date Analog",
+    dialColor: "Silver",
+    dialShape: "Square",
+    strapColor: "Black",
   },
 
   {
@@ -518,16 +673,22 @@ export const onSaleProducts = [
     strap: "Stainless Steel",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Day-Date Analog",
+    dialColor: "Blue",
+    dialShape: "Circle",
+    strapColor: "Silver and Yellow",
   },
 
   {
     id: 29,
-    brandName: "WATCH ORGANIZER",
+    brandName: "PROCASE",
     price: 20000,
     version: "ProCase Watch Box, 3 Slot Watches Display Case ",
     images: [watchOrganizerBrown1, watchOrganizerBrown2],
     gender: "Unisex",
     status: "On sale",
+    category: "Watch Organizer",
   },
 
   {
@@ -541,6 +702,11 @@ export const onSaleProducts = [
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Digital with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Blue",
   },
 
   {
@@ -553,5 +719,10 @@ export const onSaleProducts = [
     strap: "Rubber",
     gender: "Male",
     status: "On sale",
+    category: "Wrist Watch",
+    display: "Analog with Date",
+    dialColor: "Black",
+    dialShape: "Circle",
+    strapColor: "Black",
   },
 ];

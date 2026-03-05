@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "@/assets/css/App2.css";
 import "@/assets/css/App.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import monkeyMeme from "@/assets/images/wallpapers/monkey_confused_meme.jpg";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
@@ -15,6 +15,7 @@ import {
 
 function ProductDisplayBox() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const bigArray = [
     ...newArrivedProducts,
     ...bestSellingProducts,
@@ -76,6 +77,11 @@ function ProductDisplayBox() {
   const [currentImage, setImage] = useState(product.images[0]);
   const imgPreviewCont = useRef(null);
 
+  const productImageContainer = useRef(null);
+  const productImage = useRef(null);
+
+  /* ********************Swap-Previews******************** */
+  /* ********************Swap-Previews******************** */
   function swapImage(e) {
     const previews = imgPreviewCont.current.querySelectorAll(".img-preview ");
     for (let prev of previews) {
@@ -84,24 +90,50 @@ function ProductDisplayBox() {
     setImage(e.currentTarget.dataset.src);
     e.currentTarget.classList.add("lay");
   }
+  /* ************************************************ */
+
+  /* ********************DUBBY-ZOOM******************** */
+  /* ********************DUBBY-ZOOM******************** */
+  function imgContMousemove(e) {
+    const wrapperPosition =
+      productImageContainer.current.getBoundingClientRect();
+    const x =
+      ((e.clientX - wrapperPosition.left) / wrapperPosition.width) * 100;
+    const y =
+      ((e.clientY - wrapperPosition.top) / wrapperPosition.height) * 100;
+
+    productImage.current.style.setProperty("--mouse-x", x + "%");
+    productImage.current.style.setProperty("--mouse-y", y + "%");
+  }
+
+  function imgMouseover() {
+    productImage.current.classList.add("zoom-in");
+  }
+
+  function imgMouseout() {
+    productImage.current.classList.remove("zoom-in");
+  }
+  /* ************************************************ */
 
   {
     /* ********************THE DOM******************** */
-  }
-  {
     /* ********************THE DOM******************** */
   }
+
   return (
     <>
       <div
         className="w-100 "
-        style={{ marginTop: "103px", paddingLeft: "100px" }}
+        style={{
+          margin: "115px auto 0 auto",
+          paddingLeft: "130px",
+          maxWidth: "1800px",
+        }}
       >
         <Link
-          // className="text-reset"
-          to="/"
+          onClick={() => navigate(-1)}
           style={{
-            fontSize: "28px",
+            fontSize: "25px",
             fontWeight: "600",
             color: "#72716e",
             cursor: "pointer",
@@ -113,14 +145,31 @@ function ProductDisplayBox() {
       </div>
 
       <main className="flex-grow-1" style={{ marginTop: "15px" }}>
-        <div className="product-container container-fluid  m-auto">
-          <div className="row d-flex justify-content-center">
+        <div
+          className="product-container container-fluid  m-auto main-page-wrapper overflow-visible d-flex justify-content-center"
+          style={{ width: "95%" }}
+        >
+          <div
+            className="row d-flex justify-content-center "
+            style={{ width: "95%" }}
+          >
             {/* ********************Image Container******************** */}
             {/* ********************Image Container******************** */}
             <div className="col-6 d-flex flex-column align-items-center">
               <div className="d-flex flex-column gap-2 cunt align-items-center">
-                <div className="image-container d-flex justify-content-center">
-                  <img src={currentImage} className="w-100 h-100" />
+                <div
+                  className="image-container d-flex justify-content-center"
+                  ref={productImageContainer}
+                  onMouseMove={imgContMousemove}
+                >
+                  <img
+                    src={currentImage}
+                    className="w-100 h-100"
+                    ref={productImage}
+                    style={{ transformOrigin: "var(--mouse-x) var(--mouse-y)" }}
+                    onMouseEnter={imgMouseover}
+                    onMouseLeave={imgMouseout}
+                  />
                 </div>
 
                 <div
@@ -140,7 +189,7 @@ function ProductDisplayBox() {
                         data-src={img}
                         onClick={swapImage}
                       >
-                        <div class="overlay w-100 h-100 "></div>
+                        <div className="overlay w-100 h-100 "></div>
                         <img src={img} className="w-100" />
                       </div>
                     );
@@ -153,10 +202,11 @@ function ProductDisplayBox() {
             <div className="col-6 d-flex flex-column gap-3 justify-content-start ps-2 pe-4">
               <div>
                 {/* ************brand name************ */}
-                <p
-                  className="mb-0"
-                  style={{ color: "#72716e" }}
-                >{`${product.brandName} WATCHES`}</p>
+                <p className="mb-0" style={{ color: "#72716e" }}>
+                  {product.category === "Wrist Watch"
+                    ? `${product.brandName} WATCHES`
+                    : product.brandName}
+                </p>
                 {/* ************version************ */}
                 <h1
                   style={{ fontSize: "clamp(28px,3vw,40px)" }}

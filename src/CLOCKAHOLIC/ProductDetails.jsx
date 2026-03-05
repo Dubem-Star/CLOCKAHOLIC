@@ -8,9 +8,12 @@ import ProductDisplayBox from "@/components/ProductDetails/ProductDisplayBox";
 function ProductDetails() {
   return (
     <>
-      <div className="Details-Page d-flex flex-column vh-100">
+      <div className="Details-Page d-flex flex-column vh-100 ">
         <Navbar />
-        <div className="main-page-wrapper" style={{ overflow: "visible" }}>
+        <div
+          className="  flex-grow-1"
+          // style={{ maxWidth: "2000px" }}
+        >
           <BackToTop />
           <ProductDisplayBox />
         </div>

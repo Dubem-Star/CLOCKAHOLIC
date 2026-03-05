@@ -3,7 +3,9 @@ import UserIcon from "@/assets/icons/flaticons/circle-user.svg?react";
 import SearchIcon from "@/assets/icons/flaticons/search.svg?react";
 import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 import HamburgerIcon from "@/assets/icons/flaticons/hamburger.svg?react";
+import WishlistIcon from "@/assets/icons/flaticons/wishlist.svg?react";
 import brandLogo from "@/assets/images/Logo/clockaholic_only_logo.png";
+
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -101,7 +103,16 @@ function Navbar() {
             <div className="nav-icons d-flex  me-4">
               <SearchIcon className="nav-icon" />
               <UserIcon className="nav-icon" />
-              <CartIcon className="nav-icon" />
+              <WishlistIcon className="nav-icon" />
+              <div className="d-flex align-item-center position-relative cart-box">
+                <CartIcon className="nav-icon" />
+                <span
+                  className=" position-absolute text-light d-flex align-items-center justify-content-center rounded-circle"
+                  style={{ bottom: "-6px" }}
+                >
+                  0
+                </span>
+              </div>
             </div>
 
             <HamburgerIcon className="nav-icon hamburger" />

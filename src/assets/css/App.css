@@ -10,6 +10,11 @@
   color: #646463;
 }
 
+::selection {
+  background-color: var(--sauce-color);
+  color: white;
+}
+
 /* ************************************************ */
 /* Header Liner Styling*/
 /* ************************************************ */
@@ -405,6 +410,17 @@ html {
 
 .Navbar .nav-icon:hover {
   color: var(--sauce-color);
+}
+
+.cart-box span {
+  line-height: 1px;
+
+  font-size: 11px;
+  right: -6px;
+  padding: 8px;
+  background-color: #b8860b;
+  width: 10px;
+  aspect-ratio: 1/1;
 }
 
 /* ******************Hero Section****************************** */

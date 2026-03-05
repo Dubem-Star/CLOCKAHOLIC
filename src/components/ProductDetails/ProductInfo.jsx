@@ -2,6 +2,12 @@ import "@/assets/css/App2.css";
 import "@/assets/css/App.css";
 import { useParams } from "react-router-dom";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
+import facebook from "@/assets/images/img_icons/share-facebook.png";
+import twitter from "@/assets/images/img_icons/share-twitter.png";
+import tiktok from "@/assets/images/img_icons/share-tiktok.png";
+import linkedIn from "@/assets/images/img_icons/share-linkedin.png";
+import instagram from "@/assets/images/img_icons/share-instagram.png";
+
 import {
   newArrivedProducts,
   bestSellingProducts,
@@ -17,42 +23,79 @@ function ProductInfo() {
   ];
   const space = "    ";
   const product = allProducts.find((product) => product.id === parseFloat(id));
+
+  const brand =
+    product.brandName.slice(0, 1) + product.brandName.slice(1).toLowerCase();
   return (
     <>
-      <p className="d-flex align-items-center gap-1 pt-1">
-        <img
-          className=" me-1 "
-          style={{
-            width: "27px",
-            aspectRatio: "1/1",
-            borderRadius: "50%",
-            border: "1px solid #b8860b",
-            padding: "3px",
-          }}
-          src={viewIcon}
-        />{" "}
-        <strong>{product.id}</strong> {space}
-        <span className="ps-1" style={{ color: "#72716e" }}>
-          customers are currently viewing this product
-        </span>{" "}
-      </p>
-
-      <div className="product-features">
-        <h4 className="fs-5">Features:</h4>
+      <div className="product-features pt-1">
+        <h4 className="">Features:</h4>
         <ul className="ps-0">
-          <li>Strap type: {product.strap}</li>
-          <li>Gender: {product.gender}</li>
-          <li> Brand: {product.brandName}</li>
-          <li>Status: {product.status}</li>
+          <li>
+            <strong>Brand:</strong> {brand}
+          </li>
+
+          {product.strap &&
+            product.display &&
+            product.dialColor &&
+            product.dialShape &&
+            product.strapColor && (
+              <>
+                <li>
+                  <strong>Strap Color:</strong> {product.strapColor}
+                </li>
+
+                <li>
+                  <strong>Strap Type:</strong> {product.strap}
+                </li>
+
+                <li>
+                  <strong>Display type:</strong> {product.display}
+                </li>
+
+                <li>
+                  <strong>Dial Color:</strong> {product.dialColor}
+                </li>
+
+                <li>
+                  <strong>Dial Shape</strong> {product.dialShape}
+                </li>
+              </>
+            )}
+
+          <li>
+            <strong>Gender:</strong> {product.gender}
+          </li>
+          <li>
+            <strong>Category: </strong> {product.category}
+          </li>
+          <li>
+            <strong>Status: </strong> {product.status}
+          </li>
         </ul>
 
-        <h4 className="fs-5 pt-3">Package Includes:</h4>
-        <ul className="ps-0">
-          <li>A Watch</li>
-          <li>Instruction Manual</li>
-          <li>Warranty Card</li>
-          <li>A Beautiful Watch Box</li>
-        </ul>
+        {product.category === "Wrist Watch" && (
+          <>
+            <h4 className=" pt-3">Package Includes:</h4>
+            <ul className="ps-0">
+              <li>x1 Watch</li>
+              <li>x1 Instruction Manual</li>
+              <li>x1 Warranty Card</li>
+              <li>x1 Watch Box</li>
+            </ul>
+          </>
+        )}
+      </div>
+
+      <div className="pt-2 share d-flex align-item-center">
+        <strong style={{ fontWeight: "500" }}>Share:</strong>
+        <div className="d-flex gap-2 ">
+          <img src={facebook} />
+          <img src={instagram} />
+          <img src={twitter} />
+          <img src={tiktok} />
+          <img src={linkedIn} />
+        </div>
       </div>
     </>
   );
