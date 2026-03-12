@@ -1,6 +1,6 @@
 import "@/assets/css/App2.css";
 import "@/assets/css/App.css";
-import heart from "@/assets/images/img_icons/heart.png";
+import heart from "@/assets/images/img_icons/wishlist.png";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -100,12 +100,12 @@ function ProductButtons() {
       <div className="d-flex flex-column gap-1 align-items-start mt-1">
         {/* ************Add to Wishlist btn************ */}
         <div
-          className="d-inline-flex align-items-center gap-1 pt-1 m-0 add-to-wishlist-box"
+          className="d-flex align-items-center justify-content-center gap-1 pt-1 m-0 add-to-wishlist-box"
           style={{ cursor: "pointer" }}
           onClick={showCheck}
         >
           <div className=" me-1 rounded-circle cool-icon d-flex justify-content-center align-items-center position-relative cart-box">
-            <img src={heart} style={{ width: "15px", height: "15px" }} />
+            <img src={heart} style={{ width: "79%", height: "79%" }} />
             <span
               className=" position-absolute text-light d-none align-items-center justify-content-center rounded-circle check"
               style={{ top: "-6px" }}

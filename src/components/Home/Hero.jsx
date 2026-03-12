@@ -1,4 +1,5 @@
 import "@/assets/css/App.css";
+
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import React from "react";
 import seikoWatch from "@/assets/images/watch_wallpapers/watch_brown.jpg";

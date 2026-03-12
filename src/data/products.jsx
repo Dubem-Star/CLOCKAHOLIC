@@ -8,6 +8,8 @@ import poedagar4 from "@/assets/images/watch_products/poedagar/Poedagar_692_4.pn
 import seikoSport1 from "@/assets/images/watch_products/seiko/Seiko_SPB517_1.png";
 import seikoSport2 from "@/assets/images/watch_products/seiko/Seiko_SPB517_2.png";
 import seikoSport3 from "@/assets/images/watch_products/seiko/Seiko_SPB517_3.png";
+import seikoSport4 from "@/assets/images/watch_products/seiko/Seiko_SPB517_4.png";
+import seikoSport5 from "@/assets/images/watch_products/seiko/Seiko_SPB517_5.png";
 import seikoProspex1 from "@/assets/images/watch_products/seiko/Seiko_SRPL95_1.png";
 import seikoProspex2 from "@/assets/images/watch_products/seiko/Seiko_SRPL95_2.png";
 import seikoProspex3 from "@/assets/images/watch_products/seiko/Seiko_SRPL95_3.png";
@@ -39,6 +41,8 @@ import cartier3 from "@/assets/images/watch_products/cartier/Cartier_Ballon_Bleu
 import currenBlackChain1 from "@/assets/images/watch_products/curren/Curren_8106_Black_1.png";
 import currenBlackChain2 from "@/assets/images/watch_products/curren/Curren_8106_Black_2.png";
 import currenBlackChain3 from "@/assets/images/watch_products/curren/Curren_8106_Black_3.png";
+import currenBlackChain4 from "@/assets/images/watch_products/curren/Curren_8106_Black_4.png";
+import currenBlackChain5 from "@/assets/images/watch_products/curren/Curren_8106_Black_5.png";
 import tissotBlue1 from "@/assets/images/watch_products/tissot/Tissot_Supersport_Chrono_45.5mm_1.png";
 import tissotBlue2 from "@/assets/images/watch_products/tissot/Tissot_Supersport_Chrono_45.5mm_2.png";
 import tissotBlue4 from "@/assets/images/watch_products/tissot/Tissot_Supersport_Chrono_45.5mm_4.png";
@@ -158,7 +162,9 @@ export const newArrivedProducts = [
     brandName: "SEIKO",
     price: 85000,
     version: "Seiko 5 Sports SRPL95 Series (The Field Watch)",
-    images: [seikoSport1, seikoSport2, seikoSport3],
+    images: [seikoSport1, seikoSport2, seikoSport3, seikoSport4, seikoSport5],
+    description:
+      "The Seiko Speedtimer × Datsun Limited Edition celebrates motorsport heritage with a countdown timer operated from the 4 o’clock crown, ideal for measuring race intervals and pit stop timing. The case back features the iconic Datsun emblem, “Limited Edition” engraving, and an individual serial number. A matte black dial with red accents, inspired by classic rally cars, enhances legibility, while the LWG-certified leather strap ensures premium comfort and durability.",
     strap: "Leather",
     gender: "Male",
     status: "Newly Arrived",
@@ -327,7 +333,15 @@ export const bestSellingProducts = [
     brandName: "CURREN",
     price: 80500,
     version: "CURREN 8106 Men’s Black Stainless Steel Quartz Watch",
-    images: [currenBlackChain1, currenBlackChain2, currenBlackChain3],
+    images: [
+      currenBlackChain1,
+      currenBlackChain2,
+      currenBlackChain3,
+      currenBlackChain4,
+      currenBlackChain5,
+    ],
+    description:
+      " Make a bold statement with the CURREN 8106, a sleek black stainless steel quartz watch designed for the modern man. Featuring a minimalist dial and durable build, it’s the perfect blend of elegance and performance. Ideal for both formal and everyday wear, this timepiece exudes confidence and class.",
     badge: "New",
     strap: "Stainless Steel",
     gender: "Male",

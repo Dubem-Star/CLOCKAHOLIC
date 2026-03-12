@@ -1,13 +1,15 @@
 import "@/assets/css/App2.css";
 import "@/assets/css/App.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
 import facebook from "@/assets/images/img_icons/share-facebook.png";
 import twitter from "@/assets/images/img_icons/share-twitter.png";
 import tiktok from "@/assets/images/img_icons/share-tiktok.png";
 import linkedIn from "@/assets/images/img_icons/share-linkedin.png";
-import instagram from "@/assets/images/img_icons/share-instagram.png";
-
+import whatsapp from "@/assets/images/img_icons/share-whatsapp.png";
+import copy from "@/assets/images/img_icons/copy.png";
+import delivery from "@/assets/images/img_icons/express-delivery.png";
 import {
   newArrivedProducts,
   bestSellingProducts,
@@ -15,6 +17,8 @@ import {
 } from "../../data/products";
 
 function ProductInfo() {
+  /* ********************Assignments/Definitions******************** */
+  /* ********************Assignments/Definitions******************** */
   const { id } = useParams();
   const allProducts = [
     ...newArrivedProducts,
@@ -23,11 +27,55 @@ function ProductInfo() {
   ];
   const space = "    ";
   const product = allProducts.find((product) => product.id === parseFloat(id));
-
   const brand =
     product.brandName.slice(0, 1) + product.brandName.slice(1).toLowerCase();
+  const copiedNotif = useRef(null);
+  const navigate = useNavigate();
+
+  const text = `Check out this ${product.brandName} watch from Clockaholic!`;
+  const url = window.location.href;
+  const shareApi = `Check out this ${product.brandName} watch from Clockaholic! on ${url}`;
+
+  const encodedMessage = encodeURIComponent(text);
+  const encodedURL = encodeURIComponent(url);
+  const encodedApi = encodeURIComponent(shareApi);
+  /* *************************************************** */
+
+  /* ********************Web Share API Logic******************** */
+  /* ********************Web Share API Logic******************** */
+
+  const shareData = {
+    whatsapp: `https://wa.me/?text=${encodedMessage + " " + encodedURL}`,
+    X: `https://twitter.com/intent/tweet?url=${encodedURL}&text=${encodedMessage}`,
+    linkedIn: `https://www.linkedin.com/sharing/share-offsite/?text=${encodedApi}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`,
+  };
+  /* *************************************************** */
+
+  async function copyProduct() {
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(shareApi);
+      copiedNotif.current.classList.add("show");
+      console.log("hi");
+      setTimeout(() => {
+        copiedNotif.current.classList.remove("show");
+      }, 2000);
+    }
+  }
   return (
     <>
+      <span
+        className="fixed-bottom text-light rounded-2 p-2 w-25 notif invisible"
+        ref={copiedNotif}
+        style={{
+          backgroundColor: "#b8860b",
+          transition: "opacity 0.1s ease-in-out, visibility 0.1s ease-in-out",
+          opacity: "0",
+        }}
+      >
+        Copied to Clipboard!
+      </span>
+
       <div className="product-features pt-1">
         <h4 className="">Features:</h4>
         <ul className="ps-0">
@@ -87,15 +135,62 @@ function ProductInfo() {
         )}
       </div>
 
-      <div className="pt-2 share d-flex align-item-center">
+      <hr className="m-0" />
+
+      {/* <img className=" me-1 rounded-circle cool-icon " src={delivery} style={{ width: "79%", height: "79%" }} /> */}
+      <div class="shipping">
+        <div className="d-flex gap-2 align-items-center">
+          <div className="  rounded-circle cool-icon d-flex justify-content-center align-items-center ">
+            <img src={delivery} style={{ width: "90%", height: "90%" }} />
+          </div>
+
+          <h4 style={{ fontSize: "17px" }} className="m-0">
+            Shipping:
+          </h4>
+        </div>
+
+        <ul className="mt-3 p-0">
+          <li>- Orders within Lagos will be delivered within 24 hours.</li>
+          <li>- Orders outside Lagos are delivered within 48-96 hours.</li>
+        </ul>
+      </div>
+
+      <hr className="m-0" />
+
+      {/* ************Share Product code************ */}
+      {/* ************Share Product code************ */}
+      <div className="pt-2 share d-flex align-items-center">
         <strong style={{ fontWeight: "500" }}>Share:</strong>
         <div className="d-flex gap-2 ">
-          <img src={facebook} />
-          <img src={instagram} />
-          <img src={twitter} />
-          <img src={tiktok} />
-          <img src={linkedIn} />
+          <img
+            src={facebook}
+            onClick={() => window.open(shareData.facebook)}
+            title="share to facebook"
+          />
+          <img
+            src={whatsapp}
+            onClick={() => window.open(shareData.whatsapp)}
+            title="share to whatsapp"
+          />
+          <img
+            src={twitter}
+            onClick={() => window.open(shareData.X)}
+            title="share to X"
+          />
+
+          <img
+            src={linkedIn}
+            onClick={() => window.open(shareData.linkedIn)}
+            title="share to linkedIn"
+          />
         </div>
+
+        <img
+          src={copy}
+          className="ms-1 copy-button p-1 "
+          title="copy product"
+          onClick={() => copyProduct()}
+        />
       </div>
     </>
   );
