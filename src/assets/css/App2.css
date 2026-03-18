@@ -9,12 +9,15 @@
   color: #646463;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .cool-icon {
   width: 30px;
   aspect-ratio: 1/1;
   border: 1px solid #b8860b;
   padding: 3px;
-  flex-shrink: 0;
 }
 
 .check.show-check {
@@ -34,7 +37,7 @@
 
 .Details-Page {
   font-family: "Stack Sans Text", sans-serif;
-  height: 150%;
+  height: auto;
 }
 
 .product-container {
@@ -44,9 +47,9 @@
 .product-container .image-container {
   background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
   border-radius: 15px;
-  width: clamp(200px, 36vw, 550px);
+  width: clamp(320px, 36vw, 550px);
   border: 1px solid rgba(0, 0, 0, 0.116);
-  height: clamp(200px, 36vw, 550px);
+  height: clamp(320px, 36vw, 550px);
   cursor: zoom-in;
   overflow: hidden;
 }
@@ -172,19 +175,39 @@ input[type="number"] {
 }
 
 .copy-button {
-  height: 25px;
+  width: 25px;
   height: 25px;
   cursor: pointer;
   background-color: none;
   border-radius: 5px;
+  transition: background-color 0.1s ease-in-out;
 }
 
 .copy-button:hover {
   background-color: #e0e0e0;
 }
 
+.product-views span,
+strong {
+  padding-top: 3px;
+}
+.general-slide-btn {
+  box-shadow: 0 5px 5px #72716e;
+  transform: translateY(-150%);
+  transition: opacity 0.2s ease-in-out;
+}
+
+.window-wrapper:hover .general-slide-btn {
+  opacity: 1 !important;
+}
+
+.window-wrapper:hover .general-slide-btn.fade {
+  opacity: 0.5 !important;
+}
+
 /* ***********************Media Query*********************** */
 /* ***********************Media Query*********************** */
+
 @media (max-width: 992px) {
   .Buttons {
     flex-direction: column;
@@ -192,7 +215,7 @@ input[type="number"] {
   }
 
   .Buttons .quantity-buttons {
-    width: 23% !important;
+    width: clamp(20%, 25vw, 40%) !important;
   }
 
   .Buttons .purchase-btn {

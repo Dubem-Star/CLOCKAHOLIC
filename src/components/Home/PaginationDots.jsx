@@ -1,7 +1,7 @@
 import "@/assets/css/App.css";
 import { useRef, useEffect } from "react";
 
-function PaginationDots() {
+const PaginationDots = (props) => {
   const dotRef = useRef(null);
 
   useEffect(() => {
@@ -25,13 +25,23 @@ function PaginationDots() {
     };
   }, []);
 
+  const index = [1, 2, 3];
   return (
     <div className="dots" ref={dotRef}>
-      <button className="dot default"></button>
-      <button className="dot"></button>
-      <button className="dot"></button>
+      <button
+        className={`dot ${props.activeIndex === index[0] ? "default" : ""}`}
+        onClick={() => props.dotHandler(index[0])}
+      ></button>
+      <button
+        className={`dot ${props.activeIndex === index[1] ? "default" : ""}`}
+        onClick={() => props.dotHandler(index[1])}
+      ></button>
+      <button
+        className={`dot ${props.activeIndex === index[2] ? "default" : ""}`}
+        onClick={() => props.dotHandler(index[2])}
+      ></button>
     </div>
   );
-}
+};
 
 export default PaginationDots;

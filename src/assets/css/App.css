@@ -137,7 +137,7 @@
   max-width: 2000px;
 }
 
-.back-to-top-wrapper img {
+.general-slide-btn {
   background-color: white;
   width: 40px;
   height: 40px;
@@ -146,6 +146,16 @@
   padding: 10px;
   right: 45px;
   position: absolute;
+  cursor: pointer;
+  color: black;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+.general-slide-btn:hover {
+  color: white;
+  background-color: #b8860b;
 }
 
 .back-to-top-wrapper.show {
@@ -164,8 +174,8 @@
 }
 
 .dots .dot {
-  width: 10px !important;
-  height: 10px !important;
+  width: 12px !important;
+  height: 12px !important;
   border: none;
   border: 2px solid #72716e;
   border-radius: 50%;
@@ -942,6 +952,10 @@ p.animated span {
   visibility: visible;
 }
 
+/* .grid-icon-container .add-to-cart-product-grid{
+
+} */
+
 .products-container .product-img-cont .grid-icon-container img:hover {
   border-color: var(--sauce-color);
 }
@@ -1035,42 +1049,13 @@ p.animated span {
   color: white;
 }
 
-/* ******************New Arrivals Section****************************** */
-/* ******************New Arrivals Section****************************** */
+/* ******************PRODUCT DISPLAY CONTAINER STYLING****************************** */
+/* ******************PRODUCT DISPLAY CONTAINER STYLING****************************** */
 
-.NewArrivals-container {
-  display: flex;
-  width: 95%;
-  flex-direction: column;
-  align-items: center;
-  margin: 130px auto 50px auto;
-  scroll-margin-top: 50px;
-}
-
-/* ******************Best Sellers Section****************************** */
-/* ******************Best Sellers Section****************************** */
-
-.BestSellers-Container {
+.display-container {
   width: 95%;
   margin: 130px auto 50px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
-/* ******************On Sale Section****************************** */
-/* ******************On Sale Section****************************** */
-
-.OnSale-Container {
-  width: 95%;
-  margin: 130px auto 50px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* ******************Ad Banner Section****************************** */
-/* ******************Ad Banner Section****************************** */
 
 .Ad-Banner-Container {
   width: 100%;

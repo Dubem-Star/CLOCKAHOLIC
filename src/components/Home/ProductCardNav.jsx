@@ -1,6 +1,7 @@
 import "@/assets/css/App.css";
 import cartIcon from "@/assets/images/img_icons/shopping-bag.png";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
+import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 export const ProductCardNav = () => {
   return (
     <>

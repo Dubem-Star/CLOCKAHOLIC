@@ -9,7 +9,7 @@ function OnSale() {
   return (
     <>
       <div
-        className="OnSale-Container "
+        className="display-container d-flex flex-column align-items-center "
         data-aos-delay="200"
         data-aos="fade-up"
       >

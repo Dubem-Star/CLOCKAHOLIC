@@ -1,6 +1,6 @@
 import "@/assets/css/App.css";
 import { useEffect, useRef } from "react";
-import bttImg from "@/assets/images/img_icons/up-arrow.png";
+import TopButton from "@/assets/icons/flaticons/up-arrow.svg?react";
 function BackToTop() {
   const upIconRef = useRef(null);
 
@@ -25,7 +25,7 @@ function BackToTop() {
       className="back-to-top-wrapper text-reset"
       title="back to top"
     >
-      <img src={bttImg} />
+      <TopButton className="general-slide-btn" />
     </a>
   );
 }

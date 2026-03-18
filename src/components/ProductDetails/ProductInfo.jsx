@@ -138,7 +138,7 @@ function ProductInfo() {
       <hr className="m-0" />
 
       {/* <img className=" me-1 rounded-circle cool-icon " src={delivery} style={{ width: "79%", height: "79%" }} /> */}
-      <div class="shipping">
+      <div className="shipping">
         <div className="d-flex gap-2 align-items-center">
           <div className="  rounded-circle cool-icon d-flex justify-content-center align-items-center ">
             <img src={delivery} style={{ width: "90%", height: "90%" }} />

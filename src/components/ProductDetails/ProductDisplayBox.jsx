@@ -79,6 +79,10 @@ function ProductDisplayBox() {
 
   const productImageContainer = useRef(null);
   const productImage = useRef(null);
+  useEffect(() => {
+    setImage(product.images[0]);
+    return () => {};
+  }, [product]);
 
   /* ********************Swap-Previews******************** */
   /* ********************Swap-Previews******************** */
@@ -126,19 +130,23 @@ function ProductDisplayBox() {
         className="w-100 "
         style={{
           margin: "115px auto 0 auto",
-          paddingLeft: "130px",
+          paddingLeft: "clamp(70px, 11vw, 120px)",
           maxWidth: "1800px",
         }}
       >
         <Link
           onClick={() => navigate(-1)}
+          className="rounded-circle fw-bold copy-button d-flex justify-content-center align-items-center"
           style={{
-            fontSize: "25px",
-            fontWeight: "600",
+            fontSize: "23px",
+            width: "40px",
+            height: "40px",
             color: "#72716e",
-            cursor: "pointer",
             textDecoration: "none",
+            backgroundColor: "none",
+            lineHeight: "1",
           }}
+          title="back to shop page"
         >
           🡨
         </Link>
@@ -155,7 +163,7 @@ function ProductDisplayBox() {
           >
             {/* ********************Image Container******************** */}
             {/* ********************Image Container******************** */}
-            <div className="col-6 d-flex flex-column align-items-center">
+            <div className="col-6 col-lg-6 col-xl-6 d-flex flex-column align-items-center ">
               <div className="d-flex flex-column gap-2 cunt align-items-center">
                 <div
                   className="image-container d-flex justify-content-center"
@@ -199,17 +207,18 @@ function ProductDisplayBox() {
             </div>
             {/* ********************Description Container******************** */}
             {/* ********************Description Container******************** */}
-            <div className="col-6 d-flex flex-column gap-3 justify-content-start ps-2 pe-4">
+            <div className="col-6 d-flex flex-column gap-3 justify-content-start ps-xl-2 pe-xl-4 ps-lg-3 ps-4 pe-0 description-cont">
               <div>
                 {/* ************brand name************ */}
                 <p className="mb-0" style={{ color: "#72716e" }}>
                   {product.category === "Wrist Watch"
-                    ? `${product.brandName} WATCHES`
+                    ? `${product.brandName} WATCHES `
                     : product.brandName}
                 </p>
                 {/* ************version************ */}
+
                 <h1
-                  style={{ fontSize: "clamp(28px,3vw,40px)" }}
+                  style={{ fontSize: "clamp(35px,3vw,40px)" }}
                   className="fw-normal"
                 >
                   {product.version}
@@ -224,8 +233,15 @@ function ProductDisplayBox() {
               {/* ************description************ */}
               <div className="description-box mt-2">
                 {/* <h5 className="mb-2 ">Description:</h5> */}
-                <p style={{ color: "#72716e", marginBottom: "13px" }}>
-                  {product.description}{" "}
+                <p
+                  style={{
+                    color: "#72716e",
+                    marginBottom: "13px",
+                    fontSize: "16px",
+                    lineHeight: "1.7",
+                  }}
+                >
+                  {product.description}
                 </p>
               </div>
 

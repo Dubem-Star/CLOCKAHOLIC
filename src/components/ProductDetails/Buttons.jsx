@@ -123,7 +123,7 @@ function ProductButtons() {
         </div>
 
         {/* ************Product Views************ */}
-        <p className="d-flex align-items-center gap-1 pt-2">
+        <p className="d-flex align-items-start gap-1 pt-2 product-views">
           <img className=" me-1 rounded-circle cool-icon " src={viewIcon} />{" "}
           <strong>{product.id}</strong> {space}
           <span className="ps-1" style={{ color: "#72716e" }}>

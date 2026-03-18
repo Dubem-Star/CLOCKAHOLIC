@@ -1,0 +1,240 @@
+import "@/assets/css/App.css";
+import "@/assets/css/App2.css";
+import { useParams, Link } from "react-router-dom";
+import { ProductCardNav } from "@/components/Home/ProductCardNav";
+import { NewBadge, HotBadge } from "@/components/Home/ProductCardBadges";
+import PaginationDots from "@/components/Home/PaginationDots";
+import LeftButton from "@/assets/icons/flaticons/left-arrow.svg?react";
+import RightButton from "@/assets/icons/flaticons/right-arrow.svg?react";
+import {
+  bestSellingProducts,
+  onSaleProducts,
+  newArrivedProducts,
+} from "../../data/products";
+import { useState, useEffect, useRef } from "react";
+
+function ExploreRelated() {
+  const { id } = useParams();
+  const allProducts = [
+    ...bestSellingProducts,
+    ...newArrivedProducts,
+    ...onSaleProducts,
+  ];
+
+  const mainProduct = allProducts.find((product) => product.id == id);
+  //Products by brand
+  const productsByBrand = allProducts.filter(
+    (product) => product.brandName === mainProduct.brandName,
+  );
+  //Products by strap
+  const productsByStrap = allProducts.filter(
+    (product) => product.strap === mainProduct.strap,
+  );
+  //Randomize all products
+  // const randomProducts = [...allProducts].sort(() => Math.random() - 0.5);
+
+  const combined = [...productsByBrand, ...productsByStrap, ...allProducts];
+  //Filter current product
+  const filterCurrent = combined.filter(
+    (product) => product.id !== mainProduct.id,
+  );
+  //Filter duplicate products
+  const filterDuplicates = Array.from(
+    //Turns the 'new Map' logic to legit array
+    new Map(filterCurrent.map((item) => [item.id, item])).values(), //An array of unique product values
+  );
+  const cleanRelatedProducts = filterDuplicates.slice(0, 12);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => {};
+  }, [mainProduct]);
+
+  const leftSlider = useRef(null);
+  const rightSlider = useRef(null);
+  const windowWrapper = useRef(null);
+
+  const [slideState, setSlideState] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
+
+  const slideStyle = {
+    transform: `translateX(-${slideState}px)`,
+    transition: `transform 1.5s ease-in-out`,
+    width: `max-content`,
+  };
+
+  useEffect(() => {
+    if (slideState === 0) {
+      leftSlider.current.classList.add("fade");
+    } else {
+      leftSlider.current.classList.remove("fade");
+    }
+
+    const slideValue = windowWrapper.current.offsetWidth;
+    if (slideState === slideValue * 2 + 32) {
+      rightSlider.current.classList.add("fade");
+    } else {
+      rightSlider.current.classList.remove("fade");
+    }
+
+    return () => {};
+  }, [slideState]);
+
+  /* ***************NAVIGATION ARROW FUNCTION************** */
+  /* ***************NAVIGATION ARROW FUNCTION************** */
+  function goRight() {
+    if (windowWrapper.current) {
+      const slideValue = windowWrapper.current.offsetWidth;
+      setSlideState((prev) =>
+        prev >= slideValue * 2 + 32
+          ? slideValue * 2 + 32
+          : prev + slideValue + 16,
+      );
+    }
+    setActiveIndex((prev) => (prev < 3 ? prev + 1 : 3));
+    console.log(activeIndex);
+  }
+
+  function goLeft() {
+    if (windowWrapper.current) {
+      const slideValue = windowWrapper.current.offsetWidth;
+      setSlideState((prev) => (prev > 0 ? prev - slideValue - 16 : 0));
+    }
+    setActiveIndex((prev) => (prev > 1 ? prev - 1 : 1));
+    console.log(activeIndex);
+  }
+  /* ****************************************** */
+
+  /* ********************DOT CLICK FUNCTION******************** */
+  /* ********************DOT CLICK FUNCTION******************** */
+  function dotHandler(index) {
+    if (windowWrapper.current) {
+      const slideValue = windowWrapper.current.offsetWidth;
+      if (index === 1) {
+        setSlideState(0);
+        setActiveIndex(1);
+      } else if (index === 2) {
+        setSlideState(slideValue + 16);
+        setActiveIndex(2);
+      } else if (index === 3) {
+        setSlideState(slideValue + slideValue + 16 + 16);
+        setActiveIndex(3);
+      }
+    }
+  }
+  /* ****************************************** */
+
+  /* ********************THE DOM******************** */
+  /* ********************THE DOM******************** */
+  return (
+    <>
+      <div
+        className="display-container d-flex flex-column align-items-center gap-4 overflow-x-hidden explore-related-container position-relative w-100 h-auto"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        style={{ marginTop: "150px" }}
+      >
+        <div className="middle-liner " style={{ maxWidth: "1200px" }}>
+          <h1 className="middle-title">Explore Related Items</h1>
+        </div>
+        <div
+          className="window-wrapper overflow-x-hidden "
+          style={{
+            width: "95%",
+            maxWidth: "1240px",
+          }}
+          ref={windowWrapper}
+        >
+          <div
+            className="products-container d-flex gap-3   flex-nowrap  "
+            style={slideStyle}
+          >
+            {cleanRelatedProducts.map((product, index) => {
+              const truncated =
+                product.version.length >= 30
+                  ? product.version.slice(0, 30) + "..."
+                  : product.version;
+
+              return (
+                <Link
+                  to={`/product/${product.id}`}
+                  className="atag text-reset "
+                  style={{ width: "298px" }}
+                  key={index}
+                >
+                  <div className="product-grid">
+                    <div className="product-img-cont">
+                      <img
+                        src={product.images[0]}
+                        className=" fake"
+                        alt={`${product.brandName}_image`}
+                      />
+                      <img
+                        src={product.images[0]}
+                        className="product-img one"
+                        alt={`${product.brandName}_image`}
+                      />
+                      <img
+                        src={product.images[1]}
+                        className="product-img two"
+                        alt={`${product.brandName}_image`}
+                      />
+
+                      <div>{product.badge === "Hot" ? <HotBadge /> : null}</div>
+
+                      <ProductCardNav />
+                    </div>
+                    {/* ↑↑ .product-img-cont end */}
+
+                    <div className="product-info">
+                      <h2 className="brand-name">{product.brandName}</h2>
+                      <p
+                        className="version"
+                        style={{ color: "#72716e", fontWeight: "400" }}
+                      >
+                        {truncated}
+                      </p>
+                      <p className="price">₦{product.price.toLocaleString()}</p>
+                    </div>
+                  </div>
+                  {/* </a> */}
+                </Link>
+              );
+              {
+                /* ↑↑ .products-card end */
+              }
+            })}
+          </div>
+          {/* ***************NAVIGATION ARROW************** */}
+          {/* ***************NAVIGATION ARROW************** */}
+          <LeftButton
+            className="general-slide-btn position-absolute top-50 opacity-0"
+            style={{
+              left: "10px",
+            }}
+            ref={leftSlider}
+            onClick={goLeft}
+          />
+          <RightButton
+            className="general-slide-btn position-absolute top-50 opacity-0"
+            style={{
+              right: "10px",
+            }}
+            ref={rightSlider}
+            onClick={goRight}
+          />
+        </div>
+        {/* ****************************************** */}
+
+        {/* ***************PAGINATION DOTS************** */}
+        <div style={{ marginTop: "-40px" }}>
+          <PaginationDots dotHandler={dotHandler} activeIndex={activeIndex} />
+        </div>
+
+        {/* ****************************************** */}
+      </div>
+    </>
+  );
+}
+
+export default ExploreRelated;

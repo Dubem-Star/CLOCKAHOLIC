@@ -8,7 +8,7 @@ function BestSellers() {
   return (
     <>
       <div
-        className="BestSellers-Container"
+        className="display-container d-flex flex-column align-items-center"
         data-aos="fade-up"
         data-aos-delay="200"
       >

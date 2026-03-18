@@ -9,10 +9,11 @@ function NewArrivals() {
   return (
     <>
       <div
-        className="NewArrivals-container"
+        className="display-container d-flex flex-column align-items-center"
         data-aos="fade-up"
         data-aos-delay="200"
         id="newArrivalsSection"
+        style={{ scrollMarginTop: "150px" }}
       >
         <div className="middle-liner">
           <h1 className="middle-title">New Arrivals</h1>
