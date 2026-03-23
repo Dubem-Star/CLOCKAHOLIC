@@ -53,13 +53,15 @@ function ExploreRelated() {
   const leftSlider = useRef(null);
   const rightSlider = useRef(null);
   const windowWrapper = useRef(null);
+  const productContainer = useRef(null);
 
+  const [cardSize, setCardSize] = useState(0);
   const [slideState, setSlideState] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
 
   const slideStyle = {
     transform: `translateX(-${slideState}px)`,
-    transition: `transform 1.5s ease-in-out`,
+    transition: `transform 1s ease-in-out`,
     width: `max-content`,
   };
 
@@ -71,28 +73,57 @@ function ExploreRelated() {
     }
 
     const slideValue = windowWrapper.current.offsetWidth;
-    if (slideState === slideValue * 2 + 32) {
+    const prodContWidth = productContainer.current.scrollWidth;
+    if (slideState >= prodContWidth - slideValue) {
       rightSlider.current.classList.add("fade");
     } else {
       rightSlider.current.classList.remove("fade");
     }
 
     return () => {};
-  }, [slideState]);
+  }, [slideState, cleanRelatedProducts]);
+
+  /* ***************CONSTRUCTION************** */
+  /* ***************CONSTRUCTION************** */
+
+  useEffect(() => {
+    function handleResize() {
+      const wrapperWidth = windowWrapper.current
+        ? windowWrapper.current.offsetWidth
+        : null;
+
+      const width = window.innerWidth;
+      const gap = 16;
+      function getCardNumber() {
+        if (width > 1200) return 4;
+        if (width > 767) return 3;
+        if (width > 0) return 2;
+      }
+
+      const calculatedWidth =
+        (wrapperWidth - gap * (getCardNumber() - 1)) / getCardNumber();
+      // const cardWidth = Math.floor(calculatedWidth);
+
+      setSlideState((activeIndex - 1) * (wrapperWidth + 16));
+      setCardSize(calculatedWidth);
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {};
+  }, [activeIndex]);
 
   /* ***************NAVIGATION ARROW FUNCTION************** */
   /* ***************NAVIGATION ARROW FUNCTION************** */
   function goRight() {
-    if (windowWrapper.current) {
+    if (windowWrapper.current && productContainer.current) {
       const slideValue = windowWrapper.current.offsetWidth;
+      const prodContWidth = productContainer.current.offsetWidth;
       setSlideState((prev) =>
-        prev >= slideValue * 2 + 32
-          ? slideValue * 2 + 32
-          : prev + slideValue + 16,
+        prev >= prodContWidth - slideValue ? prev : prev + slideValue + 16,
       );
     }
-    setActiveIndex((prev) => (prev < 3 ? prev + 1 : 3));
-    console.log(activeIndex);
+    setActiveIndex((prev) => (prev < totalDots ? prev + 1 : totalDots));
   }
 
   function goLeft() {
@@ -101,7 +132,6 @@ function ExploreRelated() {
       setSlideState((prev) => (prev > 0 ? prev - slideValue - 16 : 0));
     }
     setActiveIndex((prev) => (prev > 1 ? prev - 1 : 1));
-    console.log(activeIndex);
   }
   /* ****************************************** */
 
@@ -110,19 +140,21 @@ function ExploreRelated() {
   function dotHandler(index) {
     if (windowWrapper.current) {
       const slideValue = windowWrapper.current.offsetWidth;
-      if (index === 1) {
-        setSlideState(0);
-        setActiveIndex(1);
-      } else if (index === 2) {
-        setSlideState(slideValue + 16);
-        setActiveIndex(2);
-      } else if (index === 3) {
-        setSlideState(slideValue + slideValue + 16 + 16);
-        setActiveIndex(3);
-      }
+      const gap = 16;
+      const newSlideState = (index - 1) * (slideValue + gap);
+      setSlideState(newSlideState);
+      setActiveIndex(index);
     }
   }
   /* ****************************************** */
+
+  /* ****************************CONSTRUCTION*************************** */
+  /* ****************************CONSTRUCTION*************************** */
+
+  const NumOfProducts = cleanRelatedProducts.length;
+  const itemsPerWidth =
+    window.innerWidth > 1200 ? 4 : window.innerWidth > 767 ? 3 : 2;
+  const totalDots = Math.ceil(NumOfProducts / itemsPerWidth);
 
   /* ********************THE DOM******************** */
   /* ********************THE DOM******************** */
@@ -148,6 +180,7 @@ function ExploreRelated() {
           <div
             className="products-container d-flex gap-3   flex-nowrap  "
             style={slideStyle}
+            ref={productContainer}
           >
             {cleanRelatedProducts.map((product, index) => {
               const truncated =
@@ -159,7 +192,7 @@ function ExploreRelated() {
                 <Link
                   to={`/product/${product.id}`}
                   className="atag text-reset "
-                  style={{ width: "298px" }}
+                  style={{ width: `${cardSize}px`, boxSizing: "border-box" }}
                   key={index}
                 >
                   <div className="product-grid">
@@ -228,7 +261,11 @@ function ExploreRelated() {
 
         {/* ***************PAGINATION DOTS************** */}
         <div style={{ marginTop: "-40px" }}>
-          <PaginationDots dotHandler={dotHandler} activeIndex={activeIndex} />
+          <PaginationDots
+            dotHandler={dotHandler}
+            activeIndex={activeIndex}
+            totalDots={totalDots}
+          />
         </div>
 
         {/* ****************************************** */}

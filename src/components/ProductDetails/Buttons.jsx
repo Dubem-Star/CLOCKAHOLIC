@@ -104,8 +104,11 @@ function ProductButtons() {
           style={{ cursor: "pointer" }}
           onClick={showCheck}
         >
-          <div className=" me-1 rounded-circle cool-icon d-flex justify-content-center align-items-center position-relative cart-box">
-            <img src={heart} style={{ width: "79%", height: "79%" }} />
+          <div className=" me-1 rounded-circle cool-icon  d-flex justify-content-center align-items-center position-relative cart-box">
+            <img
+              src={heart}
+              style={{ width: "79%", height: "79%", display: "block" }}
+            />
             <span
               className=" position-absolute text-light d-none align-items-center justify-content-center rounded-circle check"
               style={{ top: "-6px" }}
@@ -125,11 +128,12 @@ function ProductButtons() {
         {/* ************Product Views************ */}
         <p className="d-flex align-items-start gap-1 pt-2 product-views">
           <img className=" me-1 rounded-circle cool-icon " src={viewIcon} />{" "}
-          <strong>{product.id}</strong> {space}
           <span className="ps-1" style={{ color: "#72716e" }}>
+            <strong className="text-black me-1">{product.id}</strong>
+            {space}
             {product.id > 1
-              ? "customers are currently viewing this product"
-              : "customer is currently viewing this product"}
+              ? `customers are currently viewing this product`
+              : `customer is currently viewing this product`}
           </span>
         </p>
       </div>

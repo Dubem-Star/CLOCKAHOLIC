@@ -158,12 +158,12 @@ function ProductDisplayBox() {
           style={{ width: "95%" }}
         >
           <div
-            className="row d-flex justify-content-center "
+            className="row d-flex justify-content-center gap-5 gap-md-0 "
             style={{ width: "95%" }}
           >
             {/* ********************Image Container******************** */}
             {/* ********************Image Container******************** */}
-            <div className="col-6 col-lg-6 col-xl-6 d-flex flex-column align-items-center ">
+            <div className="col-md-6 col-lg-6 col-xl-6 d-flex flex-column align-items-center ">
               <div className="d-flex flex-column gap-2 cunt align-items-center">
                 <div
                   className="image-container d-flex justify-content-center"
@@ -207,7 +207,7 @@ function ProductDisplayBox() {
             </div>
             {/* ********************Description Container******************** */}
             {/* ********************Description Container******************** */}
-            <div className="col-6 d-flex flex-column gap-3 justify-content-start ps-xl-2 pe-xl-4 ps-lg-3 ps-4 pe-0 description-cont">
+            <div className="col-md-6 col-lg-6 col-xl-6 d-flex flex-column gap-3 justify-content-start ps-xl-2 pe-xl-4 ps-md-3 ps-0 pe-0 description-cont">
               <div>
                 {/* ************brand name************ */}
                 <p className="mb-0" style={{ color: "#72716e" }}>
@@ -218,7 +218,7 @@ function ProductDisplayBox() {
                 {/* ************version************ */}
 
                 <h1
-                  style={{ fontSize: "clamp(35px,3vw,40px)" }}
+                  style={{ fontSize: "clamp(25px,3vw,40px)" }}
                   className="fw-normal"
                 >
                   {product.version}

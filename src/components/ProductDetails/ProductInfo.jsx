@@ -126,10 +126,30 @@ function ProductInfo() {
           <>
             <h4 className=" pt-3">Package Includes:</h4>
             <ul className="ps-0">
-              <li>x1 Watch</li>
-              <li>x1 Instruction Manual</li>
-              <li>x1 Warranty Card</li>
-              <li>x1 Watch Box</li>
+              <li className="d-flex align-items-flex-start share">
+                <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+                  &#8226;
+                </span>
+                <span>A Watch</span>{" "}
+              </li>
+              <li className="d-flex align-items-flex-start share">
+                <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+                  &#8226;
+                </span>
+                <span> An Instruction Manual</span>
+              </li>
+              <li className="d-flex align-items-flex-start share">
+                <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+                  &#8226;
+                </span>{" "}
+                <span>A Warranty Card</span>
+              </li>
+              <li className="d-flex align-items-flex-start share">
+                <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+                  &#8226;
+                </span>
+                <span>A Watch Box</span>
+              </li>
             </ul>
           </>
         )}
@@ -150,8 +170,18 @@ function ProductInfo() {
         </div>
 
         <ul className="mt-3 p-0">
-          <li>- Orders within Lagos will be delivered within 24 hours.</li>
-          <li>- Orders outside Lagos are delivered within 48-96 hours.</li>
+          <li className="d-flex align-items-flex-start share">
+            <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+              &#8226;
+            </span>
+            <span> Orders within Lagos will be delivered within 24 hours.</span>
+          </li>
+          <li className="d-flex align-items-flex-start share">
+            <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+              &#8226;
+            </span>
+            <span> Orders outside Lagos are delivered within 48-96 hours.</span>
+          </li>
         </ul>
       </div>
 

@@ -28,19 +28,32 @@ const PaginationDots = (props) => {
   const index = [1, 2, 3];
   return (
     <div className="dots" ref={dotRef}>
-      <button
-        className={`dot ${props.activeIndex === index[0] ? "default" : ""}`}
-        onClick={() => props.dotHandler(index[0])}
-      ></button>
-      <button
-        className={`dot ${props.activeIndex === index[1] ? "default" : ""}`}
-        onClick={() => props.dotHandler(index[1])}
-      ></button>
-      <button
-        className={`dot ${props.activeIndex === index[2] ? "default" : ""}`}
-        onClick={() => props.dotHandler(index[2])}
-      ></button>
+      {Array.from({ length: props.totalDots }).map((_, i) => {
+        const dotKey = i + 1;
+        return (
+          <button
+            key={dotKey}
+            className={`dot ${props.activeIndex === dotKey ? "default" : ""}`}
+            onClick={() => props.dotHandler(dotKey)}
+          ></button>
+        );
+      })}
     </div>
+
+    // <div className="dots" ref={dotRef}>
+    //   <button
+    //     className={`dot ${props.activeIndex === index[0] ? "default" : ""}`}
+    //     onClick={() => props.dotHandler(index[0])}
+    //   ></button>
+    //   <button
+    //     className={`dot ${props.activeIndex === index[1] ? "default" : ""}`}
+    //     onClick={() => props.dotHandler(index[1])}
+    //   ></button>
+    //   <button
+    //     className={`dot ${props.activeIndex === index[2] ? "default" : ""}`}
+    //     onClick={() => props.dotHandler(index[2])}
+    //   ></button>
+    // </div>
   );
 };
 

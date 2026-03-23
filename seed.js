@@ -28,7 +28,7 @@ const brands = [
   "watch_organizer",
 ];
 
-async function uploadImages() {
+async function uploadProductsImages() {
   if (true) {
     await cloudinary.api.delete_resources_by_prefix("Clockaholic/");
     return console.log("cleared folder for now 👍🏾");
@@ -61,5 +61,30 @@ async function uploadImages() {
     }
   }
 }
+async function uploadLogoImages() {
+  if (true) {
+    await cloudinary.api.delete_resources_by_prefix("Clockaholic/Watch_Logos");
+    return console.log("cleared folder for now 👍🏾");
+  }
 
-uploadImages();
+  const logoFolder = path.join(__dirname, "src/assets/images/watch_logos");
+  const logoImages = fs.readdirSync(logoFolder);
+
+  for (let logo of logoImages) {
+    const filePath = path.join(logoFolder, logo);
+    try {
+      const uploader = await cloudinary.uploader.upload(filePath, {
+        folder: "Clockaholic/Watch_Logos",
+        use_filename: true,
+        unique_filename: false,
+      });
+
+      console.log("✅All images uploaded");
+    } catch (e) {
+      console.log("❌Error uploading images:", e);
+    }
+  }
+}
+
+// uploadProductsImages();
+uploadLogoImages();

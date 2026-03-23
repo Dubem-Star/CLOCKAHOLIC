@@ -1249,6 +1249,10 @@ a {
     opacity: 1;
     visibility: visible;
   }
+
+  .window-wrapper .general-slide-btn {
+    opacity: 1 !important;
+  }
 }
 
 @media (max-width: 1000px) {

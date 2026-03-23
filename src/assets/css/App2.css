@@ -143,7 +143,6 @@ input[type="number"] {
 
 .product-features ul li,
 .shipping ul li {
-  list-style: none;
   color: #72716e;
   margin-bottom: 7px;
   font-size: 15px;
@@ -157,7 +156,7 @@ input[type="number"] {
 }
 
 .share {
-  gap: 10px;
+  gap: 10px !important;
 }
 
 .share div img {
@@ -220,6 +219,21 @@ strong {
 
   .Buttons .purchase-btn {
     width: 100% !important;
+  }
+  .purchase-btn {
+    flex-direction: column;
+  }
+
+  .purchase-btn button {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-container .image-container,
+  .cunt {
+    width: 100%;
+    height: 100%;
   }
 }
 
