@@ -1,7 +1,6 @@
-import "@/assets/css/App.css";
-import PaginationDots from "./PaginationDots";
-import { ProductCardNav } from "./productCardNav";
-import { NewBadge, HotBadge } from "./ProductCardBadges";
+import { ViewMore } from "@/components/plugins/NavigationButtons";
+import { ProductCardNav } from "@/components/plugins/ProductCardNav";
+import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
 import { Link } from "react-router-dom";
 
 import { onSaleProducts } from "../../data/products";
@@ -75,7 +74,7 @@ function OnSale() {
           })}
         </div>
 
-        <PaginationDots />
+        <ViewMore />
       </div>
     </>
   );

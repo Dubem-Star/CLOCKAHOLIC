@@ -1,5 +1,3 @@
-import "@/assets/css/App2.css";
-import "@/assets/css/App.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
@@ -79,7 +77,7 @@ function ProductInfo() {
       <div className="product-features pt-1">
         <h4 className="">Features:</h4>
         <ul className="ps-0">
-          <li>
+          <li className="list-style">
             <strong>Brand:</strong> {brand}
           </li>
 
@@ -89,35 +87,35 @@ function ProductInfo() {
             product.dialShape &&
             product.strapColor && (
               <>
-                <li>
+                <li className="list-style">
                   <strong>Strap Color:</strong> {product.strapColor}
                 </li>
 
-                <li>
+                <li className="list-style">
                   <strong>Strap Type:</strong> {product.strap}
                 </li>
 
-                <li>
+                <li className="list-style">
                   <strong>Display type:</strong> {product.display}
                 </li>
 
-                <li>
+                <li className="list-style">
                   <strong>Dial Color:</strong> {product.dialColor}
                 </li>
 
-                <li>
+                <li className="list-style">
                   <strong>Dial Shape</strong> {product.dialShape}
                 </li>
               </>
             )}
 
-          <li>
+          <li className="list-style">
             <strong>Gender:</strong> {product.gender}
           </li>
-          <li>
+          <li className="list-style">
             <strong>Category: </strong> {product.category}
           </li>
-          <li>
+          <li className="list-style">
             <strong>Status: </strong> {product.status}
           </li>
         </ul>
@@ -126,25 +124,25 @@ function ProductInfo() {
           <>
             <h4 className=" pt-3">Package Includes:</h4>
             <ul className="ps-0">
-              <li className="d-flex align-items-flex-start share">
+              <li className="d-flex align-items-flex-start share list-style">
                 <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
                   &#8226;
                 </span>
                 <span>A Watch</span>{" "}
               </li>
-              <li className="d-flex align-items-flex-start share">
+              <li className="d-flex align-items-flex-start share list-style">
                 <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
                   &#8226;
                 </span>
                 <span> An Instruction Manual</span>
               </li>
-              <li className="d-flex align-items-flex-start share">
+              <li className="d-flex align-items-flex-start share list-style">
                 <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
                   &#8226;
                 </span>{" "}
                 <span>A Warranty Card</span>
               </li>
-              <li className="d-flex align-items-flex-start share">
+              <li className="d-flex align-items-flex-start share list-style">
                 <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
                   &#8226;
                 </span>
@@ -170,14 +168,17 @@ function ProductInfo() {
         </div>
 
         <ul className="mt-3 p-0">
-          <li className="d-flex align-items-flex-start share">
-            <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+          <li className="d-flex align-items-flex-start share list-style">
+            <span
+              className="text-black fs-3 align-self-flex-start"
+              style={{ lineHeight: "1" }}
+            >
               &#8226;
             </span>
             <span> Orders within Lagos will be delivered within 24 hours.</span>
           </li>
-          <li className="d-flex align-items-flex-start share">
-            <span className="text-black fs-3" style={{ lineHeight: "0.8" }}>
+          <li className="d-flex align-items-flex-start share list-style">
+            <span className="text-black fs-3" style={{ lineHeight: "1" }}>
               &#8226;
             </span>
             <span> Orders outside Lagos are delivered within 48-96 hours.</span>

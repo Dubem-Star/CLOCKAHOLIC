@@ -1,6 +1,3 @@
-import "@/assets/css/App.css";
-import "@/assets/css/App2.css";
-
 import fireBurn from "@/assets/images/img_icons/fire-burn.gif";
 
 export const NewBadge = () => {

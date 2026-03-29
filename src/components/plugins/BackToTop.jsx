@@ -1,4 +1,3 @@
-import "@/assets/css/App.css";
 import { useEffect, useRef } from "react";
 import TopButton from "@/assets/icons/flaticons/up-arrow.svg?react";
 function BackToTop() {

@@ -1,4 +1,3 @@
-import "@/assets/css/App.css";
 import UserIcon from "@/assets/icons/flaticons/circle-user.svg?react";
 import SearchIcon from "@/assets/icons/flaticons/search.svg?react";
 import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
@@ -40,6 +39,9 @@ function Navbar() {
     }
 
     window.addEventListener("scroll", NavbarHider);
+    return () => {
+      window.removeEventListener("scroll", NavbarHider);
+    };
   });
 
   return (
@@ -104,14 +106,20 @@ function Navbar() {
               <SearchIcon className="nav-icon" />
               <UserIcon className="nav-icon" />
               <WishlistIcon className="nav-icon" />
+
               <div className="d-flex align-item-center position-relative cart-box">
-                <CartIcon className="nav-icon" />
-                <span
-                  className=" position-absolute text-light d-flex align-items-center justify-content-center rounded-circle"
-                  style={{ bottom: "-6px" }}
+                <Link
+                  to="/cart"
+                  className="text-reset d-flex align-content-center"
                 >
-                  0
-                </span>
+                  <CartIcon className="nav-icon" />
+                  <span
+                    className=" position-absolute text-light d-flex align-items-center justify-content-center rounded-circle"
+                    style={{ bottom: "-6px" }}
+                  >
+                    0
+                  </span>
+                </Link>
               </div>
             </div>
 

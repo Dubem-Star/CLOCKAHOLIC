@@ -1,9 +1,7 @@
-import "@/assets/css/App.css";
-import "@/assets/css/App2.css";
 import { useParams, Link } from "react-router-dom";
-import { ProductCardNav } from "@/components/Home/ProductCardNav";
-import { NewBadge, HotBadge } from "@/components/Home/ProductCardBadges";
-import PaginationDots from "@/components/Home/PaginationDots";
+import { ProductCardNav } from "@/components/plugins/ProductCardNav";
+import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
+import { PaginationDots } from "@/components/plugins/NavigationButtons";
 import LeftButton from "@/assets/icons/flaticons/left-arrow.svg?react";
 import RightButton from "@/assets/icons/flaticons/right-arrow.svg?react";
 import {
@@ -110,10 +108,12 @@ function ExploreRelated() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    return () => {};
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [activeIndex]);
 
-  /* ***************NAVIGATION ARROW FUNCTION************** */
+  /* ***************TION ARROW FUNCTION************** */
   /* ***************NAVIGATION ARROW FUNCTION************** */
   function goRight() {
     if (windowWrapper.current && productContainer.current) {
@@ -241,7 +241,7 @@ function ExploreRelated() {
           {/* ***************NAVIGATION ARROW************** */}
           {/* ***************NAVIGATION ARROW************** */}
           <LeftButton
-            className="general-slide-btn position-absolute top-50 opacity-0"
+            className="general-slide-btn position-absolute top-50 opacity-0 left-btn"
             style={{
               left: "10px",
             }}
@@ -249,7 +249,7 @@ function ExploreRelated() {
             onClick={goLeft}
           />
           <RightButton
-            className="general-slide-btn position-absolute top-50 opacity-0"
+            className="general-slide-btn position-absolute top-50 opacity-0 right-btn"
             style={{
               right: "10px",
             }}

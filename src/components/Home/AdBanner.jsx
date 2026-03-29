@@ -1,5 +1,3 @@
-import "@/assets/css/App.css";
-import "@/assets/css/App2.css";
 import { useState } from "react";
 
 import citizenPoster1 from "@/assets/images/watch_posters/Citizen_Poster_1.jpg";
@@ -10,13 +8,6 @@ import tissotSRVPoster from "@/assets/images/watch_posters/Tissot_SRV.png";
 // AD BANNER COMPONENT*******************************
 
 export const AdBanner = () => {
-  // const [bannerName, setBannerName] = useState("");
-
-  // function handleHover(e) {
-  //   const currentBannerItem = e.target.dataset.brandName;
-  //   setBannerName(currentBannerItem);
-  // }
-
   return (
     <div
       className="Ad-Banner-Container"

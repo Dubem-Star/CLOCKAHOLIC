@@ -1,5 +1,3 @@
-import "@/assets/css/App2.css";
-import "@/assets/css/App.css";
 import heart from "@/assets/images/img_icons/wishlist.png";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
 import { useState, useEffect, useRef } from "react";
@@ -9,6 +7,8 @@ import {
   bestSellingProducts,
   onSaleProducts,
 } from "../../data/products";
+import CartPopup from "../Cart/CartPopUp";
+import QuantityPill from "../plugins/QuantityPill";
 
 /* ********************Buttons Function******************** */
 /* ********************Buttons Function******************** */
@@ -21,22 +21,11 @@ function ProductButtons() {
   ];
   const space = "    ";
   const product = allProducts.find((product) => product.id === parseFloat(id));
-  const [quantity, setQuantity] = useState(1);
+
   const checkRef = useRef(null);
 
-  /* ********************Quantity Functions******************** */
-  /* ********************Quantity Functions******************** */
-  function handleIncrement() {
-    setQuantity((prev) => prev + 1);
-  }
-
-  function handleDecrement() {
-    if (quantity > 1) setQuantity((prev) => prev - 1);
-  }
-  /* ************************************************ */
-
-  /* ********************Add-to-Wishlist Functions******************** */
-  /* ********************Add-to-Wishlist Functions******************** */
+  /* ********************Add-to-Wishlist Function******************** */
+  /* ********************Add-to-Wishlist Function******************** */
   function showCheck(e) {
     e.currentTarget.querySelector(".check").classList.add("show-check");
     e.currentTarget.querySelector(".text").classList.add("sauce");
@@ -49,6 +38,36 @@ function ProductButtons() {
   }
   /* ************************************************ */
 
+  /* ********************Add-to-Cart Function******************** */
+  /* ********************Add-to-Cart Function******************** */
+
+  function reloadCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  }
+
+  const [popup, activatePopup] = useState(false);
+  const [cart, setCart] = useState([]);
+
+  function addToCart() {
+    activatePopup(true);
+    const loadCart = reloadCart();
+
+    const existing = loadCart.find(
+      (item) => item.id === parseFloat(product.id),
+    );
+    if (existing) {
+      existing.quantity += 1;
+      setCart([...loadCart]);
+    } else {
+      loadCart.push({ ...product, quantity: 1 });
+    }
+
+    setCart(loadCart);
+    localStorage.setItem("cart", JSON.stringify(loadCart));
+  }
+
+  /* ************************************************ */
+
   {
     /* ********************THE DOM******************** */
     /* ********************THE DOM******************** */
@@ -56,41 +75,36 @@ function ProductButtons() {
 
   return (
     <>
-      <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
-        {/* ************Quantity************ */}
+      <div
+        className={`darken-bg position-fixed opacity-0 invisible ${popup ? "show" : ""}`}
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5) ",
+          transition: "opacity 0.3s ease-in-out",
+          zIndex: "2500",
+          inset: "0",
+        }}
+      ></div>
+      <CartPopup popup={popup} toggle={activatePopup} cart={cart} />
 
-        {/* <div className="h-100" style={{ width: "20%" }}> */}
-        <div
-          className="input-group  quantity-buttons  "
-          style={{ width: "20%", height: "38px" }}
-        >
-          <button className="btn border p-0" onClick={handleDecrement}>
-            -
-          </button>
-          <input
-            className="form-control text-center border p-0"
-            value={quantity}
-            type="number"
-            onChange={(e) => {
-              const val = parseFloat(e.target.value);
-              setQuantity(val);
-            }}
-          />
-          <button className="btn border p-0" onClick={handleIncrement}>
-            +
-          </button>
-        </div>
-        {/* </div> */}
+      <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
+        {/* *********************Quantity********************* */}
+        {/* *********************Quantity********************* */}
+
+        <QuantityPill isCart={false} setCart={setCart} />
+
         <div className="d-flex gap-3 purchase-btn" style={{ width: "80%" }}>
-          {/* ************Add to cart btn************ */}
+          {/* *********************Add to cart btn********************* */}
+          {/* *********************Add to cart btn********************* */}
           <button
             className="btn atc-btn "
             style={{ width: "50%", borderColor: "#b8860b", color: "#b8860b" }}
+            onClick={addToCart}
           >
             ADD TO CART
           </button>
 
-          {/* ************Add to cart btn************ */}
+          {/* *********************Buy it now btn********************* */}
+          {/* *********************Buy it now btn********************* */}
           <button className="btn banner-button " style={{ width: "50%" }}>
             BUY IT NOW
           </button>

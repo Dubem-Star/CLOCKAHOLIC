@@ -1,7 +1,6 @@
-import "@/assets/css/App.css";
-import PaginationDots from "./PaginationDots";
-import { ProductCardNav } from "./productCardNav";
-import { NewBadge, HotBadge } from "./ProductCardBadges";
+import { ViewMore } from "@/components/plugins/NavigationButtons";
+import { ProductCardNav } from "@/components/plugins/ProductCardNav";
+import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
 
 import { Link } from "react-router-dom";
 import { newArrivedProducts } from "../../data/products";
@@ -83,7 +82,7 @@ function NewArrivals() {
           })}
         </div>
         {/* ↑↑ .products-container end */}
-        <PaginationDots />
+        <ViewMore />
       </div>
       {/* ↑↑ .NewArrivals-container end */}
     </>

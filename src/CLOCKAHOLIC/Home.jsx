@@ -1,4 +1,3 @@
-import "@/assets/css/App.css";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 import Hero from "@/components/Home/Hero";

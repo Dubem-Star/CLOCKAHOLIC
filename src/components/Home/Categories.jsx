@@ -1,5 +1,3 @@
-import "@/assets/css/App.css";
-
 import blackModelMan from "@/assets/images/Categories/male_watch_2.jpg";
 import AsianModelWoman from "@/assets/images/Categories/female_watch.jpg";
 import whiteModelWoman from "@/assets/images/Categories/accessories.jpg";

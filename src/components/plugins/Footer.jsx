@@ -1,4 +1,3 @@
-import "@/assets/css/App.css";
 import footerLogo from "@/assets/images/Logo/clockaholic_navbar_logo.png";
 import instagramLogo from "@/assets/images/img_icons/instagram.png";
 import tiktokLogo from "@/assets/images/img_icons/tiktok.png";

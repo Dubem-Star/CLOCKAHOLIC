@@ -1,6 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import "@/assets/css/App2.css";
-import "@/assets/css/App.css";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import monkeyMeme from "@/assets/images/wallpapers/monkey_confused_meme.jpg";
 import Navbar from "@/components/plugins/Navbar";
@@ -127,7 +125,7 @@ function ProductDisplayBox() {
   return (
     <>
       <div
-        className="w-100 "
+        className="w-100 go-back-btn"
         style={{
           margin: "115px auto 0 auto",
           paddingLeft: "clamp(70px, 11vw, 120px)",
@@ -136,7 +134,7 @@ function ProductDisplayBox() {
       >
         <Link
           onClick={() => navigate(-1)}
-          className="rounded-circle fw-bold copy-button d-flex justify-content-center align-items-center"
+          className="rounded-circle fw-bold copy-button d-flex justify-content-center align-items-center go-back-btn"
           style={{
             fontSize: "23px",
             width: "40px",
@@ -181,7 +179,7 @@ function ProductDisplayBox() {
                 </div>
 
                 <div
-                  className="mini-img-preview d-flex gap-2 justify-content-center w-100 mt-3"
+                  className="mini-img-preview d-flex gap-2 justify-content-center w-100 mt-3 mb-3"
                   ref={imgPreviewCont}
                 >
                   {product.images.map((img, index) => {
@@ -210,7 +208,7 @@ function ProductDisplayBox() {
             <div className="col-md-6 col-lg-6 col-xl-6 d-flex flex-column gap-3 justify-content-start ps-xl-2 pe-xl-4 ps-md-3 ps-0 pe-0 description-cont">
               <div>
                 {/* ************brand name************ */}
-                <p className="mb-0" style={{ color: "#72716e" }}>
+                <p className="mb-0 brand-name" style={{ color: "#72716e" }}>
                   {product.category === "Wrist Watch"
                     ? `${product.brandName} WATCHES `
                     : product.brandName}

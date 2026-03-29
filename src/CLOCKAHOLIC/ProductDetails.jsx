@@ -1,5 +1,3 @@
-import "@/assets/css/App.css";
-import "@/assets/css/App2.css";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 import BackToTop from "@/components/plugins/BackToTop";
@@ -11,6 +9,7 @@ function ProductDetails() {
     <>
       <div className="Details-Page d-flex flex-column vh-100 align-items-center ">
         <Navbar />
+
         <div
           className="  flex-grow-1"
           style={{ maxWidth: "1400px", width: "100% " }}

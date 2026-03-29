@@ -198,8 +198,7 @@ export const newArrivedProducts = [
     id: 5,
     brandName: "CARTIER",
     price: 75000,
-    version:
-      "Cartier Mens Santos de Medium Automatic 35 mm Stainless Steel Watch with Green Dial",
+    version: "Cartier Mens Santos de Medium  Green Dial",
     images: [cartierGreen1, cartierGreen2, cartierGreen3],
     strap: "Leather",
     gender: "Male",

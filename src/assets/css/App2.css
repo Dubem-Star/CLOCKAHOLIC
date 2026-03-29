@@ -6,7 +6,14 @@
   --sauce-color-transparent: #b8870ba2;
   --h1-size: 25px;
   --default-font-family: "Stack Sans Text", sans-serif;
-  color: #646463;
+}
+
+.list-style {
+  color: #72716e;
+  margin-bottom: 7px;
+  font-size: 16px;
+  display: flex;
+  gap: 6px;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -87,10 +94,6 @@
   cursor: pointer;
 }
 
-.overlay:hover {
-  opacity: 1;
-}
-
 /* ***********************Product Buttons*********************** */
 /* ***********************Product Buttons*********************** */
 
@@ -103,7 +106,7 @@
   width: 30%;
 }
 
-.quantity-buttons button:hover {
+.quantity-buttons button:active {
   background-color: var(--sauce-color);
   color: white;
 }
@@ -129,10 +132,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-.add-to-wishlist-box:hover .text {
-  color: var(--sauce-color) !important;
-}
-
 /* ***********************Product Info*********************** */
 /* ***********************Product Info*********************** */
 
@@ -141,14 +140,8 @@ input[type="number"] {
   margin-bottom: 10px;
 }
 
-.product-features ul li,
-.shipping ul li {
-  color: #72716e;
-  margin-bottom: 7px;
-  font-size: 15px;
-  display: flex;
-  gap: 6px;
-  align-items: center;
+.product-features ul li {
+  align-items: flex-end;
 }
 
 .product-features ul li strong {
@@ -169,10 +162,6 @@ input[type="number"] {
   border-radius: 50%;
 }
 
-.share div img:hover {
-  box-shadow: 0 3px 3px #000000;
-}
-
 .copy-button {
   width: 25px;
   height: 25px;
@@ -182,30 +171,56 @@ input[type="number"] {
   transition: background-color 0.1s ease-in-out;
 }
 
-.copy-button:hover {
-  background-color: #e0e0e0;
+.share div img:active {
+  box-shadow: 0 3px 3px #000000;
 }
 
 .product-views span,
 strong {
   padding-top: 3px;
 }
-.general-slide-btn {
+.left-btn.general-slide-btn,
+.right-btn.general-slide-btn {
   box-shadow: 0 5px 5px #72716e;
   transform: translateY(-150%);
   transition: opacity 0.2s ease-in-out;
-}
-
-.window-wrapper:hover .general-slide-btn {
-  opacity: 1 !important;
-}
-
-.window-wrapper:hover .general-slide-btn.fade {
-  opacity: 0.5 !important;
+  width: clamp(35px, 2vw, 40px);
+  height: clamp(35px, 2vw, 40px);
+  padding: 7px;
 }
 
 /* ***********************Media Query*********************** */
 /* ***********************Media Query*********************** */
+@media (hover: hover) and (pointer: fine) {
+  .overlay:hover {
+    opacity: 1;
+  }
+
+  .quantity-buttons button:hover {
+    background-color: var(--sauce-color);
+    color: white;
+  }
+
+  .add-to-wishlist-box:hover .text {
+    color: var(--sauce-color) !important;
+  }
+
+  .share div img:hover {
+    box-shadow: 0 3px 3px #000000;
+  }
+
+  .window-wrapper:hover .general-slide-btn {
+    opacity: 1 !important;
+  }
+
+  .window-wrapper:hover .general-slide-btn.fade {
+    opacity: 0.5 !important;
+  }
+
+  .copy-button:hover {
+    background-color: #e3e3e3;
+  }
+}
 
 @media (max-width: 992px) {
   .Buttons {
@@ -227,6 +242,10 @@ strong {
   .purchase-btn button {
     width: 100% !important;
   }
+
+  .shipping ul li:first-child {
+    margin-bottom: 15px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -234,6 +253,27 @@ strong {
   .cunt {
     width: 100%;
     height: 100%;
+  }
+  .go-back-btn a {
+    display: none !important;
+  }
+
+  .product-container {
+    padding: 0 !important;
+  }
+
+  .explore-related-container {
+    margin-top: 100px !important;
+  }
+
+  .list-style,
+  .brand-name,
+  .description-box p {
+    font-size: 15px !important ;
+  }
+
+  .banner-button {
+    font-size: 15px !important;
   }
 }
 
@@ -245,4 +285,26 @@ strong {
   a.not-found-page {
     font-size: 16px !important;
   }
+}
+
+/* ***************************************************************************************
+****************************************************************************************** */
+
+/************************************CART STYLING***************************************  */
+
+/* ***************************************************************************************
+****************************************************************************************** */
+
+.cart-popup {
+  right: -350px !important;
+  transition: right 0.2s ease-in-out;
+}
+
+.cart-popup.slide-in {
+  right: 10px !important;
+}
+
+.darken-bg.show {
+  opacity: 1 !important;
+  visibility: visible !important;
 }

@@ -1,7 +1,6 @@
-import "@/assets/css/App.css";
 import { useRef, useEffect } from "react";
 
-const PaginationDots = (props) => {
+export const PaginationDots = (props) => {
   const dotRef = useRef(null);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const PaginationDots = (props) => {
     };
   }, []);
 
-  const index = [1, 2, 3];
   return (
     <div className="dots" ref={dotRef}>
       {Array.from({ length: props.totalDots }).map((_, i) => {
@@ -39,22 +37,19 @@ const PaginationDots = (props) => {
         );
       })}
     </div>
-
-    // <div className="dots" ref={dotRef}>
-    //   <button
-    //     className={`dot ${props.activeIndex === index[0] ? "default" : ""}`}
-    //     onClick={() => props.dotHandler(index[0])}
-    //   ></button>
-    //   <button
-    //     className={`dot ${props.activeIndex === index[1] ? "default" : ""}`}
-    //     onClick={() => props.dotHandler(index[1])}
-    //   ></button>
-    //   <button
-    //     className={`dot ${props.activeIndex === index[2] ? "default" : ""}`}
-    //     onClick={() => props.dotHandler(index[2])}
-    //   ></button>
-    // </div>
   );
 };
 
-export default PaginationDots;
+export const ViewMore = () => {
+  return (
+    <>
+      <button
+        className="btn banner-button mt-5"
+        style={{ width: "clamp(100px ,15vw, 130px)" }}
+        onClick={() => alert("calm down fool.")}
+      >
+        View All
+      </button>
+    </>
+  );
+};

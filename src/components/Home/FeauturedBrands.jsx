@@ -1,4 +1,3 @@
-import "@/assets/css/App.css";
 import { useEffect, useRef } from "react";
 import tomiLogo from "@/assets/images/watch_logos/new_tomi.png";
 import casioLogo from "@/assets/images/watch_logos/new_casio.png";
