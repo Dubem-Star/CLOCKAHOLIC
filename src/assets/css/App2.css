@@ -39,6 +39,11 @@
   visibility: visible !important;
 }
 
+.second-btn {
+  border-color: #b8860b !important;
+  color: #b8860b !important;
+  border-radius: 10px !important;
+}
 /* *********************** Main Page Styling*********************** */
 /* *********************** Main Page Styling*********************** */
 
@@ -296,8 +301,12 @@ strong {
 ****************************************************************************************** */
 
 .cart-popup {
-  right: -350px !important;
-  transition: right 0.2s ease-in-out;
+  right: -100% !important;
+  transition: right 0.4s ease-in-out;
+  top: 10px;
+  bottom: 10px;
+  z-index: 3000;
+  width: clamp(300px, 25vw, 370px);
 }
 
 .cart-popup.slide-in {

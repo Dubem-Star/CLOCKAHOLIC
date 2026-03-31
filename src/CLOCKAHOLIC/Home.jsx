@@ -9,10 +9,10 @@ import { AdBanner, ExploreBanner } from "@/components/Home/AdBanner";
 import OnSale from "@/components/Home/OnSale";
 import BackToTop from "@/components/plugins/BackToTop";
 
-function Home() {
+function Home(prop) {
   return (
     <>
-      <Navbar />
+      <Navbar cart={prop.cart} />
       <Hero />
       <div className="main-page-wrapper">
         <BackToTop />

@@ -11,7 +11,7 @@ import {
   onSaleProducts,
 } from "@/data/products.jsx";
 
-function ProductDisplayBox() {
+function ProductDisplayBox(prop) {
   const { id } = useParams();
   const navigate = useNavigate();
   const bigArray = [
@@ -244,7 +244,7 @@ function ProductDisplayBox() {
               </div>
 
               <hr className="m-0" />
-              <ProductButtons />
+              <ProductButtons setAppCart={prop.setAppCart} cart={prop.cart} />
               <hr className="m-0" />
               <ProductInfo />
             </div>

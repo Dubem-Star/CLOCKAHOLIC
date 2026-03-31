@@ -12,7 +12,7 @@ import QuantityPill from "../plugins/QuantityPill";
 
 /* ********************Buttons Function******************** */
 /* ********************Buttons Function******************** */
-function ProductButtons() {
+function ProductButtons(prop) {
   const { id } = useParams();
   const allProducts = [
     ...newArrivedProducts,
@@ -63,6 +63,7 @@ function ProductButtons() {
     }
 
     setCart(loadCart);
+    prop.setAppCart([...loadCart]);
     localStorage.setItem("cart", JSON.stringify(loadCart));
   }
 
@@ -84,7 +85,13 @@ function ProductButtons() {
           inset: "0",
         }}
       ></div>
-      <CartPopup popup={popup} toggle={activatePopup} cart={cart} />
+      <CartPopup
+        popup={popup}
+        toggle={activatePopup}
+        cart={cart}
+        setAppCart={prop.setAppCart}
+        appCart={prop.cart}
+      />
 
       <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
         {/* *********************Quantity********************* */}
@@ -96,8 +103,8 @@ function ProductButtons() {
           {/* *********************Add to cart btn********************* */}
           {/* *********************Add to cart btn********************* */}
           <button
-            className="btn atc-btn "
-            style={{ width: "50%", borderColor: "#b8860b", color: "#b8860b" }}
+            className="btn second-btn "
+            style={{ width: "50%" }}
             onClick={addToCart}
           >
             ADD TO CART

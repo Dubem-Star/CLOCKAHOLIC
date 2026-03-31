@@ -8,10 +8,16 @@ import brandLogo from "@/assets/images/Logo/clockaholic_only_logo.png";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(prop) {
   const [isHidden, setHidden] = useState(false);
+
   const navHeightRef = useRef();
   const lastScrollY = useRef(0);
+
+  const totalQuantity =
+    prop.cart.length > 0
+      ? prop.cart.reduce((sum, item) => sum + item.quantity, 0)
+      : 0;
 
   useEffect(() => {
     function NavbarHider() {
@@ -117,7 +123,7 @@ function Navbar() {
                     className=" position-absolute text-light d-flex align-items-center justify-content-center rounded-circle"
                     style={{ bottom: "-6px" }}
                   >
-                    0
+                    {totalQuantity}
                   </span>
                 </Link>
               </div>

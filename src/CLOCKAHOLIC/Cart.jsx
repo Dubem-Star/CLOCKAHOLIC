@@ -2,10 +2,10 @@ import YourCart from "../components/Cart/YourCart";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 
-function Cart() {
+function Cart(prop) {
   return (
     <>
-      <Navbar />
+      <Navbar cart={prop.cart} />
       <YourCart />
       <Footer />
     </>
