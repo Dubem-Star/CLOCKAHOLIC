@@ -72,9 +72,14 @@ function Navbar(prop) {
               <Link className="underline" to="/">
                 Home
               </Link>
-
-              <i className="bi bi-chevron-down   "></i>
             </li>
+
+            <li>
+              <a className="underline" href="#">
+                NEW
+              </a>
+            </li>
+
             <li>
               <a className="underline" href="#">
                 Men
@@ -99,11 +104,6 @@ function Navbar(prop) {
               </a>
               <i className="bi bi-chevron-down  "></i>
             </li>
-            <li>
-              <a className="underline" href="#">
-                Sale
-              </a>
-            </li>
           </ul>
           {/* ****************************Icons***************************** */}
 
@@ -115,7 +115,7 @@ function Navbar(prop) {
 
               <div className="d-flex align-item-center position-relative cart-box">
                 <Link
-                  to="/cart"
+                  onClick={() => prop.activatePopup(true)}
                   className="text-reset d-flex align-content-center"
                 >
                   <CartIcon className="nav-icon" />

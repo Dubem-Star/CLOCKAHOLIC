@@ -1,16 +1,34 @@
-# React + Vite
+CLOCKAHOLIC
+A Premium E-commerce Experience for Timepiece Enthusiasts.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CLOCKAHOLIC is a full-stack e-commerce application designed with a focus on luxury UI, seamless user experience, and robust shipping logic. Built for watch lovers, it features a responsive design, dynamic cart updates, and location-based delivery pricing.
 
-Currently, two official plugins are available:
+KEY FEATURES:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Premium UI/UX: A minimalist, luxury-focused design with fluid typography and a consistent max-width focused interface.
 
-## React Compiler
+- Dynamic Shipping Engine: Automatic region detection (via IP integration) with custom shipping rates for all Nigerian states
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- State-Driven Cart: Real-time cart items, quantity and total amount updates and persistent storage using LocalStorage.
 
-## Expanding the ESLint configuration
+- Responsive Design: Fully optimized for mobile, tablet, and desktop using modern CSS (Flexbox, Grid, and clamp).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Secure Checkout: Integrated form validation and FormData handling for error-free order processing.
+
+TECH STACK:
+
+Frontend
+
+- React.js (Functional Components, Hooks)
+
+- CSS3 (Custom properties, focus-visible, fluid layouts)
+
+- Bootstrap 5 (Utility-first layout components)
+
+Backend
+
+- Node.js & Express
+
+- MongoDB & Mongoose (Database modeling)
+
+- Cloudinary (Optimized image hosting)

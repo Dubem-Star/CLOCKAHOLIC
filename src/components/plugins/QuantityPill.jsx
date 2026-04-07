@@ -7,14 +7,16 @@ function QuantityPill(prop) {
   const itemQuantity = prop.cartQuantity ? prop.cartQuantity : 1;
   const [cartItemQuantity, setCartItemQuantity] = useState(itemQuantity);
 
-  function handleIncrement() {
-    if (prop.isCart) {
+  function handleIncrement(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (prop.isCart || prop.yourCart) {
       setCartItemQuantity((prev) => prev + 1);
       const newQty = itemQuantity + 1;
       prop.cart.find((item) => item.id == prop.item.id).quantity = newQty;
 
       prop.setAppCart([...prop.cart]);
-      prop.setCart([...prop.cart]);
+      // prop.setCart([...prop.cart]);
 
       localStorage.setItem("cart", JSON.stringify([...prop.cart]));
     } else {
@@ -22,13 +24,15 @@ function QuantityPill(prop) {
     }
   }
 
-  function handleDecrement() {
-    if (prop.isCart) {
+  function handleDecrement(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (prop.isCart || prop.yourCart) {
       setCartItemQuantity((prev) => (prev < 2 ? prev : prev - 1));
       const newQty = itemQuantity < 2 ? itemQuantity : itemQuantity - 1;
       prop.cart.find((item) => item.id == prop.item.id).quantity = newQty;
 
-      prop.setCart([...prop.cart]);
+      // prop.setCart([...prop.cart]);
       prop.setAppCart([...prop.cart]);
       localStorage.setItem("cart", JSON.stringify([...prop.cart]));
     } else {
@@ -43,8 +47,8 @@ function QuantityPill(prop) {
   /* ********************************************************************** */
 
   const style = {
-    width: `${prop.isCart ? "70px" : "20%"}`,
-    height: `${prop.isCart ? "25px" : "38px"}`,
+    width: `${prop.isCart ? "70px" : prop.yourCart ? "90px" : "20%"}`,
+    height: `${prop.isCart ? "25px" : prop.yourCart ? "38px" : "38px"}`,
   };
 
   return (
@@ -55,7 +59,7 @@ function QuantityPill(prop) {
         </button>
         <input
           className="form-control text-center border p-0"
-          value={prop.isCart ? cartItemQuantity : quantity}
+          value={prop.isCart || prop.yourCart ? cartItemQuantity : quantity}
           type="number"
           onChange={(e) => {
             const val = parseFloat(e.target.value);

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import monkeyMeme from "@/assets/images/wallpapers/monkey_confused_meme.jpg";
+import PageLocation from "../plugins/PageLocation";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 import ProductButtons from "./Buttons";
@@ -13,7 +14,7 @@ import {
 
 function ProductDisplayBox(prop) {
   const { id } = useParams();
-  const navigate = useNavigate();
+
   const bigArray = [
     ...newArrivedProducts,
     ...bestSellingProducts,
@@ -72,6 +73,10 @@ function ProductDisplayBox(prop) {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    prop.activatePopup(false);
+  }, []);
+
   const [currentImage, setImage] = useState(product.images[0]);
   const imgPreviewCont = useRef(null);
 
@@ -124,31 +129,7 @@ function ProductDisplayBox(prop) {
 
   return (
     <>
-      <div
-        className="w-100 go-back-btn"
-        style={{
-          margin: "115px auto 0 auto",
-          paddingLeft: "clamp(70px, 11vw, 120px)",
-          maxWidth: "1800px",
-        }}
-      >
-        <Link
-          onClick={() => navigate(-1)}
-          className="rounded-circle fw-bold copy-button d-flex justify-content-center align-items-center go-back-btn"
-          style={{
-            fontSize: "23px",
-            width: "40px",
-            height: "40px",
-            color: "#72716e",
-            textDecoration: "none",
-            backgroundColor: "none",
-            lineHeight: "1",
-          }}
-          title="back to shop page"
-        >
-          🡨
-        </Link>
-      </div>
+      <PageLocation location={"product"} />
 
       <main className="flex-grow-1" style={{ marginTop: "15px" }}>
         <div
@@ -244,7 +225,12 @@ function ProductDisplayBox(prop) {
               </div>
 
               <hr className="m-0" />
-              <ProductButtons setAppCart={prop.setAppCart} cart={prop.cart} />
+              <ProductButtons
+                setAppCart={prop.setAppCart}
+                cart={prop.cart}
+                activatePopup={prop.activatePopup}
+                popup={prop.popup}
+              />
               <hr className="m-0" />
               <ProductInfo />
             </div>

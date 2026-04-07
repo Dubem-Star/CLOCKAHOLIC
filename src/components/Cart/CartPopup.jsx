@@ -4,11 +4,11 @@ import { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import QuantityPill from "../plugins/QuantityPill";
 
-function CartPopup(props) {
-  const [cart, setCart] = useState(props.cart);
+function CartPopup(prop) {
+  const [cart, setCart] = useState(prop.cart);
   useEffect(() => {
-    setCart(props.cart);
-  }, [props.cart]);
+    setCart(prop.cart);
+  }, [prop.cart]);
 
   const closeBtnStyle = {
     top: "20px",
@@ -20,35 +20,34 @@ function CartPopup(props) {
   /* ********************Remove Item Logic******************** */
   /* ********************Remove Item Logic******************** */
   function removeItem(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const newCart = cart.filter((item) => item.id != e.target.dataset.id);
 
     localStorage.setItem("cart", JSON.stringify(newCart));
     setCart(newCart);
-    props.setAppCart(newCart);
+    prop.setAppCart(newCart);
   }
 
-  const totalAmount = props.cart.reduce(
+  const totalAmount = prop.cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
 
-  const totalQuantity = props.cart.reduce(
-    (sum, item) => sum + item.quantity,
-    0,
-  );
+  const totalQuantity = prop.cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const space = "";
 
   return (
     <>
       <div
-        className={`  bg-light position-fixed cart-popup d-flex flex-column  rounded-3   ${props.popup ? `slide-in` : ``}`}
+        className={`  bg-light position-fixed cart-popup d-flex flex-column  rounded-3   ${prop.popup ? `slide-in` : ``}`}
       >
         <img
           className="position-absolute copy-button  p-1 "
           src={close}
           style={closeBtnStyle}
-          onClick={() => props.toggle(false)}
+          onClick={() => prop.toggle(false)}
         />
 
         {cart.length < 1 ? (
@@ -107,48 +106,55 @@ function CartPopup(props) {
               {cart.map((item, index) => {
                 return (
                   <Fragment key={item.id}>
-                    <div className="d-flex w-100 mt-2">
-                      <img
-                        src={item.images[0]}
-                        style={{ width: "60px", height: "60px" }}
-                      />
-
-                      <div
-                        className="d-flex flex-column ps-2  gap-2 flex-grow-1 "
-                        style={{ paddingRight: "10px" }}
-                      >
-                        <p
-                          className="d-inline m-0"
-                          style={{ fontSize: "14px" }}
-                        >
-                          {item.version}
-                        </p>
-                        <QuantityPill
-                          isCart={true}
-                          cart={cart}
-                          item={item}
-                          cartQuantity={item.quantity}
-                          setCart={setCart}
-                          setAppCart={props.setAppCart}
+                    <Link
+                      to={`/product/${item.id}`}
+                      className="text-reset text-decoration-none cart-item-link"
+                    >
+                      <div className="d-flex w-100 mt-2 ">
+                        <img
+                          src={item.images[0]}
+                          style={{ width: "60px", height: "60px" }}
                         />
-                        <p className="mb-1 mt-1">
-                          <span style={{ color: "#72716e", fontSize: "13px" }}>
-                            {item.quantity}x
-                          </span>{" "}
-                          <span style={{ color: "#b8860b" }}>
-                            ₦{item.price.toLocaleString()}
-                          </span>
-                        </p>
-                      </div>
 
-                      <span
-                        className="me-1 text-danger text-center copy-button ms-auto"
-                        onClick={removeItem}
-                        data-id={item.id}
-                      >
-                        x
-                      </span>
-                    </div>
+                        <div
+                          className="d-flex flex-column ps-2  gap-2 flex-grow-1 "
+                          style={{ paddingRight: "10px" }}
+                        >
+                          <p
+                            className="d-inline m-0 "
+                            style={{ fontSize: "14px" }}
+                          >
+                            {item.version}
+                          </p>
+                          <QuantityPill
+                            isCart={true}
+                            cart={cart}
+                            item={item}
+                            cartQuantity={item.quantity}
+                            setCart={setCart}
+                            setAppCart={prop.setAppCart}
+                          />
+                          <p className="mb-1 mt-1">
+                            <span
+                              style={{ color: "#72716e", fontSize: "13px" }}
+                            >
+                              {item.quantity}x
+                            </span>{" "}
+                            <span style={{ color: "#b8860b" }}>
+                              ₦{item.price.toLocaleString()}
+                            </span>
+                          </p>
+                        </div>
+
+                        <span
+                          className="me-1 text-danger text-center copy-button ms-auto"
+                          onClick={removeItem}
+                          data-id={item.id}
+                        >
+                          x
+                        </span>
+                      </div>
+                    </Link>
                     <hr className="m-0" />
                   </Fragment>
                 );
@@ -172,7 +178,10 @@ function CartPopup(props) {
               </div>
 
               <div className="d-flex flex-column w-100 gap-2 mb-3">
-                <button className="btn second-btn w-100">VIEW CART</button>
+                <Link to="/cart" className="text-reset">
+                  <button className="btn second-btn w-100">VIEW CART</button>
+                </Link>
+
                 <button className="btn banner-button w-100">CHECKOUT</button>
               </div>
             </div>

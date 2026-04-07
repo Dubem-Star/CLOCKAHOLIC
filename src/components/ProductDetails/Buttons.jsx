@@ -45,11 +45,10 @@ function ProductButtons(prop) {
     return JSON.parse(localStorage.getItem("cart")) || [];
   }
 
-  const [popup, activatePopup] = useState(false);
   const [cart, setCart] = useState([]);
 
   function addToCart() {
-    activatePopup(true);
+    prop.activatePopup(true);
     const loadCart = reloadCart();
 
     const existing = loadCart.find(
@@ -76,28 +75,23 @@ function ProductButtons(prop) {
 
   return (
     <>
-      <div
-        className={`darken-bg position-fixed opacity-0 invisible ${popup ? "show" : ""}`}
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.5) ",
-          transition: "opacity 0.3s ease-in-out",
-          zIndex: "2500",
-          inset: "0",
-        }}
-      ></div>
       <CartPopup
-        popup={popup}
-        toggle={activatePopup}
-        cart={cart}
+        popup={prop.popup}
+        toggle={prop.activatePopup}
+        cart={prop.cart}
         setAppCart={prop.setAppCart}
-        appCart={prop.cart}
       />
 
       <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
         {/* *********************Quantity********************* */}
         {/* *********************Quantity********************* */}
 
-        <QuantityPill isCart={false} setCart={setCart} />
+        <QuantityPill
+          isCart={false}
+          // setCart={setCart}
+          // cart={prop.cart}
+          setAppCart={prop.setAppCart}
+        />
 
         <div className="d-flex gap-3 purchase-btn" style={{ width: "80%" }}>
           {/* *********************Add to cart btn********************* */}
