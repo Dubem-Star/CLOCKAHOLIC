@@ -131,7 +131,7 @@ function Footer() {
             made with ❤️ by{" "}
             <span className="dubby">
               <a
-                href="https://dubem-star.github.io/PERSONAL-PORTFOLIO/"
+                href="https://dubem-portfolio-beryl.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-reset text-decoration-none"
