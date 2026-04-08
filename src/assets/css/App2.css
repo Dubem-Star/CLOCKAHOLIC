@@ -66,9 +66,9 @@
 .product-container .image-container {
   background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
   border-radius: 15px;
-  width: clamp(320px, 36vw, 550px);
+  width: clamp(320px, 36vw, 550px) !important;
   border: 1px solid rgba(0, 0, 0, 0.116);
-  height: clamp(320px, 36vw, 550px);
+  height: clamp(320px, 36vw, 550px) !important;
   cursor: zoom-in;
   overflow: hidden;
 }
@@ -118,9 +118,10 @@
   width: 30%;
 }
 
-.quantity-buttons button:active {
-  background-color: var(--sauce-color);
-  color: white;
+.quantity-buttons button:active,
+.quantity-buttons button:focus {
+  background-color: var(--sauce-color) !important;
+  color: white !important;
 }
 
 .quantity-buttons .form-control {
@@ -270,7 +271,7 @@ strong {
     width: 100%;
     height: 100%;
   }
-  .go-back-btn a {
+  .go-back-btn p {
     display: none !important;
   }
 

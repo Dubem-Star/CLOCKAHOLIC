@@ -84,8 +84,16 @@ function ProductDisplayBox(prop) {
   const productImage = useRef(null);
   useEffect(() => {
     setImage(product.images[0]);
+
+    const previews = imgPreviewCont.current.querySelectorAll(".img-preview ");
+    for (let prev of previews) {
+      prev.classList.remove("lay");
+    }
+
     return () => {};
   }, [product]);
+
+  /* ************************************************ */
 
   /* ********************Swap-Previews******************** */
   /* ********************Swap-Previews******************** */

@@ -178,9 +178,9 @@ function CartPopup(prop) {
               </div>
 
               <div className="d-flex flex-column w-100 gap-2 mb-3">
-                <Link to="/cart" className="text-reset">
-                  <button className="btn second-btn w-100">VIEW CART</button>
-                </Link>
+                {/* <Link to="/cart" className="text-reset"> */}
+                <button className="btn second-btn w-100">VIEW CART</button>
+                {/* </Link> */}
 
                 <button className="btn banner-button w-100">CHECKOUT</button>
               </div>
