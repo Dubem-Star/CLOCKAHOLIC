@@ -883,6 +883,11 @@ p.animated span {
   overflow: hidden;
 }
 
+.products-container .product-img-cont .one,
+.products-container .product-img-cont .two {
+  width: 100% !important;
+}
+
 .products-container .product-img-cont .grid-icon-container {
   position: absolute;
   top: 20px;

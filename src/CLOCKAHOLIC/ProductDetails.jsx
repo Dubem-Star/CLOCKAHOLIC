@@ -24,6 +24,8 @@ function ProductDetails(prop) {
             cart={prop.cart}
             activatePopup={prop.activatePopup}
             popup={prop.popup}
+            setId={prop.setId}
+            atcDetailsPage={prop.atcDetailsPage}
           />
           <ExploreRelated />
         </div>

@@ -1,6 +1,8 @@
 import { useEffect, useState, Fragment } from "react";
+import { Link } from "react-router-dom";
 import PageLocation from "../plugins/PageLocation";
 import QuantityPill from "@/components/plugins/QuantityPill";
+import emptyCart from "@/assets/images/img_icons/empty-cart.png";
 import {
   lagos,
   southEast,
@@ -106,191 +108,217 @@ function YourCart(prop) {
   return (
     <>
       <PageLocation location={"cart"} />
-      <div
-        className="cart-container d-flex flex-column mx-auto"
-        style={{ width: "90%" }}
-      >
-        <div className="middle-liner w-100">
-          <h1 className="middle-title" style={{ fontSize: "30px" }}>
-            YOUR CART
-          </h1>
-        </div>
 
-        <table className="mt-4">
-          <thead>
-            <tr>
-              <th className="  ps-4 w-50 ">PRODUCT</th>
-              <th>PRICE</th>
-              <th style={{ paddingLeft: "100px" }}>QUANTITY</th>
-              <th>TOTAL</th>
-            </tr>
-          </thead>
+      {prop.cart.length < 1 ? (
+        <div className="d-flex flex-column align-items-center w-50 ms-auto me-auto  gap-4">
+          <img src={emptyCart} className="w-25" />
+          <p className="m-0 fw-bold fs-2">NO ITEMS IN YOUR CART</p>
 
-          <tbody>
-            {prop.cart.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>
-                    <div className=" d-flex align-items-center w-75 gap-3">
-                      <img src={item.images[0]} style={{ width: "20%" }} />
-
-                      <p>{item.version}</p>
-                    </div>
-                  </td>
-
-                  <td>
-                    <p className="m-0">₦{item.price.toLocaleString()}</p>
-                  </td>
-
-                  <td style={{ paddingLeft: "100px" }}>
-                    <QuantityPill
-                      yourCart={true}
-                      setAppCart={prop.setAppCart}
-                      cart={prop.cart}
-                      cartQuantity={item.quantity}
-                      item={item}
-                    />
-                  </td>
-
-                  <td className="position-relative">
-                    <p
-                      className="m-0 accent-color"
-                      style={{ fontSize: "17px" }}
-                    >
-                      ₦{(item.price * item.quantity).toLocaleString()}
-                    </p>
-
-                    <span
-                      className="me-1 text-danger text-center copy-button position-absolute  end-0"
-                      onClick={removeItem}
-                      style={{ top: "44%" }}
-                      data-id={item.id}
-                    >
-                      x
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/* **************************************************************************************************************** */
-        /* **************************************************************************************************************** */}
-        {/* ****ORDER-SUMMARY*********************************ORDER-SUMMARY******************************************ORDER-SUMMARY***** */}
-        {/* **************************************************************************************************************** */
-        /* **************************************************************************************************************** */}
-        <div className="order-summary align-self-end d-flex flex-column  p-4 rounded ">
-          <div className="  d-flex justify-content-between   align-items-center mb-2 pb-1 bb ">
-            <p className="fw-bold m-0">SUBTOTAL:</p>{" "}
-            <p className=" m-0 grey-color" style={{ fontSize: "18px" }}>
-              {" "}
-              ₦{totalAmount.toLocaleString()}
-            </p>
-          </div>
-          <div className="d-flex justify-content-between   align-items-center pb-1 bb  mb-2 mt-3 ">
-            <p className="fw-bold m-0">SHIPMENT:</p>{" "}
-            <div
-              className="d-flex flex-column align-items-end shipment-info"
-              style={{ fontSize: "13px" }}
+          <Link to="/" className="text-reset">
+            <button
+              className="btn banner-button w-auto fw-light rounded   fw-medium"
+              style={{ padding: "10px 17px" }}
             >
-              <p className=" m-0 grey-color ">
-                Orders within {userRegion} costs{" "}
-                <span className="text-black ms-1 fw-medium">
-                  ₦{shippingPrice().toLocaleString()}
-                </span>
+              Keep Shopping
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div
+          className="cart-container d-flex flex-column mx-auto"
+          style={{ width: "90%" }}
+        >
+          <div className="middle-liner w-100">
+            <h1 className="middle-title">YOUR CART</h1>
+          </div>
+
+          <table className=" mt-0 mt-md-4">
+            <thead>
+              <tr>
+                <th className="product-column ps-4 ">PRODUCT</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {prop.cart.map((item, index) => {
+                return (
+                  <tr key={index} className="position-relative">
+                    <td>
+                      <div className=" d-flex align-items-center w-85 gap-4 position-relative">
+                        <img
+                          className="product-img"
+                          src={item.images[0]}
+                          style={{ width: "18%", aspectRatio: "1/1" }}
+                        />
+                        <Link
+                          to={`/product/${item.id}`}
+                          className="text-reset text-decoration-none"
+                        >
+                          <p className="product-version">{item.version}</p>
+                        </Link>
+                      </div>
+                    </td>
+
+                    <td data-title="Price:">
+                      <p className="m-0">₦{item.price.toLocaleString()}</p>
+                    </td>
+
+                    <td data-title="Quantity:">
+                      <QuantityPill
+                        yourCart={true}
+                        setAppCart={prop.setAppCart}
+                        cart={prop.cart}
+                        cartQuantity={item.quantity}
+                        item={item}
+                      />
+                    </td>
+
+                    <td data-title="Subtotal:" className="subtotal-td">
+                      <p
+                        className="m-0 accent-color"
+                        style={{ fontSize: "17px" }}
+                      >
+                        ₦{(item.price * item.quantity).toLocaleString()}
+                      </p>
+
+                      <span
+                        className="remove-btn me-1 text-danger text-center copy-button position-absolute  end-0"
+                        onClick={removeItem}
+                        style={{ top: "44%" }}
+                        data-id={item.id}
+                      >
+                        x
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* **************************************************************************************************************** */
+          /* **************************************************************************************************************** */}
+          {/* ****ORDER-SUMMARY*********************************ORDER-SUMMARY******************************************ORDER-SUMMARY***** */}
+          {/* **************************************************************************************************************** */
+          /* **************************************************************************************************************** */}
+          <div className="order-summary align-self-end d-flex flex-column  p-4 rounded ">
+            <h5 className="mb-5 text-center">ORDER SUMMARY</h5>
+            <div className="  d-flex justify-content-between   align-items-center mb-2 pb-1 bb mt-1">
+              <p className="fw-bold m-0">SUBTOTAL:</p>{" "}
+              <p className=" m-0 grey-color" style={{ fontSize: "18px" }}>
+                {" "}
+                ₦{totalAmount.toLocaleString()}
               </p>
-              <p className=" m-0 grey-color" style={{ fontSize: "14px" }}>
-                Shipping to <span className="text-black"> {userRegion}</span>
-              </p>
-              <div className="d-flex flex-column w-100">
-                <p
-                  className="align-self-end accent-color"
-                  style={{ fontSize: "13px", cursor: "pointer" }}
-                  onClick={() =>
-                    dropdown ? setDropdown(false) : setDropdown(true)
-                  }
-                >
-                  Change Address <i className="bi bi-chevron-down  "></i>
+            </div>
+            <div className="d-flex justify-content-between   align-items-center pb-1 bb  mb-2 mt-3 ">
+              <p className="fw-bold m-0">SHIPMENT:</p>{" "}
+              <div
+                className="d-flex flex-column align-items-end shipment-info"
+                style={{ fontSize: "13px" }}
+              >
+                <p className=" m-0 grey-color ">
+                  Orders within {userRegion} costs{" "}
+                  <span className="text-black ms-1 fw-medium">
+                    ₦{shippingPrice().toLocaleString()}
+                  </span>
                 </p>
-
-                <form
-                  className={`shipping-form d-flex flex-column gap-2 w-100 mb-2 ${dropdown ? "dropdown" : "hide"} `}
-                  onSubmit={submitForm}
-                >
-                  {/* ********************Country Selection******************** */}
-                  <select
-                    name="country"
-                    className="form-select"
-                    onChange={(e) => setIsCountry(e.target.value == "Nigeria")}
-                    required
+                <p className=" m-0 grey-color" style={{ fontSize: "14px" }}>
+                  Shipping to <span className="text-black"> {userRegion}</span>
+                </p>
+                <div className="d-flex flex-column w-100">
+                  <p
+                    className="align-self-end accent-color"
+                    style={{ fontSize: "13px", cursor: "pointer" }}
+                    onClick={() =>
+                      dropdown ? setDropdown(false) : setDropdown(true)
+                    }
                   >
-                    <option className="grey-color" value="">
-                      --Country--
-                    </option>
-                    <option value="Nigeria">Nigeria</option>
-                  </select>
+                    Change Address <i className="bi bi-chevron-down  "></i>
+                  </p>
 
-                  {/* ********************State Selection******************** */}
-
-                  <select
-                    name="state"
-                    className="form-select state-form"
-                    required
+                  <form
+                    className={`shipping-form d-flex flex-column gap-2 w-100 mb-2 ${dropdown ? "dropdown" : "hide"} `}
+                    onSubmit={submitForm}
                   >
-                    <option className="grey-color" value="">
-                      --State--
-                    </option>
-                    {!isCountry ? null : (
-                      <Fragment>
-                        {allStates.map((state, index) => {
-                          return (
-                            <option
-                              name={state.toLowerCase()}
-                              value={state}
-                              key={index}
-                            >
-                              {" "}
-                              {state}
-                            </option>
-                          );
-                        })}
-                      </Fragment>
-                    )}
-                  </select>
+                    {/* ********************Country Selection******************** */}
+                    <select
+                      name="country"
+                      className="form-select"
+                      onChange={(e) =>
+                        setIsCountry(e.target.value == "Nigeria")
+                      }
+                      required
+                    >
+                      <option className="grey-color" value="">
+                        --Country--
+                      </option>
+                      <option value="Nigeria">Nigeria</option>
+                    </select>
 
-                  {/* ********************City Selection******************** */}
-                  <input
-                    type="text"
-                    className="form-control p-2"
-                    placeholder="--City--"
-                    style={{ fontSize: "13px" }}
-                    required
-                  />
-                  {/* ********************Button******************** */}
-                  <button
-                    className="btn banner-button align-self-end w-50 rounded p-1"
-                    // onClick={submitForm}
-                    type="submit"
-                  >
-                    UPDATE
-                  </button>
-                </form>
+                    {/* ********************State Selection******************** */}
+
+                    <select
+                      name="state"
+                      className="form-select state-form"
+                      required
+                    >
+                      <option className="grey-color" value="">
+                        --State--
+                      </option>
+                      {!isCountry ? null : (
+                        <Fragment>
+                          {allStates.map((state, index) => {
+                            return (
+                              <option
+                                name={state.toLowerCase()}
+                                value={state}
+                                key={index}
+                              >
+                                {" "}
+                                {state}
+                              </option>
+                            );
+                          })}
+                        </Fragment>
+                      )}
+                    </select>
+
+                    {/* ********************City Selection******************** */}
+                    <input
+                      type="text"
+                      className="form-control p-2"
+                      placeholder="--City--"
+                      style={{ fontSize: "13px" }}
+                      required
+                    />
+                    {/* ********************Button******************** */}
+                    <button
+                      className="btn banner-button align-self-end w-50 rounded p-1"
+                      // onClick={submitForm}
+                      type="submit"
+                    >
+                      UPDATE
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="d-flex justify-content-between  bb align-items-center pb-1 mb-2 mt-3 ">
-            <p className="fw-bold m-0">GRAND TOTAL:</p>{" "}
-            <p className="total-amt m-0">
-              {" "}
-              ₦{(totalAmount + shippingPrice()).toLocaleString()}
-            </p>
+            <div className="d-flex justify-content-between  bb align-items-center pb-1 mb-2 mt-3 ">
+              <p className="fw-bold m-0">GRAND TOTAL:</p>{" "}
+              <p className="total-amt m-0">
+                {" "}
+                ₦{(totalAmount + shippingPrice()).toLocaleString()}
+              </p>
+            </div>
+            <button className="btn mt-3 banner-button w-100 align-self-end">
+              CHECKOUT
+            </button>
           </div>
-          <button className="btn mt-3 banner-button w-100 align-self-end">
-            CHECKOUT
-          </button>
         </div>
-      </div>
+      )}
     </>
   );
 }

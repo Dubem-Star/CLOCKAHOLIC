@@ -4,7 +4,7 @@ import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
 
 import { Link } from "react-router-dom";
 import { newArrivedProducts } from "../../data/products";
-function NewArrivals() {
+function NewArrivals(prop) {
   return (
     <>
       <div
@@ -58,7 +58,11 @@ function NewArrivals() {
 
                     <div>{product.badge === "Hot" ? <HotBadge /> : null}</div>
 
-                    <ProductCardNav />
+                    <ProductCardNav
+                      product={product}
+                      setNavProduct={prop.setNavProduct}
+                      atcHomePage={prop.atcHomePage}
+                    />
                   </div>
                   {/* ↑↑ .product-img-cont end */}
 

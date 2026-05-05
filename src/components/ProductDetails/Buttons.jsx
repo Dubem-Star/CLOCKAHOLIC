@@ -14,6 +14,10 @@ import QuantityPill from "../plugins/QuantityPill";
 /* ********************Buttons Function******************** */
 function ProductButtons(prop) {
   const { id } = useParams();
+  useEffect(() => {
+    prop.setId(id);
+  }, []);
+
   const allProducts = [
     ...newArrivedProducts,
     ...bestSellingProducts,
@@ -41,30 +45,10 @@ function ProductButtons(prop) {
   /* ********************Add-to-Cart Function******************** */
   /* ********************Add-to-Cart Function******************** */
 
-  function reloadCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-  }
-
-  const [cart, setCart] = useState([]);
-
-  function addToCart() {
-    prop.activatePopup(true);
-    const loadCart = reloadCart();
-
-    const existing = loadCart.find(
-      (item) => item.id === parseFloat(product.id),
-    );
-    if (existing) {
-      existing.quantity += 1;
-      setCart([...loadCart]);
-    } else {
-      loadCart.push({ ...product, quantity: 1 });
-    }
-
-    setCart(loadCart);
-    prop.setAppCart([...loadCart]);
-    localStorage.setItem("cart", JSON.stringify(loadCart));
-  }
+  const [cart, setCart] = useState(prop.cart);
+  useEffect(() => {
+    setCart(prop.cart);
+  }, [prop.cart]);
 
   /* ************************************************ */
 
@@ -99,7 +83,7 @@ function ProductButtons(prop) {
           <button
             className="btn second-btn "
             style={{ width: "50%" }}
-            onClick={addToCart}
+            onClick={() => prop.atcDetailsPage()}
           >
             ADD TO CART
           </button>

@@ -32,7 +32,10 @@ function Home(prop) {
         <BackToTop />
         <Categories />
         <FeaturedBrands />
-        <NewArrivals />
+        <NewArrivals
+          setNavProduct={prop.setNavProduct}
+          atcHomePage={prop.atcHomePage}
+        />
         <BestSellers />
         <AdBanner />
         <OnSale />

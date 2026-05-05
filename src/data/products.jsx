@@ -604,7 +604,7 @@ export const onSaleProducts = [
     id: 25,
     brandName: "CHROME HEARTS",
     price: 15000,
-    version: "Chrome Hearts Glasses for Men and Women Square Frame Clear Lens ",
+    version: "Chrome Hearts Glasses for Unisex Square Clear Lens ",
     description:
       "These premium Chrome Hearts acetate glasses blend a high-end gothic aesthetic with a modern, unisex fit for men and women. Designed for all-day comfort, the clear lenses can be easily swapped for prescriptions or blue-light protection.",
     images: [

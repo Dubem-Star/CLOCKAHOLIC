@@ -1,7 +1,10 @@
 import cartIcon from "@/assets/images/img_icons/shopping-bag.png";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
 import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
-export const ProductCardNav = () => {
+export const ProductCardNav = (prop) => {
+  const navProduct = prop.product;
+  // prop.setNavProduct(navProduct);
+
   return (
     <>
       <div className="grid-icon-container">
@@ -10,9 +13,9 @@ export const ProductCardNav = () => {
           src={cartIcon}
           className="add-to-cart-product-grid"
           onClick={(e) => {
-            e.stopPropagation();
             e.preventDefault();
-            alert("hi");
+            e.stopPropagation();
+            prop.atcHomePage(navProduct);
           }}
         />
 

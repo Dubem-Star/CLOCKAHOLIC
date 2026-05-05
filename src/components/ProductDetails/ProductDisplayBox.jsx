@@ -238,6 +238,8 @@ function ProductDisplayBox(prop) {
                 cart={prop.cart}
                 activatePopup={prop.activatePopup}
                 popup={prop.popup}
+                setId={prop.setId}
+                atcDetailsPage={prop.atcDetailsPage}
               />
               <hr className="m-0" />
               <ProductInfo />
