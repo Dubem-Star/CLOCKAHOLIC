@@ -4,12 +4,14 @@ import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 import HamburgerIcon from "@/assets/icons/flaticons/hamburger.svg?react";
 import WishlistIcon from "@/assets/icons/flaticons/wishlist.svg?react";
 import brandLogo from "@/assets/images/Logo/clockaholic_only_logo.png";
+import Sidebar from "./SliderMenu";
 
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar(prop) {
   const [isHidden, setHidden] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const navHeightRef = useRef();
   const lastScrollY = useRef(0);
@@ -67,7 +69,7 @@ function Navbar(prop) {
           </Link>
 
           {/* **********************Nav Links******************************* */}
-          <ul className="navbar-links d-flex">
+          <ul className="navbar-links n-ul d-flex">
             <li>
               <Link className="underline" to="/">
                 Home
@@ -118,7 +120,7 @@ function Navbar(prop) {
                   onClick={() => prop.activatePopup(true)}
                   className="text-reset d-flex align-content-center"
                 >
-                  <CartIcon className="nav-icon" />
+                  <CartIcon className="nav-icon cart-icon" />
                   <span
                     className=" position-absolute text-light d-flex align-items-center justify-content-center rounded-circle"
                     style={{ bottom: "-6px" }}
@@ -129,10 +131,23 @@ function Navbar(prop) {
               </div>
             </div>
 
-            <HamburgerIcon className="nav-icon hamburger" />
+            <HamburgerIcon
+              className="nav-icon hamburger"
+              onClick={() => {
+                setIsOpen(true);
+                prop.setDarken(true);
+              }}
+            />
           </div>
         </nav>
       </header>
+
+      <Sidebar
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setDarken={prop.setDarken}
+        darken={prop.darken}
+      />
     </>
   );
 }

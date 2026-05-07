@@ -344,7 +344,7 @@ strong {
 
   table tbody td:first-child img {
     position: absolute;
-    left: -105px;
+    left: -100px;
     top: 0;
     width: 100px !important;
   }
@@ -500,7 +500,8 @@ form.shipping-form.dropdown {
 }
 
 form.shipping-form select.form-select:focus,
-form.shipping-form input.form-control:focus {
+form.shipping-form input.form-control:focus,
+.slider .search-input:focus {
   border-color: #ced4da !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -512,8 +513,23 @@ form.shipping-form select.form-select {
   padding: 10px;
 }
 
-form.shipping-form input.form-control::placeholder {
+form.shipping-form input.form-control::placeholder,
+.slider .search-input::placeholder {
   color: #72716e;
+}
+
+/* Sidebar---Styling */
+.search-results-container hr:last-child {
+  margin-bottom: 0 !important;
+}
+
+.search-results-container .item-link {
+  background-color: #2a2a2a00 !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.search-results-container .item-link:hover {
+  background-color: #e5e1e1 !important;
 }
 
 @media (max-width: 1199.98px) {

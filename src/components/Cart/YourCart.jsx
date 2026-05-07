@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PageLocation from "../plugins/PageLocation";
 import QuantityPill from "@/components/plugins/QuantityPill";
 import emptyCart from "@/assets/images/img_icons/empty-cart.png";
+import BackToTop from "@/components/plugins/BackToTop";
 import {
   lagos,
   southEast,
@@ -108,6 +109,7 @@ function YourCart(prop) {
   return (
     <>
       <PageLocation location={"cart"} />
+      <BackToTop />
 
       {prop.cart.length < 1 ? (
         <div className="d-flex flex-column align-items-center w-50 ms-auto me-auto  gap-4">

@@ -12,6 +12,8 @@ function ProductDetails(prop) {
           cart={prop.cart}
           activatePopup={prop.activatePopup}
           popup={prop.popup}
+          setDarken={prop.setDarken}
+          darken={prop.darken}
         />
 
         <div

@@ -6,7 +6,11 @@ function Cart(prop) {
   return (
     <>
       <div className="Details-Page d-flex flex-column vh-100 align-items-center ">
-        <Navbar cart={prop.cart} />
+        <Navbar
+          cart={prop.cart}
+          setDarken={prop.setDarken}
+          darken={prop.darken}
+        />
         <div
           className="  flex-grow-1"
           style={{ maxWidth: "1400px", width: "100% " }}

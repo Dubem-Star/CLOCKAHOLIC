@@ -22,6 +22,7 @@ function App() {
     return JSON.parse(localStorage.getItem("cart")) || [];
   }
   const [popup, activatePopup] = useState(false);
+  const [darken, setDarken] = useState(false);
   const [cart, setCart] = useState(reloadCart());
   const [id, setId] = useState(0);
   const [navProduct, setNavProduct] = useState(null);
@@ -73,12 +74,13 @@ function App() {
   return (
     <>
       <div
-        className={`darken-bg position-fixed opacity-0 invisible ${popup ? "show" : ""}`}
+        className={`darken-bg position-fixed opacity-0 invisible ${popup || darken ? "show" : ""}`}
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.5) ",
           transition: "opacity 0.3s ease-in-out",
           zIndex: "2500",
           inset: "0",
+          overflow: "hidden",
         }}
       ></div>
 
@@ -94,6 +96,8 @@ function App() {
                 setAppCart={setCart}
                 setNavProduct={setNavProduct}
                 atcHomePage={atcHomePage}
+                setDarken={setDarken}
+                darken={darken}
               />
             }
           />
@@ -107,6 +111,8 @@ function App() {
                 popup={popup}
                 setId={setId}
                 atcDetailsPage={atcDetailsPage}
+                setDarken={setDarken}
+                darken={darken}
               />
             }
           />
@@ -117,6 +123,8 @@ function App() {
                 setAppCart={setCart}
                 cart={cart}
                 activatePopup={activatePopup}
+                setDarken={setDarken}
+                darken={darken}
               />
             }
           />

@@ -353,19 +353,22 @@ html {
   height: inherit;
 }
 
-.Navbar .navbar-links {
+.Navbar .navbar-links,
+.n-ul {
   gap: 30px;
   margin: 0;
   height: 100%;
   align-items: center;
 }
 
-.Navbar .navbar-links li {
+.Navbar .navbar-links li,
+.n-ul li {
   list-style: none;
   padding: 30px 0;
 }
 
-.Navbar .navbar-links a {
+.Navbar .navbar-links a,
+.n-ul a {
   font-family: var(--default-font-family);
   color: black;
   text-decoration: none;
@@ -376,7 +379,8 @@ html {
   text-transform: uppercase;
 }
 
-.Navbar .navbar-links li i {
+.Navbar .navbar-links li i,
+.n-ul i {
   font-weight: 700 !important;
 }
 
@@ -408,13 +412,17 @@ html {
 
 .cart-box span {
   line-height: 1px;
-
   font-size: 11px;
   right: -6px;
   padding: 8px;
   background-color: #b8860b;
   width: 10px;
   aspect-ratio: 1/1;
+}
+
+.slider {
+  width: 75% !important;
+  left: 0 !important;
 }
 
 /* ******************Hero Section****************************** */
@@ -864,7 +872,6 @@ p.animated span {
 .products-container .product-grid {
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -875,7 +882,6 @@ p.animated span {
   display: flex;
   width: 100%;
   background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
-  /* height: 330px; */
   aspect-ratio: 1/1;
   border: 1px solid rgba(0, 0, 0, 0.116);
   border-radius: 15px;
@@ -915,10 +921,6 @@ p.animated span {
   transition: border-color 0.3s ease-in-out;
   object-fit: contain;
 }
-
-/* .grid-icon-container .add-to-cart-product-grid{
-
-} */
 
 .products-container .product-img {
   position: absolute;
@@ -1280,6 +1282,12 @@ a {
   }
 }
 
+@media (min-width: 768px) {
+  .slider {
+    width: 50% !important;
+  }
+}
+
 @media (max-width: 991px) {
   .Footer .inner-cont .social-links {
     order: 2;
@@ -1316,12 +1324,39 @@ a {
     width: clamp(320px, 65vw, 650px);
   }
 
+  .Navbar .icon-wrapper .nav-icon.hamburger {
+    display: flex !important;
+    order: 1 !important;
+  }
+
+  .Navbar .icon-wrapper .nav-icon.cart-icon {
+    display: flex !important;
+  }
+
+  .Navbar .icon-wrapper .cart-box {
+    order: 3 !important;
+    margin-right: 20px;
+  }
+
+  .Navbar .navbar-image-cont {
+    order: 2;
+  }
+
+  .Navbar .navbar-image-cont img {
+    margin: 0 !important;
+  }
+
   .Navbar .navbar-links {
     display: none !important;
   }
 
-  .Navbar .icon-wrapper .nav-icon.hamburger {
-    display: block;
+  .Navbar .icon-wrapper,
+  .Navbar .nav-icons {
+    display: contents !important;
+  }
+
+  .Navbar .icon-wrapper .nav-icon {
+    display: none;
   }
 
   .Categories .cat-grid .cat-title {
