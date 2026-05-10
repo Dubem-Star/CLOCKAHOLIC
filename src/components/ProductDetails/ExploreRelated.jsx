@@ -11,7 +11,7 @@ import {
 } from "../../data/products";
 import { useState, useEffect, useRef } from "react";
 
-function ExploreRelated() {
+function ExploreRelated(prop) {
   const { id } = useParams();
   const allProducts = [
     ...bestSellingProducts,
@@ -215,7 +215,10 @@ function ExploreRelated() {
 
                       <div>{product.badge === "Hot" ? <HotBadge /> : null}</div>
 
-                      <ProductCardNav />
+                      <ProductCardNav
+                        product={product}
+                        atcHomePage={prop.atcHomePage}
+                      />
                     </div>
                     {/* ↑↑ .product-img-cont end */}
 

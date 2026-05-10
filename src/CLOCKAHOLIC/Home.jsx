@@ -34,13 +34,10 @@ function Home(prop) {
         <BackToTop />
         <Categories />
         <FeaturedBrands />
-        <NewArrivals
-          setNavProduct={prop.setNavProduct}
-          atcHomePage={prop.atcHomePage}
-        />
-        <BestSellers />
+        <NewArrivals atcHomePage={prop.atcHomePage} />
+        <BestSellers atcHomePage={prop.atcHomePage} />
         <AdBanner />
-        <OnSale />
+        <OnSale atcHomePage={prop.atcHomePage} />
         <ExploreBanner />
       </div>
       <Footer />

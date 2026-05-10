@@ -69,9 +69,8 @@ function Hero() {
 
   // Second-Animation-Frame Timer *******************************************
   useEffect(() => {
-    const timer = requestAnimationFrame(() => {
-      setMounted(true);
-    });
+    const timer = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(timer);
   }, []);
 
   // Absolute-H1-Height-Calculation *******************************************

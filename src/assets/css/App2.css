@@ -202,16 +202,21 @@ strong {
   padding: 7px;
 }
 
-.cart-item-link:hover {
-  background-color: rgba(238, 238, 238, 0.526);
-}
-
 /* ***********************Media Query*********************** */
 /* ***********************Media Query*********************** */
 @media (hover: hover) and (pointer: fine) {
   .overlay:hover {
     opacity: 1;
   }
+
+  .cart-item-link:hover,
+  .search-results-container .item-link:hover {
+    background-color: rgba(238, 238, 238, 0.526) !important;
+  }
+
+  /* .search-results-container .item-link:hover {
+    background-color: #e5e1e1 !important;
+  } */
 
   .quantity-buttons button:hover {
     background-color: var(--sauce-color);
@@ -526,10 +531,6 @@ form.shipping-form input.form-control::placeholder,
 .search-results-container .item-link {
   background-color: #2a2a2a00 !important;
   transition: background-color 0.2s ease-in-out;
-}
-
-.search-results-container .item-link:hover {
-  background-color: #e5e1e1 !important;
 }
 
 @media (max-width: 1199.98px) {

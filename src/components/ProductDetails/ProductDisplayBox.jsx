@@ -130,6 +130,24 @@ function ProductDisplayBox(prop) {
   }
   /* ************************************************ */
 
+  function handleImgContPointerOver(e) {
+    if (e.pointerType === "mouse") {
+      imgContMousemove(e);
+    }
+  }
+
+  function handlePointerEnter(e) {
+    if (e.pointerType === "mouse") {
+      imgMouseover(e);
+    }
+  }
+
+  function handlePointerLeave(e) {
+    if (e.pointerType === "mouse") {
+      imgMouseout(e);
+    }
+  }
+
   {
     /* ********************THE DOM******************** */
     /* ********************THE DOM******************** */
@@ -155,15 +173,15 @@ function ProductDisplayBox(prop) {
                 <div
                   className="image-container d-flex justify-content-center"
                   ref={productImageContainer}
-                  onMouseMove={imgContMousemove}
+                  onPointerMove={handleImgContPointerOver}
                 >
                   <img
                     src={currentImage}
                     className="w-100 h-100"
                     ref={productImage}
                     style={{ transformOrigin: "var(--mouse-x) var(--mouse-y)" }}
-                    onMouseEnter={imgMouseover}
-                    onMouseLeave={imgMouseout}
+                    onPointerEnter={handlePointerEnter}
+                    onPointerLeave={handlePointerLeave}
                   />
                 </div>
 
@@ -219,13 +237,12 @@ function ProductDisplayBox(prop) {
 
               {/* ************description************ */}
               <div className="description-box mt-2">
-                {/* <h5 className="mb-2 ">Description:</h5> */}
                 <p
                   style={{
                     color: "#72716e",
                     marginBottom: "13px",
                     fontSize: "16px",
-                    lineHeight: "1.7",
+                    lineHeight: "2",
                   }}
                 >
                   {product.description}

@@ -29,7 +29,7 @@ function ProductDetails(prop) {
             setId={prop.setId}
             atcDetailsPage={prop.atcDetailsPage}
           />
-          <ExploreRelated />
+          <ExploreRelated atcHomePage={prop.atcHomePage} />
         </div>
         <Footer />
       </div>

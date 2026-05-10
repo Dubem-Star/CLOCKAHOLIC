@@ -4,7 +4,7 @@ import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
 import { Link } from "react-router-dom";
 
 import { onSaleProducts } from "../../data/products";
-function OnSale() {
+function OnSale(prop) {
   return (
     <>
       <div
@@ -55,7 +55,10 @@ function OnSale() {
                       ) : null}
                     </div>
 
-                    <ProductCardNav />
+                    <ProductCardNav
+                      product={product}
+                      atcHomePage={prop.atcHomePage}
+                    />
                   </div>
 
                   <div className="product-info">

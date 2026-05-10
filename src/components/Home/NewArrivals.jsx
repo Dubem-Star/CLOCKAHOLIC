@@ -60,7 +60,6 @@ function NewArrivals(prop) {
 
                     <ProductCardNav
                       product={product}
-                      setNavProduct={prop.setNavProduct}
                       atcHomePage={prop.atcHomePage}
                     />
                   </div>

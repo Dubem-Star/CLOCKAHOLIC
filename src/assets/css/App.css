@@ -429,7 +429,8 @@ html {
 /* ******************Hero Section****************************** */
 
 .Hero {
-  background-image: url("/images/watch_wallpapers/watch_brown.jpg");
+  /* background-image: url("/images/watch_wallpapers/watch_brown.jpg"); */
+  background-image: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
   height: 600px;
   width: 100%;
   display: block;

@@ -92,7 +92,7 @@ const Sidebar = (prop) => {
 
   const box =
     searchResults.length > 0
-      ? { boxShadow: " 0 4px 10px rgba(0, 0, 0, 0.3)", paddingTop: "15px" }
+      ? { boxShadow: " 0 4px 10px rgba(0, 0, 0, 0.3)" }
       : { boxShadow: " 0 4px 10px rgba(0, 0, 0, 0)", paddingTop: "0" };
 
   return (
@@ -163,41 +163,40 @@ const Sidebar = (prop) => {
                 <></>
               )
             ) : (
-              searchResults.map((result) => {
+              searchResults.map((result, index) => {
                 return (
-                  <>
-                    <Link
-                      to={`/product/${result.id}`}
-                      onClick={() => {
-                        prop.setDarken(false);
-                        prop.isOpen(false);
-                      }}
-                      className="text-reset text-decoration-none item-link d-block"
-                    >
-                      <div className="d-flex mb-1 pe-3">
-                        <img
-                          src={result.images[0]}
-                          className=" flex-shrink-0 align-self-center"
-                          style={{ width: "20%", aspectRatio: "1/1" }}
-                        />
-                        <div className="d-flex flex-column justify-content-center">
-                          <p
-                            className="text-black m-0 "
-                            style={{ fontSize: "14px" }}
-                          >
-                            {result.version}
-                          </p>
-                          <p
-                            className=" m-0"
-                            style={{ color: "#b8860b", fontSize: "13px" }}
-                          >
-                            ₦{result.price.toLocaleString()}
-                          </p>
-                        </div>
+                  <Link
+                    key={result.id}
+                    to={`/product/${result.id}`}
+                    onClick={() => {
+                      prop.setDarken(false);
+                      prop.isOpen(false);
+                    }}
+                    className="text-reset text-decoration-none item-link d-block pt-3"
+                  >
+                    <div className="d-flex mb-1 pe-3">
+                      <img
+                        src={result.images[0]}
+                        className=" flex-shrink-0 align-self-center"
+                        style={{ width: "20%", aspectRatio: "1/1" }}
+                      />
+                      <div className="d-flex flex-column justify-content-center">
+                        <p
+                          className="text-black m-0 "
+                          style={{ fontSize: "14px" }}
+                        >
+                          {result.version}
+                        </p>
+                        <p
+                          className=" m-0"
+                          style={{ color: "#b8860b", fontSize: "13px" }}
+                        >
+                          ₦{result.price.toLocaleString()}
+                        </p>
                       </div>
-                    </Link>
-                    <hr className="w-100 text-black bg-dark" />
-                  </>
+                    </div>
+                    <hr className="w-100 text-black bg-dark mt-3 mb-5 d-block" />
+                  </Link>
                 );
               })
             )}

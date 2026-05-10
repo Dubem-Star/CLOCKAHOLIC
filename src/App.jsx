@@ -25,7 +25,6 @@ function App() {
   const [darken, setDarken] = useState(false);
   const [cart, setCart] = useState(reloadCart());
   const [id, setId] = useState(0);
-  const [navProduct, setNavProduct] = useState(null);
 
   const loadCart = reloadCart();
 
@@ -94,7 +93,6 @@ function App() {
                 activatePopup={activatePopup}
                 popup={popup}
                 setAppCart={setCart}
-                setNavProduct={setNavProduct}
                 atcHomePage={atcHomePage}
                 setDarken={setDarken}
                 darken={darken}
@@ -113,6 +111,7 @@ function App() {
                 atcDetailsPage={atcDetailsPage}
                 setDarken={setDarken}
                 darken={darken}
+                atcHomePage={atcHomePage}
               />
             }
           />

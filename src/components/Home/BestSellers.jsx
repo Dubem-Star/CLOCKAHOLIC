@@ -3,7 +3,7 @@ import { ProductCardNav } from "@/components/plugins/ProductCardNav";
 import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
 import { Link } from "react-router-dom";
 import { bestSellingProducts } from "../../data/products";
-function BestSellers() {
+function BestSellers(prop) {
   return (
     <>
       <div
@@ -60,7 +60,10 @@ function BestSellers() {
                       ) : null}
                     </div>
 
-                    <ProductCardNav />
+                    <ProductCardNav
+                      product={product}
+                      atcHomePage={prop.atcHomePage}
+                    />
                   </div>
 
                   <div className="product-info">
