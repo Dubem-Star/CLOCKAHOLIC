@@ -170,7 +170,7 @@ const Sidebar = (prop) => {
                     to={`/product/${result.id}`}
                     onClick={() => {
                       prop.setDarken(false);
-                      prop.isOpen(false);
+                      prop.setIsOpen(false);
                     }}
                     className="text-reset text-decoration-none item-link d-block pt-3"
                   >
