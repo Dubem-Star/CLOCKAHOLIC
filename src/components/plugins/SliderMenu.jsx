@@ -51,10 +51,19 @@ const Sidebar = (prop) => {
   //   Sidebar Screen Lock Function ******************************
   //   Sidebar Screen Lock Function ******************************
   useEffect(() => {
+    const top = window.scrollY;
     if (prop.isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${top}`;
     } else {
-      document.body.style.overflow = "unset";
+      const savedPosition = Math.abs(
+        parseFloat(document.body.style.top || "0"),
+      );
+      document.body.style.position = "";
+      window.scrollTo({
+        top: savedPosition,
+        behavior: "smooth",
+      });
     }
 
     return () => {};
@@ -149,7 +158,7 @@ const Sidebar = (prop) => {
             className={`search-results-container position-absolute start-0 end-0 top-75 overflow-y-auto  bg-white `}
             style={{
               zIndex: "9999",
-              maxHeight: "calc(100vh - 150px)",
+              maxHeight: "calc(100dvh - 150px)",
 
               ...box,
             }}

@@ -1,11 +1,25 @@
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function QuantityPill(prop) {
+  const { id } = useParams();
+
   /* ********************Product Detail Quantity Logic******************** */
   /* ********************Product Detail Quantity Logic******************** */
   const [quantity, setQuantity] = useState(1);
   const itemQuantity = prop.cartQuantity ? prop.cartQuantity : 1;
   const [cartItemQuantity, setCartItemQuantity] = useState(itemQuantity);
+
+  if (prop.setProdQty) {
+    useEffect(() => {
+      prop.setProdQty(quantity);
+      console.log(quantity);
+    }, [quantity]);
+  }
+
+  useEffect(() => {
+    setQuantity(1);
+  }, [id]);
 
   function handleIncrement(e) {
     e.preventDefault();
@@ -21,6 +35,8 @@ function QuantityPill(prop) {
       localStorage.setItem("cart", JSON.stringify([...prop.cart]));
     } else {
       setQuantity((prev) => prev + 1);
+
+      // console.log(quantity);
     }
   }
 
@@ -37,6 +53,8 @@ function QuantityPill(prop) {
       localStorage.setItem("cart", JSON.stringify([...prop.cart]));
     } else {
       if (quantity > 1) setQuantity((prev) => prev - 1);
+      // prop.setProdQty(quantity);
+      // console.log(quantity);
     }
   }
 

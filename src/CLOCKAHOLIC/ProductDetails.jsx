@@ -28,6 +28,7 @@ function ProductDetails(prop) {
             popup={prop.popup}
             setId={prop.setId}
             atcDetailsPage={prop.atcDetailsPage}
+            setProdQty={prop.setProdQty}
           />
           <ExploreRelated atcHomePage={prop.atcHomePage} />
         </div>

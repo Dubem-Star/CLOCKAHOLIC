@@ -14,9 +14,10 @@ import QuantityPill from "../plugins/QuantityPill";
 /* ********************Buttons Function******************** */
 function ProductButtons(prop) {
   const { id } = useParams();
+
   useEffect(() => {
     prop.setId(id);
-  }, []);
+  }, [id]);
 
   const allProducts = [
     ...newArrivedProducts,
@@ -74,6 +75,7 @@ function ProductButtons(prop) {
           isCart={false}
           // setCart={setCart}
           // cart={prop.cart}
+          setProdQty={prop.setProdQty}
           setAppCart={prop.setAppCart}
         />
 

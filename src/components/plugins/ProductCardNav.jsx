@@ -3,7 +3,6 @@ import viewIcon from "@/assets/images/img_icons/visibility.png";
 import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 export const ProductCardNav = (prop) => {
   const navProduct = prop.product;
-  // prop.setNavProduct(navProduct);
 
   return (
     <>

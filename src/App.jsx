@@ -25,7 +25,7 @@ function App() {
   const [darken, setDarken] = useState(false);
   const [cart, setCart] = useState(reloadCart());
   const [id, setId] = useState(0);
-
+  const [prodQty, setProdQty] = useState(1);
   const loadCart = reloadCart();
 
   {
@@ -38,13 +38,15 @@ function App() {
       (product) => product.id === parseFloat(id),
     );
 
+    console.log(id);
+
     const loadCart = reloadCart();
-    const existing = loadCart.find((item) => item.id === parseFloat(id));
+    const existing = loadCart.find((item) => item.id === product.id);
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity = existing.quantity + prodQty;
       setCart([...loadCart]);
     } else {
-      loadCart.push({ ...product, quantity: 1 });
+      loadCart.push({ ...product, quantity: prodQty });
       setCart([...loadCart]);
     }
 
@@ -112,6 +114,7 @@ function App() {
                 setDarken={setDarken}
                 darken={darken}
                 atcHomePage={atcHomePage}
+                setProdQty={setProdQty}
               />
             }
           />

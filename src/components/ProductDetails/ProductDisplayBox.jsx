@@ -257,6 +257,7 @@ function ProductDisplayBox(prop) {
                 popup={prop.popup}
                 setId={prop.setId}
                 atcDetailsPage={prop.atcDetailsPage}
+                setProdQty={prop.setProdQty}
               />
               <hr className="m-0" />
               <ProductInfo />
