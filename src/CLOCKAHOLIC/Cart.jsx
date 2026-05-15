@@ -10,6 +10,12 @@ function Cart(prop) {
           cart={prop.cart}
           setDarken={prop.setDarken}
           darken={prop.darken}
+          handleSearch={prop.handleSearch}
+          handleSubmit={prop.handleSubmit}
+          searchResults={prop.searchResults}
+          setSearchResults={prop.setSearchResults}
+          value={prop.value}
+          setValue={prop.setValue}
         />
         <div
           className="  flex-grow-1"

@@ -1,24 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchIcon from "@/assets/icons/flaticons/search.svg?react";
-import {
-  newArrivedProducts,
-  bestSellingProducts,
-  onSaleProducts,
-} from "@/data/products.jsx";
 
 const Sidebar = (prop) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const [search, setSearch] = useState(null);
-  const [searchResults, setSearchResults] = useState([]);
-  const [value, setValue] = useState(0);
-
-  const allProducts = [
-    ...newArrivedProducts,
-    ...bestSellingProducts,
-    ...onSaleProducts,
-  ];
+  const searchResultsCont = useRef(null);
 
   // Define the animation states
   const sidebarVariants = {
@@ -51,56 +39,29 @@ const Sidebar = (prop) => {
   //   Sidebar Screen Lock Function ******************************
   //   Sidebar Screen Lock Function ******************************
   useEffect(() => {
-    const top = window.scrollY;
     if (prop.isOpen) {
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${top}`;
+      document.body.style.overflow = "hidden";
     } else {
-      const savedPosition = Math.abs(
-        parseFloat(document.body.style.top || "0"),
-      );
-      document.body.style.position = "";
-      window.scrollTo({
-        top: savedPosition,
-        behavior: "smooth",
-      });
+      document.body.style.overflow = `unset`;
     }
-
     return () => {};
   }, [prop.isOpen]);
 
-  //   Handle Submit Function ******************************
-  //   Handle Submit Function ******************************
-  function handleSubmit(e) {
-    e.preventDefault();
-    const search = e.target.firstElementChild.value;
-    alert(search);
-  }
+  //Search Result height Resize ******************************
+  //Search Result height Resize ******************************
+  const initialAppHeight = window.visualViewport.height;
 
-  //   Handle Search Function ******************************
-  //   Handle Search Function ******************************
-
-  function handleSearch(e) {
-    const text = e.target.value.trim().toLowerCase();
-
-    const foundSearch = allProducts
-      .filter(
-        (item) =>
-          item.brandName.toLowerCase().includes(text) ||
-          item.version.toLowerCase().includes(text),
-      )
-      .slice(0, 7);
-
-    if (!text) {
-      foundSearch.length = [];
+  window.visualViewport.addEventListener("resize", () => {
+    const currentHeight = window.visualViewport.height;
+    const newHeight = `${currentHeight - 140}px`;
+    if (searchResultsCont.current) {
+      searchResultsCont.current.style.maxHeight =
+        currentHeight < initialAppHeight ? newHeight : "calc(100dvh - 150px)";
     }
-    setValue(text);
-
-    setSearchResults(foundSearch);
-  }
+  });
 
   const box =
-    searchResults.length > 0
+    prop.searchResults.length > 0
       ? { boxShadow: " 0 4px 10px rgba(0, 0, 0, 0.3)" }
       : { boxShadow: " 0 4px 10px rgba(0, 0, 0, 0)", paddingTop: "0" };
 
@@ -114,15 +75,16 @@ const Sidebar = (prop) => {
           variants={sidebarVariants}
           className="bg-white slider text-white p-4 vh-100 position-fixed top-0 left-0 "
           style={{
-            zIndex: 9999,
+            overscrollBehavior: "none",
+            zIndex: "9999",
           }}
         >
           <button
             onClick={() => {
               prop.setIsOpen(false);
-              setValue("");
+              prop.setValue("");
               prop.setDarken(false);
-              setSearchResults([]);
+              prop.setSearchResults([]);
             }}
             className="btn btn-close btn-close-black mb-4"
           ></button>
@@ -131,8 +93,8 @@ const Sidebar = (prop) => {
   //   ************************Search Inputs Section ****************************** */}
 
           <form
-            onSubmit={handleSubmit}
-            onInput={handleSearch}
+            onSubmit={prop.handleSubmit}
+            onInput={prop.handleSearch}
             className="search-container position-relative"
           >
             <input
@@ -156,15 +118,16 @@ const Sidebar = (prop) => {
 
           <div
             className={`search-results-container position-absolute start-0 end-0 top-75 overflow-y-auto  bg-white `}
+            ref={searchResultsCont}
             style={{
               zIndex: "9999",
               maxHeight: "calc(100dvh - 150px)",
-
+              overscrollBehavior: "none",
               ...box,
             }}
           >
-            {searchResults.length < 1 ? (
-              value.length > 0 ? (
+            {prop.searchResults.length < 1 ? (
+              prop.value.length > 0 ? (
                 <>
                   <p className="text-black text-center">No products found.</p>
                 </>
@@ -172,7 +135,7 @@ const Sidebar = (prop) => {
                 <></>
               )
             ) : (
-              searchResults.map((result, index) => {
+              prop.searchResults.map((result, index) => {
                 return (
                   <Link
                     key={result.id}

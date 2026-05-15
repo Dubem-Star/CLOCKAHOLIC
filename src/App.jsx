@@ -27,6 +27,43 @@ function App() {
   const [id, setId] = useState(0);
   const [prodQty, setProdQty] = useState(1);
   const loadCart = reloadCart();
+  const [searchResults, setSearchResults] = useState([]);
+  const [value, setValue] = useState(0);
+  const [isSearchMode, setIsSearchMode] = useState(false);
+  //  const [mounted, setMounted] = useState(false);
+
+  {
+    /* *********************HANDLE SUBMIT FUNCTION********************* */
+    /* *********************HANDLE SUBMIT FUNCTION********************* */
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const search = e.target.firstElementChild.value;
+    alert(search);
+  }
+
+  {
+    /* *********************HANDLE SEARCH FUNCTION********************* */
+    /* *********************HANDLE SEARCH FUNCTION********************* */
+  }
+  function handleSearch(e) {
+    const text = e.target.value.trim().toLowerCase();
+
+    const foundSearch = allProducts
+      .filter(
+        (item) =>
+          item.brandName.toLowerCase().includes(text) ||
+          item.version.toLowerCase().includes(text),
+      )
+      .slice(0, 7);
+
+    if (!text) {
+      foundSearch.length = [];
+    }
+    setValue(text);
+
+    setSearchResults(foundSearch);
+  }
 
   {
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
@@ -37,8 +74,6 @@ function App() {
     const product = allProducts.find(
       (product) => product.id === parseFloat(id),
     );
-
-    console.log(id);
 
     const loadCart = reloadCart();
     const existing = loadCart.find((item) => item.id === product.id);
@@ -98,6 +133,16 @@ function App() {
                 atcHomePage={atcHomePage}
                 setDarken={setDarken}
                 darken={darken}
+                handleSearch={handleSearch}
+                handleSubmit={handleSubmit}
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+                value={value}
+                setValue={setValue}
+                isSearchMode={isSearchMode}
+                setIsSearchMode={setIsSearchMode}
+                // mounted={mounted}
+                // setMounted={setMounted}
               />
             }
           />
@@ -115,6 +160,12 @@ function App() {
                 darken={darken}
                 atcHomePage={atcHomePage}
                 setProdQty={setProdQty}
+                handleSearch={handleSearch}
+                handleSubmit={handleSubmit}
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+                value={value}
+                setValue={setValue}
               />
             }
           />
@@ -127,6 +178,12 @@ function App() {
                 activatePopup={activatePopup}
                 setDarken={setDarken}
                 darken={darken}
+                handleSearch={handleSearch}
+                handleSubmit={handleSubmit}
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+                value={value}
+                setValue={setValue}
               />
             }
           />

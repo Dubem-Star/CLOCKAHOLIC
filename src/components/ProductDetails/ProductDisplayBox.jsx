@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import monkeyMeme from "@/assets/images/wallpapers/monkey_confused_meme.jpg";
-import PageLocation from "../plugins/PageLocation";
+import PageLocation from "../plugins/btns/PageLocation";
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 import ProductButtons from "./Buttons";

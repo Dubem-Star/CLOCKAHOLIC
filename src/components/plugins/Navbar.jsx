@@ -4,7 +4,8 @@ import CartIcon from "@/assets/icons/flaticons/shopping-bag.svg?react";
 import HamburgerIcon from "@/assets/icons/flaticons/hamburger.svg?react";
 import WishlistIcon from "@/assets/icons/flaticons/wishlist.svg?react";
 import brandLogo from "@/assets/images/Logo/clockaholic_only_logo.png";
-import Sidebar from "./SliderMenu";
+import Sidebar from "./Sliders/SliderMenu";
+import Search from "./Sliders/SliderSearch";
 
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
@@ -111,7 +112,13 @@ function Navbar(prop) {
 
           <div className="icon-wrapper">
             <div className="nav-icons d-flex  me-4">
-              <SearchIcon className="nav-icon" />
+              <SearchIcon
+                className="nav-icon"
+                onClick={() => {
+                  prop.setIsSearchMode(true);
+                  prop.setDarken(true);
+                }}
+              />
               <UserIcon className="nav-icon" />
               <WishlistIcon className="nav-icon" />
 
@@ -147,6 +154,25 @@ function Navbar(prop) {
         setIsOpen={setIsOpen}
         setDarken={prop.setDarken}
         darken={prop.darken}
+        handleSearch={prop.handleSearch}
+        handleSubmit={prop.handleSubmit}
+        searchResults={prop.searchResults}
+        setSearchResults={prop.setSearchResults}
+        value={prop.value}
+        setValue={prop.setValue}
+      />
+
+      <Search
+        setDarken={prop.setDarken}
+        darken={prop.darken}
+        isSearchMode={prop.isSearchMode}
+        setIsSearchMode={prop.setIsSearchMode}
+        searchResults={prop.searchResults}
+        setSearchResults={prop.setSearchResults}
+        handleSearch={prop.handleSearch}
+        handleSubmit={prop.handleSubmit}
+        value={prop.value}
+        setValue={prop.setValue}
       />
     </>
   );

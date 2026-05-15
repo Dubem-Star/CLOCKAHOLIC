@@ -1,9 +1,9 @@
 import { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
-import PageLocation from "../plugins/PageLocation";
+import PageLocation from "../plugins/btns/PageLocation";
 import QuantityPill from "@/components/plugins/QuantityPill";
 import emptyCart from "@/assets/images/img_icons/empty-cart.png";
-import BackToTop from "@/components/plugins/BackToTop";
+import BackToTop from "@/components/plugins/btns/BackToTop";
 import {
   lagos,
   southEast,
@@ -11,7 +11,7 @@ import {
   southSouth,
   farNorth,
   northCentral,
-} from "../plugins/ShippingLocation";
+} from "../../data/ShippingLocation";
 function YourCart(prop) {
   /* ************************************************************ */
   const [userRegion, setUserRegion] = useState("");

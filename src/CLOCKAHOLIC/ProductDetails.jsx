@@ -1,6 +1,6 @@
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
-import BackToTop from "@/components/plugins/BackToTop";
+import BackToTop from "@/components/plugins/btns/BackToTop";
 import ProductDisplayBox from "@/components/ProductDetails/ProductDisplayBox";
 import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
 
@@ -14,6 +14,12 @@ function ProductDetails(prop) {
           popup={prop.popup}
           setDarken={prop.setDarken}
           darken={prop.darken}
+          handleSearch={prop.handleSearch}
+          handleSubmit={prop.handleSubmit}
+          searchResults={prop.searchResults}
+          setSearchResults={prop.setSearchResults}
+          value={prop.value}
+          setValue={prop.setValue}
         />
 
         <div

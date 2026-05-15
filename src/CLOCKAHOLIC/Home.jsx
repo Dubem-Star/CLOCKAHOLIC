@@ -7,7 +7,7 @@ import NewArrivals from "@/components/Home/NewArrivals";
 import BestSellers from "@/components/Home/BestSellers";
 import { AdBanner, ExploreBanner } from "@/components/Home/AdBanner";
 import OnSale from "@/components/Home/OnSale";
-import BackToTop from "@/components/plugins/BackToTop";
+import BackToTop from "@/components/plugins/btns/BackToTop";
 import CartPopup from "../components/Cart/CartPopUp";
 import { useEffect } from "react";
 function Home(prop) {
@@ -22,6 +22,14 @@ function Home(prop) {
         popup={prop.popup}
         setDarken={prop.setDarken}
         darken={prop.darken}
+        handleSearch={prop.handleSearch}
+        handleSubmit={prop.handleSubmit}
+        searchResults={prop.searchResults}
+        setSearchResults={prop.setSearchResults}
+        value={prop.value}
+        setValue={prop.setValue}
+        isSearchMode={prop.isSearchMode}
+        setIsSearchMode={prop.setIsSearchMode}
       />
       <Hero />
       <CartPopup

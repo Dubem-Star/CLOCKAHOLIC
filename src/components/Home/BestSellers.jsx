@@ -1,6 +1,9 @@
-import { ViewMore } from "@/components/plugins/NavigationButtons";
-import { ProductCardNav } from "@/components/plugins/ProductCardNav";
-import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
+import { ViewMore } from "@/components/plugins/btns/NavigationButtons";
+import { ProductCardNav } from "@/components/plugins/productCard/ProductCardNav";
+import {
+  NewBadge,
+  HotBadge,
+} from "@/components/plugins/productCard/ProductCardBadges";
 import { Link } from "react-router-dom";
 import { bestSellingProducts } from "../../data/products";
 function BestSellers(prop) {

@@ -506,7 +506,8 @@ form.shipping-form.dropdown {
 
 form.shipping-form select.form-select:focus,
 form.shipping-form input.form-control:focus,
-.slider .search-input:focus {
+.slider .search-input:focus,
+.search .search-input:focus {
   border-color: #ced4da !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -531,6 +532,24 @@ form.shipping-form input.form-control::placeholder,
 .search-results-container .item-link {
   background-color: #2a2a2a00 !important;
   transition: background-color 0.2s ease-in-out;
+}
+
+.search-results-desktop {
+  z-index: 9999;
+  left: 25%;
+  right: 25%;
+  top: 18%;
+  width: 49%;
+  /* height: 500px; */
+}
+
+.search-results-desktop::-webkit-scrollbar {
+  display: none;
+}
+
+.search-results-desktop.unmount {
+  display: none !important;
+  opacity: 0;
 }
 
 @media (max-width: 1199.98px) {

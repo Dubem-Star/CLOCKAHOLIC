@@ -1,7 +1,10 @@
 import { useParams, Link } from "react-router-dom";
-import { ProductCardNav } from "@/components/plugins/ProductCardNav";
-import { NewBadge, HotBadge } from "@/components/plugins/ProductCardBadges";
-import { PaginationDots } from "@/components/plugins/NavigationButtons";
+import { ProductCardNav } from "@/components/plugins/productCard/ProductCardNav";
+import {
+  NewBadge,
+  HotBadge,
+} from "@/components/plugins/productCard/ProductCardBadges";
+import { PaginationDots } from "@/components/plugins/btns/NavigationButtons";
 import LeftButton from "@/assets/icons/flaticons/left-arrow.svg?react";
 import RightButton from "@/assets/icons/flaticons/right-arrow.svg?react";
 import {
