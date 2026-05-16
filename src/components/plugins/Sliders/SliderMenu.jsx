@@ -146,16 +146,16 @@ const Sidebar = (prop) => {
                     }}
                     className="text-reset text-decoration-none item-link d-block pt-3"
                   >
-                    <div className="d-flex mb-1 pe-3">
+                    <div className="d-flex mb-1 pe-3 gap-2">
                       <img
                         src={result.images[0]}
                         className=" flex-shrink-0 align-self-center"
-                        style={{ width: "20%", aspectRatio: "1/1" }}
+                        style={{ width: "50px", aspectRatio: "1/1" }}
                       />
                       <div className="d-flex flex-column justify-content-center">
                         <p
                           className="text-black m-0 "
-                          style={{ fontSize: "14px" }}
+                          style={{ fontSize: "13px" }}
                         >
                           {result.version}
                         </p>
