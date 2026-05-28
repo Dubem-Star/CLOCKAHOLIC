@@ -25,7 +25,17 @@ export const ProductCardNav = (prop) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            alert("hi");
+
+            const instance = window.GLightbox({
+              selector: ".glightbox",
+              loop: true,
+            });
+
+            const targetElement = e.target
+              .closest(".atag")
+              .querySelector(".glightbox");
+
+            instance.open(targetElement);
           }}
         />
       </div>

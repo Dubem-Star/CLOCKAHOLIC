@@ -12,10 +12,14 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@google/genai": "^2.4.0",
     "bootstrap": "^5.3.8",
     "cloudinary": "^2.9.0",
-    "dotenv": "^17.3.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "framer-motion": "^12.38.0",
+    "mongoose": "^9.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0",

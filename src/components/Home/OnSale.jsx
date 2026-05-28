@@ -5,9 +5,35 @@ import {
   HotBadge,
 } from "@/components/plugins/productCard/ProductCardBadges";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { SkeletonLayout } from "../plugins/SkeletonLayout";
 
-import { onSaleProducts } from "../../data/products";
 function OnSale(prop) {
+  const [isLoading, setisLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await fetch("http://localhost:3000/getProducts", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Get me the onsale products" }),
+      });
+      const data = await response.json();
+      if (data.status) {
+        setProducts(data.data);
+
+        setisLoading(false);
+      } else {
+        console.log("Error, failed fetching products");
+      }
+    }
+
+    getProducts();
+  }, []);
+
   return (
     <>
       <div
@@ -19,66 +45,83 @@ function OnSale(prop) {
           <h1 className="middle-title">On Sale</h1>
         </div>
 
-        <div className="products-container row gy-4 justify-content-center ">
-          {onSaleProducts.map((product, index) => {
-            const truncated =
-              product.version.length >= 30
-                ? product.version.slice(0, 30) + "..."
-                : product.version;
+        {isLoading ? (
+          <SkeletonLayout />
+        ) : (
+          <div className="products-container row gy-4 justify-content-center ">
+            {products.map((product, index) => {
+              const truncated =
+                product.version.length >= 30
+                  ? product.version.slice(0, 30) + "..."
+                  : product.version;
 
-            return (
-              <Link
-                to={`/product/${product.id}`}
-                className="atag text-reset text-decoration-none col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
-                key={index}
-              >
-                <div className="product-grid">
-                  <div className="product-img-cont">
-                    <img
-                      src={product.images[0]}
-                      className="fake"
-                      alt={`${product.brandName}_image`}
-                    />
-                    <img
-                      src={product.images[0]}
-                      className="product-img one"
-                      alt={`${product.brandName}_image`}
-                    />
-                    <img
-                      src={product.images[1]}
-                      className="product-img two"
-                      alt={`${product.brandName}_image`}
-                    />
+              return (
+                <Link
+                  to={`/product/${product.id}`}
+                  className="atag text-reset text-decoration-none col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                  key={index}
+                >
+                  <div className="product-grid">
+                    <div className="product-img-cont">
+                      <img
+                        src={product.images[0]}
+                        className="fake"
+                        alt={`${product.brandName}_image`}
+                      />
+                      <img
+                        src={product.images[0]}
+                        className="product-img one"
+                        alt={`${product.brandName}_image`}
+                      />
+                      <img
+                        src={product.images[1]}
+                        className="product-img two"
+                        alt={`${product.brandName}_image`}
+                      />
 
-                    <div>
-                      {product.badge === "Hot" ? (
-                        <HotBadge />
-                      ) : product.badge === "New" ? (
-                        <NewBadge />
-                      ) : null}
+                      <div className="d-none">
+                        <a
+                          href={product.images[0]}
+                          className="glightbox"
+                          data-gallery={`gallery${product.id}`}
+                        ></a>
+                        <a
+                          href={product.images[1]}
+                          className="glightbox"
+                          data-gallery={`gallery${product.id}`}
+                        ></a>
+                      </div>
+
+                      <div>
+                        {product.badge === "Hot" ? (
+                          <HotBadge />
+                        ) : product.badge === "New" ? (
+                          <NewBadge />
+                        ) : null}
+                      </div>
+
+                      <ProductCardNav
+                        product={product}
+                        atcHomePage={prop.atcHomePage}
+                      />
                     </div>
 
-                    <ProductCardNav
-                      product={product}
-                      atcHomePage={prop.atcHomePage}
-                    />
+                    <div className="product-info">
+                      <h2 className="brand-name">{product.brandName}</h2>
+                      <p
+                        className="version"
+                        style={{ color: "#72716e", fontWeight: "400" }}
+                      >
+                        {truncated}
+                      </p>
+                      <p className="price">₦{product.price.toLocaleString()}</p>
+                    </div>
                   </div>
-
-                  <div className="product-info">
-                    <h2 className="brand-name">{product.brandName}</h2>
-                    <p
-                      className="version"
-                      style={{ color: "#72716e", fontWeight: "400" }}
-                    >
-                      {truncated}
-                    </p>
-                    <p className="price">₦{product.price.toLocaleString()}</p>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
         <ViewMore />
       </div>

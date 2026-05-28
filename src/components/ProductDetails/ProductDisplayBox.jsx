@@ -10,7 +10,7 @@ import {
   newArrivedProducts,
   bestSellingProducts,
   onSaleProducts,
-} from "@/data/products.jsx";
+} from "@/data/products";
 
 function ProductDisplayBox(prop) {
   const { id } = useParams();

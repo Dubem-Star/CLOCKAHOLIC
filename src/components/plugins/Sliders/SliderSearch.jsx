@@ -22,19 +22,31 @@ function Search(prop) {
     document.body.style.overflow = prop.isSearchMode ? "hidden" : "unset";
     document.body.style.overflow = prop.isSearchMode ? "hidden" : "unset";
 
-    setTimeout(() => {
-      const srTop =
-        searchInput.current.offsetHeight +
-        searchInput.current.getBoundingClientRect().top;
-      console.log(srTop);
-      setTop(srTop);
+    const timer = setTimeout(() => {
+      if (searchInput.current) {
+        const srTop =
+          searchInput.current.offsetHeight +
+          searchInput.current.getBoundingClientRect().top;
+        console.log(srTop);
+        setTop(srTop);
+      }
     }, 700);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [prop.isSearchMode]);
 
   const box =
     prop.searchResults.length > 0
       ? { border: "solid 1px rgb(222, 226, 230)" }
       : { border: "none" };
+
+  useEffect(() => {
+    if (searchInput.current) {
+      searchInput.current.focus();
+    }
+  }, [prop.isSearchMode]);
 
   return (
     <>
@@ -58,8 +70,10 @@ function Search(prop) {
                 prop.setDarken(false);
                 prop.setSearchResults([]);
                 prop.setValue("");
+                prop.setIsSearchLoading(false);
+                prop.setIsResult(true);
               }}
-              className="btn btn-close btn-close-black mb-4"
+              className="btn btn-close btn-close-black mb-4 close-btn"
             ></button>
 
             {/*  ************************Search Inputs Section ******************************
@@ -69,13 +83,14 @@ function Search(prop) {
               onSubmit={prop.handleSubmit}
               onInput={prop.handleSearch}
               className="search-container position-relative align-self-center d-flex justify-content-center  mx-auto"
-              style={{ width: "750px" }}
+              style={{ width: "100%", maxWidth: "750px" }}
             >
               <input
                 type="text"
                 className="form-control w-100 mb-4 search-input"
                 placeholder="Search for a product"
                 ref={searchInput}
+                data-input="sliderSearch"
               />
               <SearchIcon
                 className="position-absolute top-50 "
@@ -93,6 +108,16 @@ function Search(prop) {
 
       {/*  ************************Search Results Section ******************************
   //   ************************Search Results Section ****************************** */}
+      <div
+        className={`spinner-border text-black  position-sticky start-50 ${prop.isSearchLoading === "sliderSearch" ? "opacity-1 visible" : "opacity-0 invisible"}`}
+        role="status"
+        style={{
+          zIndex: "10000",
+          top: `115px`,
+          width: "25px",
+          height: "25px",
+        }}
+      ></div>
 
       <div
         className={`search-results-desktop position-fixed d-flex flex-column rounded mx-auto overflow-y-auto bg-white ${prop.isSearchMode ? "" : "unmount"} `}
@@ -104,9 +129,9 @@ function Search(prop) {
         }}
       >
         {prop.searchResults.length < 1 ? (
-          prop.value.length > 0 ? (
+          !prop.isResult ? (
             <>
-              <p className="text-black text-center">No products found.</p>
+              <p className="text-black text-center mt-4">No products found.</p>
             </>
           ) : (
             <></>

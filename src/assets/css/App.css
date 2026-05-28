@@ -864,6 +864,43 @@ p.animated span {
   height: 40px;
 }
 
+/* ******************Skeleton Product Grid Styling****************************** */
+/* ******************Skeleton Product Grid Styling****************************** */
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4; /* Faded out */
+  }
+  50% {
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    opacity: 0.4; /* Faded back out */
+  }
+}
+
+.skeleton-container .product-img-cont {
+  animation: pulse 1.5s infinite ease-in-out;
+  background-image: url("@/assets/images/wallpapers/transparent_wallpaper_nav.jpg") !important;
+}
+
+.skeleton-container .product-info .skeleton {
+  height: 15px;
+  animation: pulse 1.5s infinite ease-in-out;
+  background-image: url("@/assets/images/wallpapers/transparent_wallpaper_nav.jpg") !important;
+  border: 1px solid rgba(0, 0, 0, 0.116);
+  border-radius: 5px;
+}
+
+.skeleton-container .product-info .brand-name,
+.skeleton-container .product-info .price {
+  width: 30%;
+}
+
+.skeleton-container .product-info .version {
+  width: 50%;
+}
+
 /* ******************General Product Grid Styling****************************** */
 /* ******************General Product Grid Styling****************************** */
 

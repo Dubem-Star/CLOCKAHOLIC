@@ -16,6 +16,12 @@ function Cart(prop) {
           setSearchResults={prop.setSearchResults}
           value={prop.value}
           setValue={prop.setValue}
+          isSearchMode={prop.isSearchMode}
+          setIsSearchMode={prop.setIsSearchMode}
+          isSearchLoading={prop.isSearchLoading}
+          setIsSearchLoading={prop.setIsSearchLoading}
+          isResult={prop.isResult}
+          setIsResult={prop.setIsResult}
         />
         <div
           className="  flex-grow-1"

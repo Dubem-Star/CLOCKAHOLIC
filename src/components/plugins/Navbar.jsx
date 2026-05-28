@@ -117,6 +117,7 @@ function Navbar(prop) {
                 onClick={() => {
                   prop.setIsSearchMode(true);
                   prop.setDarken(true);
+                  prop.setSearchResults([]);
                 }}
               />
               <UserIcon className="nav-icon" />
@@ -160,6 +161,12 @@ function Navbar(prop) {
         setSearchResults={prop.setSearchResults}
         value={prop.value}
         setValue={prop.setValue}
+        isResult={prop.isResult}
+        setIsResult={prop.setIsResult}
+        isSearchLoading={prop.isSearchLoading}
+        setIsSearchLoading={prop.setIsSearchLoading}
+        isSearchMode={prop.isSearchMode}
+        setIsSearchMode={prop.setIsSearchMode}
       />
 
       <Search
@@ -173,6 +180,10 @@ function Navbar(prop) {
         handleSubmit={prop.handleSubmit}
         value={prop.value}
         setValue={prop.setValue}
+        isSearchLoading={prop.isSearchLoading}
+        setIsSearchLoading={prop.setIsSearchLoading}
+        isResult={prop.isResult}
+        setIsResult={prop.setIsResult}
       />
     </>
   );

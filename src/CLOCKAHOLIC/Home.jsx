@@ -30,6 +30,10 @@ function Home(prop) {
         setValue={prop.setValue}
         isSearchMode={prop.isSearchMode}
         setIsSearchMode={prop.setIsSearchMode}
+        isSearchLoading={prop.isSearchLoading}
+        setIsSearchLoading={prop.setIsSearchLoading}
+        isResult={prop.isResult}
+        setIsResult={prop.setIsResult}
       />
       <Hero />
       <CartPopup

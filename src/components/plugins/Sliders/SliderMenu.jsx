@@ -7,6 +7,7 @@ const Sidebar = (prop) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 991);
   const [search, setSearch] = useState(null);
   const searchResultsCont = useRef(null);
+  const searchInput = useRef(null);
 
   // Define the animation states
   const sidebarVariants = {
@@ -20,21 +21,56 @@ const Sidebar = (prop) => {
     },
   };
 
-  //   Sidebar Screen Resize Function ******************************
-  //   Sidebar Screen Resize Function ******************************
-  window.addEventListener("resize", () => {
-    setIsMobile(window.innerWidth <= 991);
+  //   Creative search resize function ******************************
+  //   Creative search resize function ******************************
 
-    if (window.innerWidth > 991) {
-      prop.setDarken(false);
-    } else {
-      if (prop.isOpen) {
-        prop.setDarken(true);
+  useEffect(() => {
+    function resizeFunction() {
+      setIsMobile(window.innerWidth <= 991);
+      const desktop = window.innerWidth > 991;
+      if (desktop) {
+        if (prop.isSearchMode) {
+          prop.setIsOpen(false);
+          prop.setDarken(true);
+        } else {
+          prop.setDarken(false);
+        }
       } else {
-        prop.setDarken(false);
+        if (prop.isOpen) {
+          prop.setDarken(true);
+        } else {
+          prop.setDarken(false);
+          prop.setIsSearchMode(false);
+          if (prop.searchResults.length > 0) {
+            prop.setIsOpen(true);
+            console.log(prop.value);
+            setTimeout(() => {
+              if (searchInput.current) {
+                searchInput.current.value = prop.value;
+                searchInput.current.focus();
+                console.log(
+                  "Input successfully synced and focused!",
+                  prop.value,
+                );
+              } else {
+              }
+            }, 50); // 50 milliseconds is all the browser needs to paint the UI
+          }
+        }
       }
     }
-  });
+
+    window.addEventListener("resize", resizeFunction);
+    return () => {
+      window.removeEventListener("resize", resizeFunction);
+    };
+  }, [
+    isMobile,
+    prop.searchResults,
+    prop.value,
+    prop.setDarken,
+    prop.isSearchMode,
+  ]);
 
   //   Sidebar Screen Lock Function ******************************
   //   Sidebar Screen Lock Function ******************************
@@ -86,7 +122,7 @@ const Sidebar = (prop) => {
               prop.setDarken(false);
               prop.setSearchResults([]);
             }}
-            className="btn btn-close btn-close-black mb-4"
+            className="btn btn-close btn-close-black mb-4 close-btn"
           ></button>
 
           {/*  ************************Search Inputs Section ******************************
@@ -101,6 +137,8 @@ const Sidebar = (prop) => {
               type="text"
               className="form-control w-100 mb-4 search-input"
               placeholder="Search for a product"
+              data-input="sliderMenu"
+              ref={searchInput}
             />
             <SearchIcon
               className="position-absolute top-50 "
@@ -112,6 +150,17 @@ const Sidebar = (prop) => {
               }}
             />
           </form>
+
+          <div
+            className={`spinner-border text-black  position-absolute start-0 end-0 mx-auto ${prop.isSearchLoading === "sliderMenu" ? "opacity-1 visible" : "opacity-0 invisible"}`}
+            role="status"
+            style={{
+              zIndex: "10000",
+              top: `120px`,
+              width: "20px",
+              height: "20px",
+            }}
+          ></div>
 
           {/*  ************************Search Results Section ******************************
   //   ************************Search Results Section ****************************** */}
@@ -127,7 +176,7 @@ const Sidebar = (prop) => {
             }}
           >
             {prop.searchResults.length < 1 ? (
-              prop.value.length > 0 ? (
+              !prop.isResult ? (
                 <>
                   <p className="text-black text-center">No products found.</p>
                 </>

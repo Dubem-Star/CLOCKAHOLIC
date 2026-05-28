@@ -30,6 +30,9 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [value, setValue] = useState(0);
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [searchTerm, setsearchTerm] = useState("");
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
+  const [isResult, setIsResult] = useState(true);
   //  const [mounted, setMounted] = useState(false);
 
   {
@@ -46,24 +49,61 @@ function App() {
     /* *********************HANDLE SEARCH FUNCTION********************* */
     /* *********************HANDLE SEARCH FUNCTION********************* */
   }
-  function handleSearch(e) {
-    const text = e.target.value.trim().toLowerCase();
 
-    const foundSearch = allProducts
-      .filter(
-        (item) =>
-          item.brandName.toLowerCase().includes(text) ||
-          item.version.toLowerCase().includes(text),
-      )
-      .slice(0, 7);
-
-    if (!text) {
-      foundSearch.length = [];
-    }
+  async function handleSearch(e) {
+    const text = e.target.value.trim();
     setValue(text);
 
-    setSearchResults(foundSearch);
+    const element = e.target.dataset.input;
+
+    setIsSearchLoading(element);
+    if (!text) {
+      setIsSearchLoading(false);
+      setSearchResults([]);
+      setIsResult(true);
+    }
   }
+
+  useEffect(() => {
+    const rejexGuard = /[a-zA-Z0-9]/;
+    if (!value) return;
+
+    if (!rejexGuard.test(value)) {
+      setSearchResults([]);
+      return;
+    }
+
+    const debounceTimer = setTimeout(async () => {
+      if (!value) {
+        setIsResult(true);
+        return;
+      }
+
+      const response = await fetch("http://localhost:3000/api/semanticSearch", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: value }),
+      });
+
+      const results = await response.json();
+
+      if (results.status) {
+        setSearchResults(results.data);
+        setIsResult(results.data.length);
+
+        setIsSearchLoading(false);
+        console.log("Products fetched from database");
+      } else {
+        console.log(results.message);
+      }
+    }, 600);
+
+    return () => {
+      clearTimeout(debounceTimer);
+    };
+  }, [value]);
 
   {
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
@@ -141,8 +181,10 @@ function App() {
                 setValue={setValue}
                 isSearchMode={isSearchMode}
                 setIsSearchMode={setIsSearchMode}
-                // mounted={mounted}
-                // setMounted={setMounted}
+                isSearchLoading={isSearchLoading}
+                setIsSearchLoading={setIsSearchLoading}
+                isResult={isResult}
+                setIsResult={setIsResult}
               />
             }
           />
@@ -166,6 +208,12 @@ function App() {
                 setSearchResults={setSearchResults}
                 value={value}
                 setValue={setValue}
+                isSearchMode={isSearchMode}
+                setIsSearchMode={setIsSearchMode}
+                isSearchLoading={isSearchLoading}
+                setIsSearchLoading={setIsSearchLoading}
+                isResult={isResult}
+                setIsResult={setIsResult}
               />
             }
           />
@@ -184,6 +232,12 @@ function App() {
                 setSearchResults={setSearchResults}
                 value={value}
                 setValue={setValue}
+                isSearchMode={isSearchMode}
+                setIsSearchMode={setIsSearchMode}
+                isSearchLoading={isSearchLoading}
+                setIsSearchLoading={setIsSearchLoading}
+                isResult={isResult}
+                setIsResult={setIsResult}
               />
             }
           />
