@@ -46,11 +46,8 @@ function ProductButtons(prop) {
   /* ********************Add-to-Cart Function******************** */
   /* ********************Add-to-Cart Function******************** */
 
-  const [cart, setCart] = useState(prop.cart);
-  useEffect(() => {
-    setCart(prop.cart);
-  }, [prop.cart]);
-
+  // ✅ One line
+  const cart = prop.cart ?? [];
   /* ************************************************ */
 
   {

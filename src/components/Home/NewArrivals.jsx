@@ -4,40 +4,28 @@ import {
   NewBadge,
   HotBadge,
 } from "@/components/plugins/productCard/ProductCardBadges";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SkeletonLayout } from "../plugins/SkeletonLayout";
 import { useState, useEffect } from "react";
 
 function NewArrivals(prop) {
   const [products, setProducts] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (products.length) {
-      setisLoading(false);
+  function handleCardClick(e, id) {
+    if (e.target.classList.contains("product-nav")) {
       return;
     }
+    navigate(`/product/${id}`);
+  }
 
-    async function getProducts() {
-      const response = await fetch("http://localhost:3000/getProducts", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: "Get me the newly arrived products" }),
-      });
-      const data = await response.json();
-      if (data.status) {
-        setProducts(data.data);
-
-        setisLoading(false);
-      } else {
-        console.log(`Error, failed fetching products: ${data.message}`);
-      }
+  useEffect(() => {
+    if (prop.newlyArrived.length) {
+      setProducts(prop.newlyArrived);
+      setisLoading(false);
     }
-
-    getProducts();
-  }, []);
+  }, [prop.newlyArrived]);
 
   return (
     <>
@@ -71,11 +59,10 @@ function NewArrivals(prop) {
                   : product.version;
 
               return (
-                <Link
-                  to={`/product/${product.id}`}
+                <div
+                  onClick={(e) => handleCardClick(e, product.id)}
                   className="atag  text-reset col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
                   key={index}
-                  onClick={(e) => sendToBackend(e, product)}
                 >
                                  {" "}
                   <div className="product-grid">
@@ -140,7 +127,7 @@ function NewArrivals(prop) {
                                    {" "}
                   </div>
                                   {/* </a> */}             {" "}
-                </Link>
+                </div>
               );
               {
                 /* ↑↑ .products-card end */

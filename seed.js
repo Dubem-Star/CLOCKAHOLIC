@@ -31,25 +31,18 @@ const brands = [
 async function uploadProductsImages() {
   if (true) {
     await cloudinary.api.delete_resources_by_prefix("Clockaholic/");
-    return console.log("cleared folder for now 👍🏾");
   }
 
   for (let brand of brands) {
-    const brandFolder = path.join(
-      __dirname,
-      "src/assets/images/watch_products",
-      brand,
-    );
+    const brandFolder = path.join(__dirname, "public/watch_products", brand);
 
     const productImgs = fs.readdirSync(brandFolder);
-
-    const brandName = brand.slice(0, 1).toUpperCase() + brand.slice(1);
 
     for (let img of productImgs) {
       const filePath = path.join(brandFolder, img);
       try {
         const result = await cloudinary.uploader.upload(filePath, {
-          folder: `Clockaholic/${brandName}`,
+          folder: `Clockaholic/${brand.toLocaleLowerCase()}`,
           use_filename: true,
           unique_filename: false,
         });
@@ -62,10 +55,10 @@ async function uploadProductsImages() {
   }
 }
 async function uploadLogoImages() {
-  if (true) {
-    await cloudinary.api.delete_resources_by_prefix("Clockaholic/Watch_Logos");
-    return console.log("cleared folder for now 👍🏾");
-  }
+  // if (true) {
+  //   await cloudinary.api.delete_resources_by_prefix("Clockaholic/Watch_Logos");
+  //   return console.log("cleared folder for now 👍🏾");
+  // }
 
   const logoFolder = path.join(__dirname, "src/assets/images/watch_logos");
   const logoImages = fs.readdirSync(logoFolder);
@@ -86,5 +79,5 @@ async function uploadLogoImages() {
   }
 }
 
-// uploadProductsImages();
-uploadLogoImages();
+uploadProductsImages();
+// uploadLogoImages();

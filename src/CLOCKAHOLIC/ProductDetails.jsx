@@ -5,6 +5,7 @@ import ProductDisplayBox from "@/components/ProductDetails/ProductDisplayBox";
 import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
 
 function ProductDetails(prop) {
+  // console.log(prop.cart);
   return (
     <>
       <div className="Details-Page d-flex flex-column vh-100 align-items-center ">
@@ -15,7 +16,6 @@ function ProductDetails(prop) {
           setDarken={prop.setDarken}
           darken={prop.darken}
           handleSearch={prop.handleSearch}
-          handleSubmit={prop.handleSubmit}
           searchResults={prop.searchResults}
           setSearchResults={prop.setSearchResults}
           value={prop.value}
@@ -41,8 +41,10 @@ function ProductDetails(prop) {
             setId={prop.setId}
             atcDetailsPage={prop.atcDetailsPage}
             setProdQty={prop.setProdQty}
+            products={prop.products}
+            setProducts={prop.setProducts}
+            atcHomePage={prop.atcHomePage}
           />
-          <ExploreRelated atcHomePage={prop.atcHomePage} />
         </div>
         <Footer />
       </div>

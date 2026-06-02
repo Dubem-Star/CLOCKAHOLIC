@@ -25,6 +25,11 @@ mongoose
   .catch((e) => console.log("Error connecting Mongo:", e));
 
 // const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+async function updateProductsImgUrl() {
+  await Product.updateMany({ images: [] }, { $set: {} });
+}
+
 async function seedProducts() {
   try {
     const products = [
@@ -68,23 +73,10 @@ async function seedProducts() {
 app.post("/getProducts", async (req, res) => {
   try {
     const dbProducts = await Product.find({});
-    if (req.body.message === "Get me the newly arrived products") {
-      const newlyArrivedProducts = dbProducts.slice(0, 8);
-      res.status(200).json({ status: true, data: newlyArrivedProducts });
-      console.log("sent newly arrived products to frontend");
-      return;
-    } else if (req.body.message === "Get me the best selling products") {
-      const bestSellingProducts = dbProducts.slice(8, 15);
-      res.status(200).json({ status: true, data: bestSellingProducts });
-      console.log(`sent best selling products to frontend`);
-      return;
-    } else if (req.body.message === "Get me the onsale products") {
-      const onsaleProducts = dbProducts.slice(15);
-      res.status(200).json({ status: true, data: onsaleProducts });
-      console.log("sent onsale products to frontend");
-      return;
-    }
 
+    const newlyArrivedProducts = dbProducts.slice(0, 8);
+    res.status(200).json({ status: true, data: dbProducts });
+    console.log("sent products to frontend");
     return;
   } catch (e) {
     res.status(404).json({ status: false, message: e });
@@ -123,3 +115,36 @@ app.post("/api/semanticSearch", async (req, res) => {
 app.listen(3000, () => {
   console.log("backend listening at 3000");
 });
+
+async function migrateImages() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL);
+    const products = await Product.find();
+
+    for (let product of products) {
+      if (!product.images || product.images.length === 0) continue;
+
+      const updatedImgs = product.images.map((img) => {
+        return img.replace(
+          "/CLOCKAHOLIC/watch_products/",
+          "https://res.cloudinary.com/dirijnb2k/image/upload/f_auto,q_auto/Clockaholic/",
+        );
+      });
+
+      await Product.updateOne(
+        {
+          _id: product._id,
+        },
+        { $set: { images: updatedImgs } },
+      );
+    }
+
+    console.log("Migration complete 🚀");
+    process.exit();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+// migrateImages();

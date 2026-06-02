@@ -1,5 +1,3 @@
-// NEWLY ARRIVED PRODUCT IMAGES
-
 // NEWLY ARRIVED PRODUCTS OBJECT
 export const newArrivedProducts = [
   {

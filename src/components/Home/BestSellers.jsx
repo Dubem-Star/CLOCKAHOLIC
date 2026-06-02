@@ -4,35 +4,28 @@ import {
   NewBadge,
   HotBadge,
 } from "@/components/plugins/productCard/ProductCardBadges";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SkeletonLayout } from "../plugins/SkeletonLayout";
 import { useState, useEffect } from "react";
 
 function BestSellers(prop) {
   const [products, setProducts] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getProducts() {
-      const response = await fetch("http://localhost:3000/getProducts", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: "Get me the best selling products" }),
-      });
-      const data = await response.json();
-      if (data.status) {
-        setProducts(data.data);
-
-        setisLoading(false);
-      } else {
-        console.log("Error, failed fetching products");
-      }
+    if (prop.bestSelling.length) {
+      setProducts(prop.bestSelling);
+      setisLoading(false);
     }
+  }, [prop.bestSelling]);
 
-    getProducts();
-  }, []);
+  function handleCardClick(e, id) {
+    if (e.target.classList.contains("product-nav")) {
+      return;
+    }
+    navigate(`/product/${id}`);
+  }
 
   return (
     <>
@@ -62,8 +55,8 @@ function BestSellers(prop) {
                   ? product.version.slice(0, 30) + "..."
                   : product.version;
               return (
-                <Link
-                  to={`/product/${product.id}`}
+                <div
+                  onClick={(e) => handleCardClick(e, product.id)}
                   className="atag text-reset text-decoration-none col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
                   key={index}
                 >
@@ -123,7 +116,7 @@ function BestSellers(prop) {
                       <p className="price">₦{product.price.toLocaleString()}</p>
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

@@ -906,6 +906,7 @@ p.animated span {
 
 .products-container .atag {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .products-container .product-grid {

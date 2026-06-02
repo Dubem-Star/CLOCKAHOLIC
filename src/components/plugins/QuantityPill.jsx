@@ -13,7 +13,6 @@ function QuantityPill(prop) {
   if (prop.setProdQty) {
     useEffect(() => {
       prop.setProdQty(quantity);
-      console.log(quantity);
     }, [quantity]);
   }
 

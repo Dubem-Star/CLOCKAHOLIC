@@ -7,47 +7,23 @@ import {
 import { PaginationDots } from "@/components/plugins/btns/NavigationButtons";
 import LeftButton from "@/assets/icons/flaticons/left-arrow.svg?react";
 import RightButton from "@/assets/icons/flaticons/right-arrow.svg?react";
-import {
-  bestSellingProducts,
-  onSaleProducts,
-  newArrivedProducts,
-} from "../../data/products";
+
 import { useState, useEffect, useRef } from "react";
 
 function ExploreRelated(prop) {
   const { id } = useParams();
-  const allProducts = [
-    ...bestSellingProducts,
-    ...newArrivedProducts,
-    ...onSaleProducts,
-  ];
 
-  const mainProduct = allProducts.find((product) => product.id == id);
-  //Products by brand
-  const productsByBrand = allProducts.filter(
-    (product) => product.brandName === mainProduct.brandName,
-  );
-  //Products by strap
-  const productsByStrap = allProducts.filter(
-    (product) => product.strap === mainProduct.strap,
-  );
-  //Randomize all products
-  // const randomProducts = [...allProducts].sort(() => Math.random() - 0.5);
+  const [products, setProducts] = useState([]);
 
-  const combined = [...productsByBrand, ...productsByStrap, ...allProducts];
-  //Filter current product
-  const filterCurrent = combined.filter(
-    (product) => product.id !== mainProduct.id,
-  );
-  //Filter duplicate products
-  const filterDuplicates = Array.from(
-    //Turns the 'new Map' logic to legit array
-    new Map(filterCurrent.map((item) => [item.id, item])).values(), //An array of unique product values
-  );
-  const cleanRelatedProducts = filterDuplicates.slice(0, 12);
+  const mainProduct = products.find((product) => product.id == id);
+
+  useEffect(() => {
+    setProducts(prop.products);
+  }, [prop.products]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    console.log(mainProduct);
     return () => {};
   }, [mainProduct]);
 
@@ -67,6 +43,8 @@ function ExploreRelated(prop) {
   };
 
   useEffect(() => {
+    if (!leftSlider.current || !rightSlider.current) return;
+
     if (slideState === 0) {
       leftSlider.current.classList.add("fade");
     } else {
@@ -82,7 +60,7 @@ function ExploreRelated(prop) {
     }
 
     return () => {};
-  }, [slideState, cleanRelatedProducts]);
+  }, [slideState]);
 
   /* ***************CONSTRUCTION************** */
   /* ***************CONSTRUCTION************** */
@@ -114,7 +92,47 @@ function ExploreRelated(prop) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [activeIndex]);
+  }, [activeIndex, products]);
+
+  if (!mainProduct)
+    return (
+      <div
+        className=" mx-auto "
+        style={{ marginTop: "150px", width: "fit-content" }}
+      >
+        <div
+          className={`spinner-border text-black  `}
+          role="status"
+          style={{
+            width: "20px",
+            height: "20px",
+          }}
+        ></div>
+      </div>
+    );
+
+  //Products by brand
+  const productsByBrand = products.filter(
+    (product) => product.brandName === mainProduct.brandName,
+  );
+  //Products by strap
+  const productsByStrap = products.filter(
+    (product) => product.strap === mainProduct.strap,
+  );
+  //Randomize all products
+  // const randomProducts = [...products].sort(() => Math.random() - 0.5);
+
+  const combined = [...productsByBrand, ...productsByStrap, ...products];
+  //Filter current product
+  const filterCurrent = combined.filter(
+    (product) => product.id !== mainProduct.id,
+  );
+  //Filter duplicate products
+  const filterDuplicates = Array.from(
+    //Turns the 'new Map' logic to legit array
+    new Map(filterCurrent.map((item) => [item.id, item])).values(), //An array of unique product values
+  );
+  const cleanRelatedProducts = filterDuplicates.slice(0, 12);
 
   /* ***************TION ARROW FUNCTION************** */
   /* ***************NAVIGATION ARROW FUNCTION************** */
@@ -165,8 +183,8 @@ function ExploreRelated(prop) {
     <>
       <div
         className="display-container d-flex flex-column align-items-center gap-4 overflow-x-hidden explore-related-container position-relative w-100 h-auto"
-        data-aos="fade-up"
-        data-aos-delay="100"
+        // data-aos="fade-up"
+        // data-aos-delay="100"
         style={{ marginTop: "150px" }}
       >
         <div className="middle-liner " style={{ maxWidth: "1200px" }}>

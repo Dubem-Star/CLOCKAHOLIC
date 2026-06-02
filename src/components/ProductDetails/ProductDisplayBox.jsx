@@ -6,30 +6,65 @@ import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 import ProductButtons from "./Buttons";
 import ProductInfo from "./ProductInfo";
-import {
-  newArrivedProducts,
-  bestSellingProducts,
-  onSaleProducts,
-} from "@/data/products";
+import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
 
 function ProductDisplayBox(prop) {
   const { id } = useParams();
+  const [currentImage, setImage] = useState(null);
+  const imgPreviewCont = useRef(null);
+  const productImageContainer = useRef(null);
+  const productImage = useRef(null);
+  const [products, setProducts] = useState([]);
 
-  const bigArray = [
-    ...newArrivedProducts,
-    ...bestSellingProducts,
-    ...onSaleProducts,
-  ];
-  const product = bigArray.find((product) => product.id === parseFloat(id));
+  const product = products.find((product) => product.id == id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    prop.activatePopup(false);
+  }, []);
+
+  useEffect(() => {
+    if (product) {
+      setImage(product.images[0]);
+    }
+    if (imgPreviewCont.current) {
+      const previews = imgPreviewCont.current.querySelectorAll(".img-preview ");
+      for (let prev of previews) {
+        prev.classList.remove("lay");
+      }
+    }
+
+    return () => {};
+  }, [product]);
+
+  useEffect(() => {
+    setProducts(prop.products);
+  }, [prop.products]);
+
+  if (!products.length)
+    return (
+      <div
+        className=" mx-auto "
+        style={{ marginTop: "150px", width: "fit-content" }}
+      >
+        <div
+          className={`spinner-border text-black  `}
+          role="status"
+          style={{
+            width: "20px",
+            height: "20px",
+          }}
+        ></div>
+      </div>
+    );
+
   if (!product) {
     return (
       <>
-        <Navbar />
-
         <img
           src={monkeyMeme}
           style={{
-            margin: "170px auto 0 auto",
+            margin: "100px auto 0 auto",
             display: "block",
             width: "clamp(200px, 60vw, 450px)",
             border: "1px solid black",
@@ -39,8 +74,8 @@ function ProductDisplayBox(prop) {
         />
         <h1
           style={{
-            marginBottom: "35px",
-            fontSize: "clamp(18px, 4vw, 40px)",
+            marginBottom: "25px",
+            fontSize: "clamp(18px, 4vw, 25px)",
             fontFamily: '"Stack Sans Text", sans-serif',
             fontWeight: "300",
             color: "#646463",
@@ -63,35 +98,9 @@ function ProductDisplayBox(prop) {
         >
           ⟵go back
         </Link>
-
-        <Footer />
       </>
     );
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    prop.activatePopup(false);
-  }, []);
-
-  const [currentImage, setImage] = useState(product.images[0]);
-  const imgPreviewCont = useRef(null);
-
-  const productImageContainer = useRef(null);
-  const productImage = useRef(null);
-  useEffect(() => {
-    setImage(product.images[0]);
-
-    const previews = imgPreviewCont.current.querySelectorAll(".img-preview ");
-    for (let prev of previews) {
-      prev.classList.remove("lay");
-    }
-
-    return () => {};
-  }, [product]);
 
   /* ************************************************ */
 
@@ -159,7 +168,7 @@ function ProductDisplayBox(prop) {
 
       <main className="flex-grow-1" style={{ marginTop: "15px" }}>
         <div
-          className="product-container container-fluid  m-auto main-page-wrapper overflow-visible d-flex justify-content-center"
+          className="product-container container-fluid  m-auto main-page-wrapper overflow-visible d-flex flex-column justify-content-center"
           style={{ width: "95%" }}
         >
           <div
@@ -263,6 +272,11 @@ function ProductDisplayBox(prop) {
               <ProductInfo />
             </div>
           </div>
+
+          <ExploreRelated
+            atcHomePage={prop.atcHomePage}
+            products={prop.products}
+          />
         </div>
       </main>
     </>

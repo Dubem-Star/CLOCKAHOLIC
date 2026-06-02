@@ -4,35 +4,28 @@ import {
   NewBadge,
   HotBadge,
 } from "@/components/plugins/productCard/ProductCardBadges";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { SkeletonLayout } from "../plugins/SkeletonLayout";
 
 function OnSale(prop) {
   const [isLoading, setisLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getProducts() {
-      const response = await fetch("http://localhost:3000/getProducts", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: "Get me the onsale products" }),
-      });
-      const data = await response.json();
-      if (data.status) {
-        setProducts(data.data);
-
-        setisLoading(false);
-      } else {
-        console.log("Error, failed fetching products");
-      }
+    if (prop.onSale.length) {
+      setProducts(prop.onSale);
+      setisLoading(false);
     }
+  }, [prop.onSale]);
 
-    getProducts();
-  }, []);
+  function handleCardClick(e, id) {
+    if (e.target.classList.contains("product-nav")) {
+      return;
+    }
+    navigate(`/product/${id}`);
+  }
 
   return (
     <>
@@ -56,8 +49,8 @@ function OnSale(prop) {
                   : product.version;
 
               return (
-                <Link
-                  to={`/product/${product.id}`}
+                <div
+                  onClick={(e) => handleCardClick(e, product.id)}
                   className="atag text-reset text-decoration-none col-6 col-xl-3 col-lg-4 col-md-6 col-sm-6"
                   key={index}
                 >
@@ -117,7 +110,7 @@ function OnSale(prop) {
                       <p className="price">₦{product.price.toLocaleString()}</p>
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

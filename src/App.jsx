@@ -33,16 +33,41 @@ function App() {
   const [searchTerm, setsearchTerm] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [isResult, setIsResult] = useState(true);
-  //  const [mounted, setMounted] = useState(false);
+  const [newlyArrived, setNewlyArrived] = useState([]);
+  const [bestSelling, setBestSelling] = useState([]);
+  const [onSale, setOnSale] = useState([]);
+  const [products, setProducts] = useState([]);
+  {
+    /* *********************FETCH PRODUCTS FROM DATABASE********************* */
+    /* *********************FETCH PRODUCTS FROM DATABASE********************* */
+  }
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await fetch("http://localhost:3000/getProducts", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Get me all the products" }),
+      });
+      const data = await response.json();
+      if (data.status) {
+        setProducts(data.data);
+        setNewlyArrived(data.data.slice(0, 8));
+        setBestSelling(data.data.slice(8, 15));
+        setOnSale(data.data.slice(15));
+      } else {
+        console.log(`Error, failed fetching products: ${data.message}`);
+      }
+    }
+
+    getProducts();
+  }, []);
 
   {
-    /* *********************HANDLE SUBMIT FUNCTION********************* */
-    /* *********************HANDLE SUBMIT FUNCTION********************* */
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    const search = e.target.firstElementChild.value;
-    alert(search);
+    /* *********************************************************************** */
+    /* *********************************************************************** */
   }
 
   {
@@ -106,6 +131,11 @@ function App() {
   }, [value]);
 
   {
+    /* *********************************************************************** */
+    /* *********************************************************************** */
+  }
+
+  {
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
   }
@@ -146,7 +176,10 @@ function App() {
     }
     localStorage.setItem("cart", JSON.stringify(loadCart));
   }
-
+  {
+    /* *********************************************************************** */
+    /* *********************************************************************** */
+  }
   return (
     <>
       <div
@@ -174,7 +207,6 @@ function App() {
                 setDarken={setDarken}
                 darken={darken}
                 handleSearch={handleSearch}
-                handleSubmit={handleSubmit}
                 searchResults={searchResults}
                 setSearchResults={setSearchResults}
                 value={value}
@@ -185,6 +217,9 @@ function App() {
                 setIsSearchLoading={setIsSearchLoading}
                 isResult={isResult}
                 setIsResult={setIsResult}
+                newlyArrived={newlyArrived}
+                bestSelling={bestSelling}
+                onSale={onSale}
               />
             }
           />
@@ -203,7 +238,6 @@ function App() {
                 atcHomePage={atcHomePage}
                 setProdQty={setProdQty}
                 handleSearch={handleSearch}
-                handleSubmit={handleSubmit}
                 searchResults={searchResults}
                 setSearchResults={setSearchResults}
                 value={value}
@@ -214,6 +248,8 @@ function App() {
                 setIsSearchLoading={setIsSearchLoading}
                 isResult={isResult}
                 setIsResult={setIsResult}
+                products={products}
+                setProducts={setProducts}
               />
             }
           />
@@ -227,7 +263,6 @@ function App() {
                 setDarken={setDarken}
                 darken={darken}
                 handleSearch={handleSearch}
-                handleSubmit={handleSubmit}
                 searchResults={searchResults}
                 setSearchResults={setSearchResults}
                 value={value}

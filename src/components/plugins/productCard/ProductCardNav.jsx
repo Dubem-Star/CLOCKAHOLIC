@@ -10,7 +10,7 @@ export const ProductCardNav = (prop) => {
         <img
           title="add to cart"
           src={cartIcon}
-          className="add-to-cart-product-grid"
+          className="add-to-cart-product-grid product-nav"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -21,7 +21,7 @@ export const ProductCardNav = (prop) => {
         <img
           title="view image"
           src={viewIcon}
-          className="view-pop-up"
+          className="view-pop-up product-nav"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();

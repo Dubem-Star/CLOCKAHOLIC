@@ -46,10 +46,16 @@ function Home(prop) {
         <BackToTop />
         <Categories />
         <FeaturedBrands />
-        <NewArrivals atcHomePage={prop.atcHomePage} />
-        <BestSellers atcHomePage={prop.atcHomePage} />
+        <NewArrivals
+          atcHomePage={prop.atcHomePage}
+          newlyArrived={prop.newlyArrived}
+        />
+        <BestSellers
+          atcHomePage={prop.atcHomePage}
+          bestSelling={prop.bestSelling}
+        />
         <AdBanner />
-        <OnSale atcHomePage={prop.atcHomePage} />
+        <OnSale atcHomePage={prop.atcHomePage} onSale={prop.onSale} />
         <ExploreBanner />
       </div>
       <Footer />
