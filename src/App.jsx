@@ -2,8 +2,9 @@ import "./assets/css/App.css";
 import "./assets/css/App2.css";
 import Home from "@/CLOCKAHOLIC/Home.jsx";
 import ProductDetails from "@/CLOCKAHOLIC/ProductDetails.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./CLOCKAHOLIC/Cart";
+import Checkout from "./CLOCKAHOLIC/Checkout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   newArrivedProducts,
@@ -104,7 +105,7 @@ function App() {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/api/semanticSearch", {
+      const response = await fetch("http://localhost:3000/searchProducts", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -140,13 +141,13 @@ function App() {
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
   }
   function atcDetailsPage() {
+    if (!products.length) return console.log("empty");
     activatePopup(true);
-    const product = allProducts.find(
-      (product) => product.id === parseFloat(id),
-    );
+
+    const product = products.find((product) => product.id == id);
 
     const loadCart = reloadCart();
-    const existing = loadCart.find((item) => item.id === product.id);
+    const existing = loadCart.find((item) => item.id == product.id);
     if (existing) {
       existing.quantity = existing.quantity + prodQty;
       setCart([...loadCart]);
@@ -257,6 +258,30 @@ function App() {
             path="/cart"
             element={
               <Cart
+                setAppCart={setCart}
+                cart={cart}
+                activatePopup={activatePopup}
+                setDarken={setDarken}
+                darken={darken}
+                handleSearch={handleSearch}
+                searchResults={searchResults}
+                setSearchResults={setSearchResults}
+                value={value}
+                setValue={setValue}
+                isSearchMode={isSearchMode}
+                setIsSearchMode={setIsSearchMode}
+                isSearchLoading={isSearchLoading}
+                setIsSearchLoading={setIsSearchLoading}
+                isResult={isResult}
+                setIsResult={setIsResult}
+              />
+            }
+          />
+
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
                 setAppCart={setCart}
                 cart={cart}
                 activatePopup={activatePopup}

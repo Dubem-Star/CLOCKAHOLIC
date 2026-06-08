@@ -13,21 +13,14 @@ import QuantityPill from "../plugins/QuantityPill";
 /* ********************Buttons Function******************** */
 /* ********************Buttons Function******************** */
 function ProductButtons(prop) {
+  const [product, setProduct] = useState(prop.product);
   const { id } = useParams();
+  const space = "    ";
+  const checkRef = useRef(null);
 
   useEffect(() => {
     prop.setId(id);
   }, [id]);
-
-  const allProducts = [
-    ...newArrivedProducts,
-    ...bestSellingProducts,
-    ...onSaleProducts,
-  ];
-  const space = "    ";
-  const product = allProducts.find((product) => product.id === parseFloat(id));
-
-  const checkRef = useRef(null);
 
   /* ********************Add-to-Wishlist Function******************** */
   /* ********************Add-to-Wishlist Function******************** */
@@ -46,8 +39,6 @@ function ProductButtons(prop) {
   /* ********************Add-to-Cart Function******************** */
   /* ********************Add-to-Cart Function******************** */
 
-  // ✅ One line
-  const cart = prop.cart ?? [];
   /* ************************************************ */
 
   {
@@ -70,8 +61,6 @@ function ProductButtons(prop) {
 
         <QuantityPill
           isCart={false}
-          // setCart={setCart}
-          // cart={prop.cart}
           setProdQty={prop.setProdQty}
           setAppCart={prop.setAppCart}
         />
@@ -124,7 +113,7 @@ function ProductButtons(prop) {
         </div>
 
         {/* ************Product Views************ */}
-        <p className="d-flex align-items-start gap-1 pt-2 product-views">
+        {/* <p className="d-flex align-items-start gap-1 pt-2 product-views">
           <img className=" me-1 rounded-circle cool-icon " src={viewIcon} />{" "}
           <span className="ps-1" style={{ color: "#72716e" }}>
             <strong className="text-black me-1">{product.id}</strong>
@@ -133,7 +122,7 @@ function ProductButtons(prop) {
               ? `customers are currently viewing this product`
               : `customer is currently viewing this product`}
           </span>
-        </p>
+        </p> */}
       </div>
     </>
   );

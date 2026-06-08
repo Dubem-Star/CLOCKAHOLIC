@@ -21,6 +21,7 @@ function ProductDisplayBox(prop) {
   useEffect(() => {
     window.scrollTo(0, 0);
     prop.activatePopup(false);
+    document.title = "Product Details | Clockaholic";
   }, []);
 
   useEffect(() => {
@@ -40,6 +41,12 @@ function ProductDisplayBox(prop) {
   useEffect(() => {
     setProducts(prop.products);
   }, [prop.products]);
+
+  useEffect(() => {
+    if (!product) {
+      prop.setIs404(true);
+    }
+  }, []);
 
   if (!products.length)
     return (
@@ -87,7 +94,7 @@ function ProductDisplayBox(prop) {
         <Link
           to="/"
           style={{
-            marginBottom: "100px",
+            marginBottom: "10px",
             display: "block",
             color: "purple",
             fontFamily: '"Stack Sans Text", sans-serif',
@@ -166,7 +173,7 @@ function ProductDisplayBox(prop) {
     <>
       <PageLocation location={"product"} />
 
-      <main className="flex-grow-1" style={{ marginTop: "15px" }}>
+      <main className="flex-grow-1" style={{ marginTop: "0" }}>
         <div
           className="product-container container-fluid  m-auto main-page-wrapper overflow-visible d-flex flex-column justify-content-center"
           style={{ width: "95%" }}
@@ -195,7 +202,7 @@ function ProductDisplayBox(prop) {
                 </div>
 
                 <div
-                  className="mini-img-preview d-flex gap-2 justify-content-center w-100 mt-3 mb-3"
+                  className="mini-img-preview d-flex gap-2 justify-content-center w-100 mt-2 mb-3"
                   ref={imgPreviewCont}
                 >
                   {product.images.map((img, index) => {
@@ -267,9 +274,16 @@ function ProductDisplayBox(prop) {
                 setId={prop.setId}
                 atcDetailsPage={prop.atcDetailsPage}
                 setProdQty={prop.setProdQty}
+                products={prop.products}
+                setProducts={prop.setProducts}
+                product={product}
               />
               <hr className="m-0" />
-              <ProductInfo />
+              <ProductInfo
+                products={prop.products}
+                setProducts={prop.setProducts}
+                product={product}
+              />
             </div>
           </div>
 

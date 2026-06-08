@@ -3,9 +3,9 @@ import Footer from "@/components/plugins/Footer";
 import BackToTop from "@/components/plugins/btns/BackToTop";
 import ProductDisplayBox from "@/components/ProductDetails/ProductDisplayBox";
 import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
-
+import { useState } from "react";
 function ProductDetails(prop) {
-  // console.log(prop.cart);
+  const [is404, setIs404] = useState(false);
   return (
     <>
       <div className="Details-Page d-flex flex-column vh-100 align-items-center ">
@@ -26,6 +26,8 @@ function ProductDetails(prop) {
           setIsSearchLoading={prop.setIsSearchLoading}
           isResult={prop.isResult}
           setIsResult={prop.setIsResult}
+          is404={is404}
+          setIs404={setIs404}
         />
 
         <div
@@ -44,6 +46,8 @@ function ProductDetails(prop) {
             products={prop.products}
             setProducts={prop.setProducts}
             atcHomePage={prop.atcHomePage}
+            is404={is404}
+            setIs404={setIs404}
           />
         </div>
         <Footer />

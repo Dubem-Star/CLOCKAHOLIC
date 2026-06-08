@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { ProductCardNav } from "@/components/plugins/productCard/ProductCardNav";
 import {
   NewBadge,
@@ -12,10 +12,16 @@ import { useState, useEffect, useRef } from "react";
 
 function ExploreRelated(prop) {
   const { id } = useParams();
-
   const [products, setProducts] = useState([]);
-
+  const navigate = useNavigate();
   const mainProduct = products.find((product) => product.id == id);
+
+  function handleCardClick(e, id) {
+    if (e.target.classList.contains("product-nav")) {
+      return;
+    }
+    navigate(`/product/${id}`);
+  }
 
   useEffect(() => {
     setProducts(prop.products);
@@ -23,7 +29,6 @@ function ExploreRelated(prop) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(mainProduct);
     return () => {};
   }, [mainProduct]);
 
@@ -210,11 +215,11 @@ function ExploreRelated(prop) {
                   : product.version;
 
               return (
-                <Link
-                  to={`/product/${product.id}`}
-                  className="atag text-reset "
+                <div
+                  className="atag text-reset"
                   style={{ width: `${cardSize}px`, boxSizing: "border-box" }}
                   key={index}
+                  onClick={(e) => handleCardClick(e, product.id)}
                 >
                   <div className="product-grid">
                     <div className="product-img-cont">
@@ -233,6 +238,19 @@ function ExploreRelated(prop) {
                         className="product-img two"
                         alt={`${product.brandName}_image`}
                       />
+
+                      <div className="d-none">
+                        <a
+                          href={product.images[0]}
+                          className="glightbox"
+                          data-gallery={`gallery${product.id}`}
+                        ></a>
+                        <a
+                          href={product.images[1]}
+                          className="glightbox"
+                          data-gallery={`gallery${product.id}`}
+                        ></a>
+                      </div>
 
                       <div>{product.badge === "Hot" ? <HotBadge /> : null}</div>
 
@@ -255,7 +273,7 @@ function ExploreRelated(prop) {
                     </div>
                   </div>
                   {/* </a> */}
-                </Link>
+                </div>
               );
               {
                 /* ↑↑ .products-card end */

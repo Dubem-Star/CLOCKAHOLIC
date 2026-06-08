@@ -94,7 +94,7 @@
 
 .cunt {
   position: sticky;
-  top: 20px;
+  top: 10px;
 }
 
 .overlay {
@@ -417,10 +417,6 @@ strong {
 /* ***************************************************************************************
 ****************************************************************************************** */
 
-.w-85 {
-  width: 85%;
-}
-
 .product-column {
   width: 50% !important;
 }
@@ -501,12 +497,14 @@ form.shipping-form.dropdown {
   visibility: visible;
 }
 
-form.shipping-form select.form-select:focus,
-form.shipping-form input.form-control:focus,
-.slider .search-input:focus,
-.search .search-input:focus,
-.slider .close-btn:focus,
-.search .close-btn:focus {
+form.shipping-form select.form-select:focus, /*shipping select form (yourcart)*/
+form.shipping-form input.form-control:focus,/*shipping input form (yourcart)*/
+.slider .search-input:focus,/*mobile search form */
+.search .search-input:focus,/*desktop search form */
+.slider .close-btn:focus,/*mobile sidebar close btn */
+.search .close-btn:focus, /*desktop search mode close btn */ 
+.checkout-form input:focus, /*checkout input form */ 
+.checkout-form select:focus /*checkout select form */ {
   border-color: #ced4da !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -523,30 +521,99 @@ form.shipping-form input.form-control::placeholder,
   color: #72716e;
 }
 
-/* Sidebar---Styling */
-.search-results-container hr:last-child {
-  margin-bottom: 0 !important;
+/* ***************************************************************************************
+****************************************************************************************** */
+
+/************************************CHECKOUT-PAGE STYLING***************************************  */
+
+/* ***************************************************************************************
+****************************************************************************************** */
+
+.card-details-container .payment-icons img {
+  width: 38px !important;
+  height: 24px !important;
 }
 
-.search-results-container .item-link {
-  background-color: #2a2a2a00 !important;
-  transition: background-color 0.2s ease-in-out;
+.checkout-form input {
+  font-size: 15px;
+  font-weight: 400;
 }
 
-.search-results-desktop {
-  z-index: 9999;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 750px;
+.checkout-form input::placeholder {
+  font-size: 14px;
+  font-weight: 300;
 }
 
-.search-results-desktop a:last-child hr {
-  display: none !important ;
+.checkout-form input:-webkit-autofill,
+.checkout-form select:-webkit-autofill {
+  border: 1px solid rgb(222, 226, 230) !important;
+  background-color: white !important;
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+  transition: background-color 9999s ease-out;
 }
 
-.search-results-desktop.unmount {
-  display: none !important;
+.mode-of-payment .mod-box {
+  border: 1px solid rgb(222, 226, 230);
+  border-radius: 6px;
+}
+
+.mode-of-payment .mod-box.glow {
+  border-color: var(--sauce-color);
+}
+
+.mode-of-payment div img {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+}
+
+.mode-of-payment input {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+}
+
+.mode-of-payment input:checked,
+.mode-of-payment input:checked:focus,
+.mode-of-payment
+  input:checked:focus-visible
+  .mode-of-payment
+  input:checked:active {
+  background-color: var(
+    --sauce-color
+  ) !important; /* Use your special green color */
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.mode-of-payment .brief-desc {
+  font-size: 13px;
+  font-weight: 400;
+  padding-right: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 0;
   opacity: 0;
+  visibility: hidden;
+
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.2s ease-in-out,
+    visibility 0.2s ease-in-out,
+    margin 0.2s ease-in-out;
+}
+
+.mode-of-payment .brief-desc.show {
+  opacity: 1;
+  max-height: 100px;
+  visibility: visible;
+  margin-top: 15px;
+  margin-bottom: 16px;
 }
 
 @media (max-width: 1199.98px) {

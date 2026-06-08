@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import viewIcon from "@/assets/images/img_icons/visibility.png";
 import facebook from "@/assets/images/img_icons/share-facebook.png";
 import twitter from "@/assets/images/img_icons/share-twitter.png";
@@ -8,27 +8,32 @@ import linkedIn from "@/assets/images/img_icons/share-linkedin.png";
 import whatsapp from "@/assets/images/img_icons/share-whatsapp.png";
 import copy from "@/assets/images/img_icons/copy.png";
 import delivery from "@/assets/images/img_icons/express-delivery.png";
-import {
-  newArrivedProducts,
-  bestSellingProducts,
-  onSaleProducts,
-} from "../../data/products";
+// import {
+//   newArrivedProducts,
+//   bestSellingProducts,
+//   onSaleProducts,
+// } from "../../data/products";
 
-function ProductInfo() {
+function ProductInfo(prop) {
   /* ********************Assignments/Definitions******************** */
   /* ********************Assignments/Definitions******************** */
   const { id } = useParams();
-  const allProducts = [
-    ...newArrivedProducts,
-    ...bestSellingProducts,
-    ...onSaleProducts,
-  ];
+  const [products, setProducts] = useState([]);
   const space = "    ";
-  const product = allProducts.find((product) => product.id === parseFloat(id));
-  const brand =
-    product.brandName.slice(0, 1) + product.brandName.slice(1).toLowerCase();
   const copiedNotif = useRef(null);
   const navigate = useNavigate();
+  const [product, setProduct] = useState(prop.product);
+
+  // useEffect(() => {
+  //   setProducts(prop.products);
+  // }, [prop.products]);
+
+  // if (!products.length) return <div>loading</div>;
+
+  // const product = products.find((product) => product.id == id);
+
+  const brand =
+    product.brandName.slice(0, 1) + product.brandName.slice(1).toLowerCase();
 
   const text = `Check out this ${product.brandName} watch from Clockaholic!`;
   const url = window.location.href;

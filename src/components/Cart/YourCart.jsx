@@ -1,5 +1,5 @@
 import { useEffect, useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PageLocation from "../plugins/btns/PageLocation";
 import QuantityPill from "@/components/plugins/QuantityPill";
 import emptyCart from "@/assets/images/img_icons/empty-cart.png";
@@ -17,15 +17,14 @@ function YourCart(prop) {
   const [userRegion, setUserRegion] = useState("");
   const [dropdown, setDropdown] = useState(false);
   const [isCountry, setIsCountry] = useState(false);
+  const navigate = useNavigate();
 
-  /* ********************URGENT USE-EFFECTS******************** */
-  /* ********************URGENT USE-EFFECTS******************** */
+  /* ********************URGENT USE-EFFECT******************** */
+  /* ********************URGENT USE-EFFECT******************** */
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
+    document.title = "Your Cart | Clockaholic";
     prop.activatePopup(false);
   }, []);
 
@@ -105,6 +104,26 @@ function YourCart(prop) {
     setUserRegion(formData.get("state"));
     setDropdown(false);
   }
+
+  /* ************************************************************ */
+
+  /* ********************SAVE ORDER FUNCTION******************** */
+  /* ********************SAVE ORDER FUNCTION******************** */
+
+  async function handleOrder() {
+    const response = await fetch("http://localhost:3000/saveOrder", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: prop.cart,
+        totalAmount: totalAmount + shippingPrice(),
+      }),
+    });
+  }
+
+  /* ************************************************************ */
 
   return (
     <>
@@ -315,8 +334,14 @@ function YourCart(prop) {
                 ₦{(totalAmount + shippingPrice()).toLocaleString()}
               </p>
             </div>
-            <button className="btn mt-3 banner-button w-100 align-self-end">
-              CHECKOUT
+            <button
+              className="btn mt-3 banner-button w-100 align-self-end"
+              onClick={() => {
+                handleOrder();
+                // navigate("/checkout");
+              }}
+            >
+              PROCEED TO CHECKOUT
             </button>
           </div>
         </div>

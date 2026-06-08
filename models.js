@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { v4 as uuidv4 } from "uuid";
 const productsSchema = new mongoose.Schema({
   id: { type: String },
   brandName: { type: String, required: true },
@@ -17,7 +17,19 @@ const productsSchema = new mongoose.Schema({
   dialColor: { type: String },
   dialShape: { type: String },
   strapColor: { type: String },
-  embedding: { type: [Number], required: true },
 });
 
+const ordersSchema = new mongoose.Schema(
+  {
+    orderOwner: { type: String, default: "loading..." },
+    products: [{ ...productsSchema.obj, quantity: { type: Number } }],
+    totalAmount: { type: Number },
+    status: { type: String, default: "pending..." },
+    paystackRef: { type: String },
+    orderId: { type: String, default: uuidv4 },
+  },
+  { timestamps: true },
+);
+
 export const Product = mongoose.model("Products", productsSchema);
+export const Order = mongoose.model("Orders", ordersSchema);

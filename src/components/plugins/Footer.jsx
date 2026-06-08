@@ -126,9 +126,9 @@ function Footer() {
         </div>
 
         <div className="bottom-cont main-page-wrapper">
-          <p> © 2025 Clockaholic. All Rights Reserved </p>
+          <p> © 2026 Clockaholic. All Rights Reserved </p>
           <span className="message">
-            made with ❤️ by{" "}
+            built with ❤️ by{" "}
             <span className="dubby">
               <a
                 href="https://dubem-portfolio-beryl.vercel.app/"

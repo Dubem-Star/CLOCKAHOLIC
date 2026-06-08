@@ -13,7 +13,7 @@ export function SkeletonLayout() {
               <div className="product-grid">
                 <div className="product-img-cont">
                   <img
-                    src="/CLOCKAHOLIC/watch_products/naviforce/Naviforce_7116_light-grey_1.png"
+                    src="https://res.cloudinary.com/dirijnb2k/image/upload/f_auto,q_auto/Clockaholic/naviforce/Naviforce_7116_light-grey_1.png"
                     className="one opacity-0"
                   />
                 </div>

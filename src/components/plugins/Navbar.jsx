@@ -8,12 +8,12 @@ import Sidebar from "./Sliders/SliderMenu";
 import Search from "./Sliders/SliderSearch";
 
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(prop) {
   const [isHidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const navHeightRef = useRef();
   const lastScrollY = useRef(0);
 
@@ -125,7 +125,12 @@ function Navbar(prop) {
 
               <div className="d-flex align-item-center position-relative cart-box">
                 <Link
-                  onClick={() => prop.activatePopup(true)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prop.isCheckout || prop.is404
+                      ? navigate("/cart")
+                      : prop.activatePopup(true);
+                  }}
                   className="text-reset d-flex align-content-center"
                 >
                   <CartIcon className="nav-icon cart-icon" />

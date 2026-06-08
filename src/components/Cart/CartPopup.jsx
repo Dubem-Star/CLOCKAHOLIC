@@ -1,7 +1,7 @@
 import close from "@/assets/images/img_icons/close.png";
 import emptyCart from "@/assets/images/img_icons/empty-cart.png";
 import { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import QuantityPill from "../plugins/QuantityPill";
 
 function CartPopup(prop) {
@@ -16,6 +16,8 @@ function CartPopup(prop) {
     width: "20px",
     height: "20px",
   };
+
+  const navigate = useNavigate();
 
   /* ********************Remove Item Logic******************** */
   /* ********************Remove Item Logic******************** */
@@ -182,7 +184,12 @@ function CartPopup(prop) {
                   <button className="btn second-btn w-100">VIEW CART</button>
                 </Link>
 
-                <button className="btn banner-button w-100">CHECKOUT</button>
+                <button
+                  className="btn banner-button w-100"
+                  onClick={() => navigate("/checkout")}
+                >
+                  CHECKOUT
+                </button>
               </div>
             </div>
             {/* ***           *********************************************** */}

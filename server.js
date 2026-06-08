@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { v4 as uuidv4 } from "uuid";
 import {
   newArrivedProducts,
   bestSellingProducts,
@@ -8,7 +9,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
-import { Product } from "./models.js";
+import { Product, Order } from "./models.js";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -24,52 +25,8 @@ mongoose
   .then(() => console.log("Mongo connected"))
   .catch((e) => console.log("Error connecting Mongo:", e));
 
-// const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-async function updateProductsImgUrl() {
-  await Product.updateMany({ images: [] }, { $set: {} });
-}
-
-async function seedProducts() {
-  try {
-    const products = [
-      ...newArrivedProducts,
-      ...bestSellingProducts,
-      ...onSaleProducts,
-    ];
-
-    await Product.deleteMany({});
-    console.log("products cleared in DB");
-
-    const finishedProducts = [];
-
-    for (let product of products) {
-      console.log(`fetching and pushing ${product.brandName}'s embedding`);
-
-      const textToEmbed = `Name: ${product.brandName}. Version: ${product.version}. Description: ${product.description}`;
-
-      const response = await ai.models.embedContent({
-        model: "models/gemini-embedding-001",
-        contents: textToEmbed,
-      });
-
-      const vectorEmbedding = response.embeddings[0].values;
-
-      finishedProducts.push({
-        ...product,
-        embedding: vectorEmbedding,
-      });
-    }
-    console.log("products are finished and ready to be saved in DB");
-
-    await Product.insertMany(finishedProducts);
-    console.log("products successfully saved to the DB");
-  } catch (e) {
-    console.log(`Error getting Embedding: ${e}`);
-  }
-}
-// seedProducts();
-
+// ************************FETCH PRODUCTS FROM DATABASE***************************
+// ************************FETCH PRODUCTS FROM DATABASE***************************
 app.post("/getProducts", async (req, res) => {
   try {
     const dbProducts = await Product.find({});
@@ -84,7 +41,9 @@ app.post("/getProducts", async (req, res) => {
   }
 });
 
-app.post("/api/semanticSearch", async (req, res) => {
+// ************************SEARCH PRODUCTS FROM DATABASE***************************
+// ************************SEARCH PRODUCTS FROM DATABASE***************************
+app.post("/searchProducts", async (req, res) => {
   try {
     const textToEmbed = req.body.query;
     console.log(req.body.query);
@@ -112,39 +71,18 @@ app.post("/api/semanticSearch", async (req, res) => {
   }
 });
 
+// ************************POST ORDERS TO DATABASE***************************
+// ************************POST ORDERS TO DATABASE***************************
+
+app.post("/saveOrder", async (req, res) => {
+  const { cart, totalAmount } = req.body;
+
+  await Order.insertOne({
+    products: cart,
+    totalAmount,
+  });
+});
+
 app.listen(3000, () => {
   console.log("backend listening at 3000");
 });
-
-async function migrateImages() {
-  try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    const products = await Product.find();
-
-    for (let product of products) {
-      if (!product.images || product.images.length === 0) continue;
-
-      const updatedImgs = product.images.map((img) => {
-        return img.replace(
-          "/CLOCKAHOLIC/watch_products/",
-          "https://res.cloudinary.com/dirijnb2k/image/upload/f_auto,q_auto/Clockaholic/",
-        );
-      });
-
-      await Product.updateOne(
-        {
-          _id: product._id,
-        },
-        { $set: { images: updatedImgs } },
-      );
-    }
-
-    console.log("Migration complete 🚀");
-    process.exit();
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-}
-
-// migrateImages();

@@ -8,7 +8,7 @@ function PageLocation(prop) {
       <div
         className="w-100 go-back-btn"
         style={{
-          margin: "125px auto 0 auto",
+          margin: "100px auto 0 auto",
           paddingLeft: "clamp(70px, 11vw, 120px)",
           maxWidth: "1800px",
         }}
