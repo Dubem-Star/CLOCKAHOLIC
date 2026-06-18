@@ -63,7 +63,7 @@ function App() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await fetch(`http://localhost:3000/api/get_products`, {
+      const response = await fetch(`/api/get_products`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function App() {
         return;
       }
 
-      const response = await fetch(`http://localhost:3000/api/search`, {
+      const response = await fetch(`/api/search`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -212,7 +212,7 @@ function App() {
     text.style.opacity = "0";
     loader.style.opacity = "1";
 
-    const response = await fetch(`http://localhost:3000/api/handle_order`, {
+    const response = await fetch(`/api/handle_order`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
