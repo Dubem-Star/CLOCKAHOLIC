@@ -7,7 +7,7 @@ import {
   bestSellingProducts,
   onSaleProducts,
 } from "../../data/products";
-import CartPopup from "../Cart/CartPopUp";
+
 import QuantityPill from "../plugins/QuantityPill";
 
 /* ********************Buttons Function******************** */
