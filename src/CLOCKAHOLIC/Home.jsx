@@ -8,7 +8,7 @@ import BestSellers from "@/components/Home/BestSellers";
 import { AdBanner, ExploreBanner } from "@/components/Home/AdBanner";
 import OnSale from "@/components/Home/OnSale";
 import BackToTop from "@/components/plugins/btns/BackToTop";
-import CartPopup from "../components/Cart/CartPopUp";
+
 import { useEffect } from "react";
 function Home(prop) {
   useEffect(() => {
