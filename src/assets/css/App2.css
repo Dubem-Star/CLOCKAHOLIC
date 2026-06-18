@@ -8,7 +8,7 @@
   --default-font-family: "Stack Sans Text", sans-serif;
 }
 
-.spinner-border {
+.banner-button .spinner-border {
   opacity: 0;
 }
 
