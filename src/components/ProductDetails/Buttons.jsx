@@ -13,10 +13,11 @@ import QuantityPill from "../plugins/QuantityPill";
 /* ********************Buttons Function******************** */
 /* ********************Buttons Function******************** */
 function ProductButtons(prop) {
-  const [product, setProduct] = useState(prop.product);
   const { id } = useParams();
   const space = "    ";
   const checkRef = useRef(null);
+
+  // console.log(prop.bin);
 
   useEffect(() => {
     prop.setId(id);
@@ -36,11 +37,6 @@ function ProductButtons(prop) {
   }
   /* ************************************************ */
 
-  /* ********************Add-to-Cart Function******************** */
-  /* ********************Add-to-Cart Function******************** */
-
-  /* ************************************************ */
-
   {
     /* ********************THE DOM******************** */
     /* ********************THE DOM******************** */
@@ -48,13 +44,6 @@ function ProductButtons(prop) {
 
   return (
     <>
-      <CartPopup
-        popup={prop.popup}
-        toggle={prop.activatePopup}
-        cart={prop.cart}
-        setAppCart={prop.setAppCart}
-      />
-
       <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
         {/* *********************Quantity********************* */}
         {/* *********************Quantity********************* */}
@@ -78,8 +67,26 @@ function ProductButtons(prop) {
 
           {/* *********************Buy it now btn********************* */}
           {/* *********************Buy it now btn********************* */}
-          <button className="btn banner-button " style={{ width: "50%" }}>
-            BUY IT NOW
+          <button
+            className="btn banner-button position-relative"
+            style={{ width: "50%" }}
+            onClick={(e) => {
+              console.log(prop.product);
+              const binDoc = {
+                ...prop.product,
+                quantity: prop.prodQty,
+                bin: true,
+              };
+              const total = binDoc.price * binDoc.quantity;
+              prop.setBin(binDoc);
+              prop.handleOrder(e, binDoc, total);
+            }}
+          >
+            <div
+              class="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+              role="status"
+            ></div>
+            <span>BUY IT NOW</span>
           </button>
         </div>
       </div>

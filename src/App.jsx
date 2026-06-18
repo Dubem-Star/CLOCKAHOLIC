@@ -4,21 +4,26 @@ import Home from "@/CLOCKAHOLIC/Home.jsx";
 import ProductDetails from "@/CLOCKAHOLIC/ProductDetails.jsx";
 import Cart from "./CLOCKAHOLIC/Cart";
 import Checkout from "./CLOCKAHOLIC/Checkout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import {} from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
-  newArrivedProducts,
-  bestSellingProducts,
-  onSaleProducts,
-} from "@/data/products";
+  lagos,
+  southEast,
+  southWest,
+  southSouth,
+  farNorth,
+  northCentral,
+} from "./data/ShippingLocation";
+import CartPopup from "./components/Cart/CartPopup";
 
 function App() {
-  const allProducts = [
-    ...newArrivedProducts,
-    ...bestSellingProducts,
-    ...onSaleProducts,
-  ];
-
   function reloadCart() {
     return JSON.parse(localStorage.getItem("cart")) || [];
   }
@@ -38,6 +43,19 @@ function App() {
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
   const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState(null);
+  const [shippingFee, setShippingFee] = useState(null);
+  const [bin, setBin] = useState(null);
+  const navigate = useNavigate();
+  const allStates = [
+    ...lagos,
+    ...southEast,
+    ...southSouth,
+    ...southWest,
+    ...farNorth,
+    ...northCentral,
+  ];
+
   {
     /* *********************FETCH PRODUCTS FROM DATABASE********************* */
     /* *********************FETCH PRODUCTS FROM DATABASE********************* */
@@ -45,7 +63,7 @@ function App() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await fetch("http://localhost:3000/getProducts", {
+      const response = await fetch(`http://localhost:3000/api/get_products`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -65,11 +83,6 @@ function App() {
 
     getProducts();
   }, []);
-
-  {
-    /* *********************************************************************** */
-    /* *********************************************************************** */
-  }
 
   {
     /* *********************HANDLE SEARCH FUNCTION********************* */
@@ -105,7 +118,7 @@ function App() {
         return;
       }
 
-      const response = await fetch("http://localhost:3000/searchProducts", {
+      const response = await fetch(`http://localhost:3000/api/search`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -130,11 +143,6 @@ function App() {
       clearTimeout(debounceTimer);
     };
   }, [value]);
-
-  {
-    /* *********************************************************************** */
-    /* *********************************************************************** */
-  }
 
   {
     /* *********************ADD-TO-CART FROM DETAILS PAGE********************* */
@@ -177,6 +185,56 @@ function App() {
     }
     localStorage.setItem("cart", JSON.stringify(loadCart));
   }
+
+  {
+    /* *********************CALCULATE SHIPPING PRICE********************* */
+    /* *********************CALCULATE SHIPPING PRICE********************* */
+  }
+
+  function shippingPrice(userRegion) {
+    if (!userRegion) return 0;
+
+    if (lagos.includes(userRegion)) return 2000;
+    if (southWest.includes(userRegion)) return 4000;
+    if (southSouth.includes(userRegion)) return 4000;
+    if (southEast.includes(userRegion)) return 6000;
+    if (northCentral.includes(userRegion)) return 8000;
+    if (farNorth.includes(userRegion)) return 8000;
+  }
+
+  /* ********************SAVE ORDER FUNCTION******************** */
+  /* ********************SAVE ORDER FUNCTION******************** */
+
+  async function handleOrder(e, order, total) {
+    const loader = e.currentTarget.querySelector(".spinner-border");
+    const text = e.currentTarget.querySelector("span");
+
+    text.style.opacity = "0";
+    loader.style.opacity = "1";
+
+    const response = await fetch(`http://localhost:3000/api/handle_order`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: order,
+        totalAmount: total,
+      }),
+    });
+
+    const res = await response.json();
+    if (res.status) {
+      console.log(res.data);
+      setOrder(res.data);
+      text.style.opacity = "1";
+      loader.style.opacity = "0";
+      navigate("/checkout");
+    } else {
+      alert(res.message);
+    }
+  }
+
   {
     /* *********************************************************************** */
     /* *********************************************************************** */
@@ -194,115 +252,144 @@ function App() {
         }}
       ></div>
 
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                cart={cart}
-                activatePopup={activatePopup}
-                popup={popup}
-                setAppCart={setCart}
-                atcHomePage={atcHomePage}
-                setDarken={setDarken}
-                darken={darken}
-                handleSearch={handleSearch}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                value={value}
-                setValue={setValue}
-                isSearchMode={isSearchMode}
-                setIsSearchMode={setIsSearchMode}
-                isSearchLoading={isSearchLoading}
-                setIsSearchLoading={setIsSearchLoading}
-                isResult={isResult}
-                setIsResult={setIsResult}
-                newlyArrived={newlyArrived}
-                bestSelling={bestSelling}
-                onSale={onSale}
-              />
-            }
-          />
-          <Route
-            path="/product/:id"
-            element={
-              <ProductDetails
-                setAppCart={setCart}
-                cart={cart}
-                activatePopup={activatePopup}
-                popup={popup}
-                setId={setId}
-                atcDetailsPage={atcDetailsPage}
-                setDarken={setDarken}
-                darken={darken}
-                atcHomePage={atcHomePage}
-                setProdQty={setProdQty}
-                handleSearch={handleSearch}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                value={value}
-                setValue={setValue}
-                isSearchMode={isSearchMode}
-                setIsSearchMode={setIsSearchMode}
-                isSearchLoading={isSearchLoading}
-                setIsSearchLoading={setIsSearchLoading}
-                isResult={isResult}
-                setIsResult={setIsResult}
-                products={products}
-                setProducts={setProducts}
-              />
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                setAppCart={setCart}
-                cart={cart}
-                activatePopup={activatePopup}
-                setDarken={setDarken}
-                darken={darken}
-                handleSearch={handleSearch}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                value={value}
-                setValue={setValue}
-                isSearchMode={isSearchMode}
-                setIsSearchMode={setIsSearchMode}
-                isSearchLoading={isSearchLoading}
-                setIsSearchLoading={setIsSearchLoading}
-                isResult={isResult}
-                setIsResult={setIsResult}
-              />
-            }
-          />
+      <CartPopup
+        popup={popup}
+        toggle={activatePopup}
+        cart={cart}
+        setCart={setCart}
+        handleOrder={handleOrder}
+        bin={bin}
+        setBin={setBin}
+      />
 
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-                setAppCart={setCart}
-                cart={cart}
-                activatePopup={activatePopup}
-                setDarken={setDarken}
-                darken={darken}
-                handleSearch={handleSearch}
-                searchResults={searchResults}
-                setSearchResults={setSearchResults}
-                value={value}
-                setValue={setValue}
-                isSearchMode={isSearchMode}
-                setIsSearchMode={setIsSearchMode}
-                isSearchLoading={isSearchLoading}
-                setIsSearchLoading={setIsSearchLoading}
-                isResult={isResult}
-                setIsResult={setIsResult}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              cart={cart}
+              activatePopup={activatePopup}
+              popup={popup}
+              setAppCart={setCart}
+              atcHomePage={atcHomePage}
+              setDarken={setDarken}
+              darken={darken}
+              handleSearch={handleSearch}
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
+              value={value}
+              setValue={setValue}
+              isSearchMode={isSearchMode}
+              setIsSearchMode={setIsSearchMode}
+              isSearchLoading={isSearchLoading}
+              setIsSearchLoading={setIsSearchLoading}
+              isResult={isResult}
+              setIsResult={setIsResult}
+              newlyArrived={newlyArrived}
+              bestSelling={bestSelling}
+              onSale={onSale}
+            />
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetails
+              setAppCart={setCart}
+              cart={cart}
+              activatePopup={activatePopup}
+              popup={popup}
+              setId={setId}
+              atcDetailsPage={atcDetailsPage}
+              setDarken={setDarken}
+              darken={darken}
+              atcHomePage={atcHomePage}
+              prodQty={prodQty}
+              setProdQty={setProdQty}
+              handleSearch={handleSearch}
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
+              value={value}
+              setValue={setValue}
+              isSearchMode={isSearchMode}
+              setIsSearchMode={setIsSearchMode}
+              isSearchLoading={isSearchLoading}
+              setIsSearchLoading={setIsSearchLoading}
+              isResult={isResult}
+              setIsResult={setIsResult}
+              products={products}
+              setProducts={setProducts}
+              order={order}
+              setOrder={setOrder}
+              handleOrder={handleOrder}
+              bin={bin}
+              setBin={setBin}
+            />
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              setAppCart={setCart}
+              cart={cart}
+              activatePopup={activatePopup}
+              setDarken={setDarken}
+              darken={darken}
+              handleSearch={handleSearch}
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
+              value={value}
+              setValue={setValue}
+              isSearchMode={isSearchMode}
+              setIsSearchMode={setIsSearchMode}
+              isSearchLoading={isSearchLoading}
+              setIsSearchLoading={setIsSearchLoading}
+              isResult={isResult}
+              setIsResult={setIsResult}
+              order={order}
+              setOrder={setOrder}
+              shippingFee={shippingFee}
+              setShippingFee={setShippingFee}
+              handleOrder={handleOrder}
+              bin={bin}
+              setBin={setBin}
+              shippingPrice={shippingPrice}
+              allStates={allStates}
+            />
+          }
+        />
+
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              setAppCart={setCart}
+              cart={cart}
+              activatePopup={activatePopup}
+              setDarken={setDarken}
+              darken={darken}
+              handleSearch={handleSearch}
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
+              value={value}
+              setValue={setValue}
+              isSearchMode={isSearchMode}
+              setIsSearchMode={setIsSearchMode}
+              isSearchLoading={isSearchLoading}
+              setIsSearchLoading={setIsSearchLoading}
+              isResult={isResult}
+              setIsResult={setIsResult}
+              order={order}
+              setOrder={setOrder}
+              shippingPrice={shippingPrice}
+              bin={bin}
+              setBin={setBin}
+              allStates={allStates}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
+
 const productsSchema = new mongoose.Schema({
   id: { type: String },
   brandName: { type: String, required: true },
@@ -22,8 +23,14 @@ const productsSchema = new mongoose.Schema({
 const ordersSchema = new mongoose.Schema(
   {
     orderOwner: { type: String, default: "loading..." },
-    products: [{ ...productsSchema.obj, quantity: { type: Number } }],
-    totalAmount: { type: Number },
+    products: [
+      {
+        ...productsSchema.obj,
+        quantity: { type: Number, required: true },
+        bin: { type: Boolean, default: false },
+      },
+    ],
+    totalAmount: { type: Number, required: true },
     status: { type: String, default: "pending..." },
     paystackRef: { type: String },
     orderId: { type: String, default: uuidv4 },

@@ -45,8 +45,10 @@ function ProductDisplayBox(prop) {
   useEffect(() => {
     if (!product) {
       prop.setIs404(true);
+    } else {
+      prop.setIs404(false);
     }
-  }, []);
+  }, [product]);
 
   if (!products.length)
     return (
@@ -98,7 +100,6 @@ function ProductDisplayBox(prop) {
             display: "block",
             color: "purple",
             fontFamily: '"Stack Sans Text", sans-serif',
-            // fontSize: "clamp(20px, 3.8vw, 38px)",
             fontSize: "20px ",
           }}
           className="text-center not-found-page"
@@ -179,7 +180,7 @@ function ProductDisplayBox(prop) {
           style={{ width: "95%" }}
         >
           <div
-            className="row d-flex justify-content-center gap-5 gap-md-0 "
+            className="row d-flex justify-content-center gap-5 gap-md-0 mx-auto"
             style={{ width: "95%" }}
           >
             {/* ********************Image Container******************** */}
@@ -273,10 +274,14 @@ function ProductDisplayBox(prop) {
                 popup={prop.popup}
                 setId={prop.setId}
                 atcDetailsPage={prop.atcDetailsPage}
+                prodQty={prop.prodQty}
                 setProdQty={prop.setProdQty}
                 products={prop.products}
                 setProducts={prop.setProducts}
                 product={product}
+                handleOrder={prop.handleOrder}
+                bin={prop.bin}
+                setBin={prop.setBin}
               />
               <hr className="m-0" />
               <ProductInfo

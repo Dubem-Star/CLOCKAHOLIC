@@ -36,12 +36,12 @@ function Home(prop) {
         setIsResult={prop.setIsResult}
       />
       <Hero />
-      <CartPopup
+      {/* <CartPopup
         popup={prop.popup}
         toggle={prop.activatePopup}
         cart={prop.cart}
         setAppCart={prop.setAppCart}
-      />
+      /> */}
       <div className="main-page-wrapper">
         <BackToTop />
         <Categories />

@@ -42,12 +42,18 @@ function ProductDetails(prop) {
             popup={prop.popup}
             setId={prop.setId}
             atcDetailsPage={prop.atcDetailsPage}
+            prodQty={prop.prodQty}
             setProdQty={prop.setProdQty}
             products={prop.products}
             setProducts={prop.setProducts}
             atcHomePage={prop.atcHomePage}
             is404={is404}
             setIs404={setIs404}
+            order={prop.order}
+            setOrder={prop.setOrder}
+            handleOrder={prop.handleOrder}
+            bin={prop.bin}
+            setBin={prop.setBin}
           />
         </div>
         <Footer />

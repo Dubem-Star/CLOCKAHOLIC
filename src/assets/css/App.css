@@ -3,7 +3,7 @@
 /* ************************************************ */
 
 :root {
-  --sauce-color: #b8860b;
+  --sauce-color: ;
   --sauce-color-transparent: #b8870ba2;
   --h1-size: 25px;
   --default-font-family: "Stack Sans Text", sans-serif;
@@ -34,6 +34,33 @@
   width: 85% !important;
 }
 
+.w-20px {
+  width: 20px !important;
+}
+.w-22px {
+  width: 22px !important;
+}
+
+.w-40px {
+  width: 40px !important;
+}
+.w-45px {
+  width: 45px !important;
+}
+
+.h-20px {
+  height: 20px !important;
+}
+.h-22px {
+  height: 22px !important;
+}
+
+.fs-10 {
+  font-size: 10px !important;
+}
+.fs-12 {
+  font-size: 12px !important;
+}
 .fs-14 {
   font-size: 14px !important;
 }
@@ -45,6 +72,13 @@
 }
 .fs-17 {
   font-size: 17px !important;
+}
+.fs-20 {
+  font-size: 20px !important;
+}
+
+.fs-23 {
+  font-size: 23px !important;
 }
 
 /* ************************************************ */

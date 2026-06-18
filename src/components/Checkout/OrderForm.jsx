@@ -1,20 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PaystackIcon from "@/assets/images/img_icons/paystack_logo.png";
 import OrderSummary from "./OrderSummary";
 import BackToTop from "@/components/plugins/btns/BackToTop";
 function OrderForm(prop) {
   const bankTransferMod = useRef(null);
+  const shippingForm = useRef(null);
+  const [region, setRegion] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     prop.activatePopup(false);
     document.title = "Checkout Page | Clockaholic";
-  }, []);
 
-  useEffect(() => {
+    /* ******************** Check Bank Transfer MOD by default******************** */
+    /* ******************** Check Bank Transfer MOD by default******************** */
     if (bankTransferMod.current) {
       bankTransferMod.current.checked = true;
       bankTransferMod.current
@@ -61,29 +60,30 @@ function OrderForm(prop) {
     <>
       <BackToTop />
       <div
-        className="checkout-container container-fluid mx-auto  "
+        className="checkout-container container-fluid mx-auto  position-relative"
         style={{ width: "95%" }}
       >
         <div className="middle-liner w-100" style={{ marginTop: "100px" }}>
           <h1 className="middle-title">CHECKOUT</h1>
         </div>
-        <div className="d-flex gap-3">
+        <div className="d-flex  gap-3 mt-4 mt-md-5  wrapper">
           {/*SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM 
         SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM */}
-          {/* {LEFT}*/}
-          <div className="user-form w-50">
+
+          <div className="user-form w-md-50 w-100">
             <form
+              ref={shippingForm}
               action="#"
               id="shippingAddressForm"
               className="form-control container-fluid checkout-form border-0 d-flex flex-column gap-3"
             >
-              <div className="form-column d-flex flex-column gap-2">
-                <label className="bold-labels fs-4" for="emailContact">
+              <div className="form-column d-flex flex-column  ">
+                <label className=" fs-4 " htmlFor="emailContact">
                   Delivery
                 </label>
                 <input
                   type="email"
-                  className="form-control py-2"
+                  className="form-control py-2 mt-3"
                   id="emailContact"
                   placeholder="Email:"
                   name="email"
@@ -110,13 +110,13 @@ function OrderForm(prop) {
                   <option value="australia">Australia</option>
                   <option value="germany">Germany</option>
                 </select>
-                <label for="region">Country/Region:</label>
+                <label htmlFor="region">Country/Region:</label>
               </div>
 
-              <div className="flex-row-container d-flex  gap-2">
+              <div className="flex-row-container d-flex flex-column flex-lg-row gap-3 gap-lg-2">
                 <input
                   type="text"
-                  className="form-control py-2"
+                  className="form-control py-2 "
                   name="firstname"
                   placeholder="First name:"
                   required
@@ -138,7 +138,7 @@ function OrderForm(prop) {
                 required
               />
 
-              <div className="location-container d-flex align-items-center gap-2 ">
+              <div className="location-container d-flex align-items-center flex-column flex-lg-row gap-3 gap-lg-2">
                 <input
                   type="text"
                   name="city"
@@ -150,17 +150,26 @@ function OrderForm(prop) {
                   <select
                     name="state"
                     id="state"
-                    className="form-select"
-                    aria-label="State"
+                    className="form-select fs-14"
                     id="state"
                     required
-                    style={{ fontSize: "14px" }}
+                    onChange={(e) => {
+                      setRegion(e.currentTarget.value);
+                    }}
                   >
-                    <option value="" className="state-placeholder">
+                    <option value="" className="state-placeholder ">
                       --select state--
                     </option>
+
+                    {prop.allStates.map((state, index) => {
+                      return (
+                        <option name={state} key={index} value={state}>
+                          {state}
+                        </option>
+                      );
+                    })}
                   </select>
-                  <label for="state">State</label>
+                  <label htmlFor="state">State</label>
                 </div>
 
                 <input
@@ -203,7 +212,7 @@ function OrderForm(prop) {
                         ref={bankTransferMod}
                       />
                       <label
-                        for="bankTFCheckbox"
+                        htmlFor="bankTFCheckbox"
                         className="form-check-label fs-14"
                       >
                         Bank Transfer
@@ -232,7 +241,7 @@ function OrderForm(prop) {
                       />
 
                       <label
-                        for="creditCardCheckbox"
+                        htmlFor="creditCardCheckbox"
                         className="form-check-label fs-14"
                       >
                         Credit Card
@@ -260,7 +269,7 @@ function OrderForm(prop) {
                       />
 
                       <label
-                        for="codCheckbox"
+                        htmlFor="codCheckbox"
                         className="form-check-label fs-14"
                       >
                         Cash on Delivery (COD)
@@ -284,7 +293,13 @@ function OrderForm(prop) {
             </form>
           </div>
 
-          <OrderSummary />
+          <OrderSummary
+            shippingPrice={prop.shippingPrice}
+            orderDoc={prop.orderDoc}
+            shippingForm={shippingForm}
+            allStates={prop.allStates}
+            region={region}
+          />
         </div>
       </div>
     </>

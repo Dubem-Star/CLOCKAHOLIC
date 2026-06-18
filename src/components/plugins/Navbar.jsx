@@ -60,6 +60,7 @@ function Navbar(prop) {
           isHidden === false ? "show" : "hide"
         }`}
         ref={navHeightRef}
+        id="navbar"
       >
         <nav
           className="navbar d-flex  justify-content-between main-page-wrapper"
@@ -112,6 +113,8 @@ function Navbar(prop) {
 
           <div className="icon-wrapper">
             <div className="nav-icons d-flex  me-4">
+              {/* ********************SEARCH ICON******************** */
+              /* ********************SEARCH ICON******************** */}
               <SearchIcon
                 className="nav-icon"
                 onClick={() => {
@@ -120,8 +123,13 @@ function Navbar(prop) {
                   prop.setSearchResults([]);
                 }}
               />
+              {/* /* ************************************************ */}
+
               <UserIcon className="nav-icon" />
               <WishlistIcon className="nav-icon" />
+
+              {/* ********************CART ICON******************** */
+              /* ********************CART ICON******************** */}
 
               <div className="d-flex align-item-center position-relative cart-box">
                 <Link
@@ -142,6 +150,7 @@ function Navbar(prop) {
                   </span>
                 </Link>
               </div>
+              {/* /* ************************************************ */}
             </div>
 
             <HamburgerIcon

@@ -8,11 +8,6 @@ import linkedIn from "@/assets/images/img_icons/share-linkedin.png";
 import whatsapp from "@/assets/images/img_icons/share-whatsapp.png";
 import copy from "@/assets/images/img_icons/copy.png";
 import delivery from "@/assets/images/img_icons/express-delivery.png";
-// import {
-//   newArrivedProducts,
-//   bestSellingProducts,
-//   onSaleProducts,
-// } from "../../data/products";
 
 function ProductInfo(prop) {
   /* ********************Assignments/Definitions******************** */
@@ -23,14 +18,6 @@ function ProductInfo(prop) {
   const copiedNotif = useRef(null);
   const navigate = useNavigate();
   const [product, setProduct] = useState(prop.product);
-
-  // useEffect(() => {
-  //   setProducts(prop.products);
-  // }, [prop.products]);
-
-  // if (!products.length) return <div>loading</div>;
-
-  // const product = products.find((product) => product.id == id);
 
   const brand =
     product.brandName.slice(0, 1) + product.brandName.slice(1).toLowerCase();

@@ -8,6 +8,10 @@
   --default-font-family: "Stack Sans Text", sans-serif;
 }
 
+.spinner-border {
+  opacity: 0;
+}
+
 .accent-color {
   color: #b8860b !important;
 }
@@ -269,6 +273,16 @@ strong {
   .shipping ul li:first-child {
     margin-bottom: 15px;
   }
+
+  .product-box .version,
+  .product-box .price {
+    font-size: 14px !important;
+  }
+
+  .location-container input,
+  .location-container div {
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -346,13 +360,13 @@ strong {
 
   table tbody td:first-child img {
     position: absolute;
-    left: -100px;
+    left: -90px;
     top: 0;
-    width: 100px !important;
+    width: 80px !important;
   }
 
   table tbody tr {
-    padding: 0 0 35px 80px;
+    padding: 0 10px 35px 80px;
     width: 100%;
     margin: 40px 0 20px 0;
   }
@@ -382,7 +396,7 @@ strong {
 
   table tbody .remove-btn {
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 0 !important;
   }
 
@@ -392,6 +406,26 @@ strong {
 
   table tbody .subtotal-td {
     border-bottom: none;
+  }
+
+  .checkout-container .wrapper {
+    flex-direction: column !important;
+  }
+
+  .user-form form {
+    padding: 0 !important;
+  }
+
+  .user-form button {
+    display: none !important;
+  }
+
+  /* .checkout-container .product-details {
+    margin-top: 50px;
+  } */
+
+  .product-details button {
+    display: block !important;
   }
 }
 
@@ -463,6 +497,7 @@ table thead tr {
   margin-top: 80px;
   border: 1px solid #c2c2c2;
   background-color: #f7f7f7;
+  scroll-margin-top: 120px;
 }
 
 .order-summary .total-amt {
@@ -510,6 +545,10 @@ form.shipping-form input.form-control:focus,/*shipping input form (yourcart)*/
   box-shadow: none !important;
 }
 
+form.shipping-form .city-input::placeholder {
+  font-size: 14px !important;
+}
+
 form.shipping-form select.form-select {
   font-size: 14px !important;
   cursor: pointer;
@@ -535,7 +574,7 @@ form.shipping-form input.form-control::placeholder,
 }
 
 .checkout-form input {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -614,6 +653,67 @@ form.shipping-form input.form-control::placeholder,
   visibility: visible;
   margin-top: 15px;
   margin-bottom: 16px;
+}
+
+.product-details {
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.product-details::before {
+  content: "";
+  background:
+    radial-gradient(circle at 50% 0%, #f7f7f7 10px, transparent 10px),
+    radial-gradient(circle at 0% 0%, transparent 10px, #f7f7f7 10px);
+  background-size: 20px 10px;
+  background-repeat: repeat-x;
+  position: absolute;
+  width: 100%;
+  top: -10px;
+  height: 10px;
+  right: 0;
+  left: 0;
+}
+
+.product-details::after {
+  content: "";
+  /* background:
+    radial-gradient(circle at 50% 0%, #f7f7f7 10px, transparent 10px),
+    radial-gradient(circle at 0% 0%, transparent 10px, #f7f7f7 10px); */
+
+  background:
+    radial-gradient(circle at 50% 100%, #f7f7f7 10px, transparent 10px),
+    radial-gradient(circle at 0% 100%, transparent 10px, #f7f7f7 10px);
+  background-size: 20px 10px;
+  background-repeat: repeat-x;
+  position: absolute;
+  width: 100%;
+  bottom: -10px;
+  height: 10px;
+  right: 0;
+  left: 0;
+}
+
+.qty-circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+  background: #b8860b;
+  top: -12px;
+  left: 52px;
+}
+
+.product-box {
+  margin-top: 30px;
+}
+
+.order-img {
+  width: 65px;
+  height: 65px;
+  background: url("@/assets/images/wallpapers/transparent_wallpaper_products.png");
+  border: 1px solid rgb(222, 226, 230);
+  border-radius: 6px;
 }
 
 @media (max-width: 1199.98px) {

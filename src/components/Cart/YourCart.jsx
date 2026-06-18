@@ -14,7 +14,7 @@ import {
 } from "../../data/ShippingLocation";
 function YourCart(prop) {
   /* ************************************************************ */
-  const [userRegion, setUserRegion] = useState("");
+  const [userRegion, setUserRegion] = useState("Lagos");
   const [dropdown, setDropdown] = useState(false);
   const [isCountry, setIsCountry] = useState(false);
   const navigate = useNavigate();
@@ -38,32 +38,39 @@ function YourCart(prop) {
 
     localStorage.setItem("cart", JSON.stringify(newCart));
     prop.setAppCart([...newCart]);
+    if (!localStorage.getItem("cart").length) {
+      localStorage.removeItem("order");
+    }
   }
 
-  const totalAmount = prop.cart.reduce(
+  const total = prop.cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
 
   /* ************************************************************ */
 
-  /* ********************GET USER IP******************** */
-  /* ********************GET USER IP******************** */
-  const allStates = [
-    ...lagos,
-    ...southEast,
-    ...southSouth,
-    ...southWest,
-    ...farNorth,
-    ...northCentral,
-  ];
+  /* ********************SHIPPING CALCULATION******************** */
+  /* ********************SHIPPING CALCULATION******************** */
 
+  /* ************************************************************ */
+
+  useEffect(() => {
+    if (userRegion) {
+      prop.setShippingFee(prop.shippingPrice());
+    } else {
+      prop.setShippingFee(2000);
+    }
+  }, [userRegion]);
+
+  /* ********************GET USER IP******************** */
+  /* ********************GET USER IP******************** */
   async function getIp() {
     try {
       const response = await fetch("https://ipapi.co/json/");
       const ipData = await response.json();
 
-      if (allStates.includes(ipData.region)) {
+      if (prop.allStates.includes(ipData.region)) {
         setUserRegion(ipData.region);
       } else {
         setUserRegion("Lagos");
@@ -80,28 +87,16 @@ function YourCart(prop) {
 
   /* ************************************************************ */
 
-  /* ********************SHIPPING CALCULATION******************** */
-  /* ********************SHIPPING CALCULATION******************** */
-
-  function shippingPrice() {
-    if (!userRegion) return 0;
-
-    if (lagos.includes(userRegion)) return 2000;
-    if (southWest.includes(userRegion)) return 4000;
-    if (southSouth.includes(userRegion)) return 4000;
-    if (southEast.includes(userRegion)) return 6000;
-    if (northCentral.includes(userRegion)) return 8000;
-    if (farNorth.includes(userRegion)) return 8000;
-  }
   /* ************************************************************ */
 
   /* ********************SUBMIT FUNCTION******************** */
   /* ********************SUBMIT FUNCTION******************** */
   function submitForm(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
 
     setUserRegion(formData.get("state"));
+
     setDropdown(false);
   }
 
@@ -111,16 +106,27 @@ function YourCart(prop) {
   /* ********************SAVE ORDER FUNCTION******************** */
 
   async function handleOrder() {
-    const response = await fetch("http://localhost:3000/saveOrder", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `http://${import.meta.env.VITE_PRIVATE_IP}:3000/saveOrder`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: prop.cart,
+          totalAmount: totalAmount + shippingPrice(),
+        }),
       },
-      body: JSON.stringify({
-        cart: prop.cart,
-        totalAmount: totalAmount + shippingPrice(),
-      }),
-    });
+    );
+
+    const res = await response.json();
+    if (res.status) {
+      prop.setOrder(res.data);
+      navigate("/checkout");
+    } else {
+      alert(res.message);
+    }
   }
 
   /* ************************************************************ */
@@ -131,15 +137,15 @@ function YourCart(prop) {
       <BackToTop />
 
       {prop.cart.length < 1 ? (
-        <div className="d-flex flex-column align-items-center w-50 ms-auto me-auto  gap-4">
-          <img src={emptyCart} className="w-25" />
-          <p className="m-0 fw-bold fs-2">NO ITEMS IN YOUR CART</p>
+        <div
+          className="d-flex flex-column align-items-center  ms-auto me-auto  gap-5"
+          style={{ maxWidth: "500px" }}
+        >
+          <img src={emptyCart} className="w-25" style={{ opacity: "0.5" }} />
+          <p className="m-0 fw-bold fs-2">YOUR CART IS EMPTY</p>
 
           <Link to="/" className="text-reset">
-            <button
-              className="btn banner-button w-auto fw-light rounded   fw-medium"
-              style={{ padding: "10px 17px" }}
-            >
+            <button className="btn banner-button w-auto fw-light rounded  p-2 fw-medium">
               Keep Shopping
             </button>
           </Link>
@@ -172,7 +178,7 @@ function YourCart(prop) {
                         <img
                           className="product-img"
                           src={item.images[0]}
-                          style={{ width: "18%", aspectRatio: "1/1" }}
+                          style={{ width: "70px", aspectRatio: "1/1" }}
                         />
                         <Link
                           to={`/product/${item.id}`}
@@ -224,13 +230,16 @@ function YourCart(prop) {
           {/* ****ORDER-SUMMARY*********************************ORDER-SUMMARY******************************************ORDER-SUMMARY***** */}
           {/* **************************************************************************************************************** */
           /* **************************************************************************************************************** */}
-          <div className="order-summary align-self-end d-flex flex-column  p-4 rounded ">
+          <div
+            className="order-summary align-self-end d-flex flex-column  p-4 rounded "
+            id="orderSummary"
+          >
             <h5 className="mb-5 text-center">ORDER SUMMARY</h5>
             <div className="  d-flex justify-content-between   align-items-center mb-2 pb-1 bb mt-1">
               <p className="fw-bold m-0">SUBTOTAL:</p>{" "}
               <p className=" m-0 grey-color" style={{ fontSize: "18px" }}>
                 {" "}
-                ₦{totalAmount.toLocaleString()}
+                ₦{total.toLocaleString()}
               </p>
             </div>
             <div className="d-flex justify-content-between   align-items-center pb-1 bb  mb-2 mt-3 ">
@@ -242,7 +251,7 @@ function YourCart(prop) {
                 <p className=" m-0 grey-color ">
                   Orders within {userRegion} costs{" "}
                   <span className="text-black ms-1 fw-medium">
-                    ₦{shippingPrice().toLocaleString()}
+                    ₦{prop.shippingPrice(userRegion).toLocaleString()}
                   </span>
                 </p>
                 <p className=" m-0 grey-color" style={{ fontSize: "14px" }}>
@@ -290,7 +299,7 @@ function YourCart(prop) {
                       </option>
                       {!isCountry ? null : (
                         <Fragment>
-                          {allStates.map((state, index) => {
+                          {prop.allStates.map((state, index) => {
                             return (
                               <option
                                 name={state.toLowerCase()}
@@ -309,15 +318,14 @@ function YourCart(prop) {
                     {/* ********************City Selection******************** */}
                     <input
                       type="text"
-                      className="form-control p-2"
+                      className="form-control city-input p-2"
                       placeholder="--City--"
-                      style={{ fontSize: "13px" }}
+                      style={{ fontSize: "16px" }}
                       required
                     />
                     {/* ********************Button******************** */}
                     <button
                       className="btn banner-button align-self-end w-50 rounded p-1"
-                      // onClick={submitForm}
                       type="submit"
                     >
                       UPDATE
@@ -331,17 +339,21 @@ function YourCart(prop) {
               <p className="fw-bold m-0">GRAND TOTAL:</p>{" "}
               <p className="total-amt m-0">
                 {" "}
-                ₦{(totalAmount + shippingPrice()).toLocaleString()}
+                ₦{(total + prop.shippingPrice(userRegion)).toLocaleString()}
               </p>
             </div>
             <button
-              className="btn mt-3 banner-button w-100 align-self-end"
-              onClick={() => {
-                handleOrder();
-                // navigate("/checkout");
+              className="btn mt-3 banner-button w-100 align-self-end position-relative"
+              onClick={(e) => {
+                prop.setBin(null);
+                prop.handleOrder(e, prop.cart, total);
               }}
             >
-              PROCEED TO CHECKOUT
+              <div
+                class="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+                role="status"
+              ></div>
+              <span> PROCEED TO CHECKOUT</span>
             </button>
           </div>
         </div>

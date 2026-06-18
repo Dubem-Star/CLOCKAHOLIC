@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import QuantityPill from "../plugins/QuantityPill";
 
 function CartPopup(prop) {
-  const [cart, setCart] = useState(prop.cart);
-  useEffect(() => {
-    setCart(prop.cart);
-  }, [prop.cart]);
+  const total = prop.cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
   const closeBtnStyle = {
     top: "20px",
@@ -24,11 +24,15 @@ function CartPopup(prop) {
   function removeItem(e) {
     e.preventDefault();
     e.stopPropagation();
-    const newCart = cart.filter((item) => item.id != e.target.dataset.id);
+    const newCart = prop.cart.filter((item) => item.id != e.target.dataset.id);
 
     localStorage.setItem("cart", JSON.stringify(newCart));
-    setCart(newCart);
-    prop.setAppCart(newCart);
+    prop.setCart(newCart);
+    // prop.setAppCart(newCart);
+
+    if (!localStorage.getItem("cart").length) {
+      localStorage.removeItem("order");
+    }
   }
 
   const totalAmount = prop.cart.reduce(
@@ -52,17 +56,21 @@ function CartPopup(prop) {
           onClick={() => prop.toggle(false)}
         />
 
-        {cart.length < 1 ? (
+        {prop.cart.length < 1 ? (
           <Fragment>
             <div
-              className="d-flex flex-column align-items-center  gap-3"
+              className="d-flex flex-column align-items-center  gap-4"
               style={{ marginTop: "70px" }}
             >
-              <img src={emptyCart} className="w-25" />
-              <p className="m-0">No items in your cart</p>
+              <img
+                src={emptyCart}
+                className="w-25"
+                style={{ opacity: "0.5" }}
+              />
+              <p className="m-0 fw-bold">YOUR CART IS EMPTY</p>
 
               <Link to="/" className="text-reset">
-                <button className="btn banner-button w-auto fw-light">
+                <button className="btn banner-button w-auto rounded p-2">
                   Keep Shopping
                 </button>
               </Link>
@@ -105,7 +113,7 @@ function CartPopup(prop) {
             {/* ********************Cart Items******************** */
             /* ********************Cart Items******************** */}
             <div className="d-flex flex-column gap-2 ps-2 pe-2 flex-grow-1  overflow-y-auto no-scrollbar">
-              {cart.map((item, index) => {
+              {prop.cart.map((item, index) => {
                 return (
                   <Fragment key={item.id}>
                     <Link
@@ -130,11 +138,11 @@ function CartPopup(prop) {
                           </p>
                           <QuantityPill
                             isCart={true}
-                            cart={cart}
+                            cart={prop.cart}
                             item={item}
                             cartQuantity={item.quantity}
-                            setCart={setCart}
-                            setAppCart={prop.setAppCart}
+                            setCart={prop.setCart}
+                            setAppCart={prop.setCart}
                           />
                           <p className="mb-1 mt-1">
                             <span
@@ -185,10 +193,17 @@ function CartPopup(prop) {
                 </Link>
 
                 <button
-                  className="btn banner-button w-100"
-                  onClick={() => navigate("/checkout")}
+                  className="btn banner-button w-100 position-relative"
+                  onClick={(e) => {
+                    prop.setBin(null);
+                    prop.handleOrder(e, prop.cart, total);
+                  }}
                 >
-                  CHECKOUT
+                  <div
+                    class="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+                    role="status"
+                  ></div>
+                  <span>CHECKOUT</span>
                 </button>
               </div>
             </div>

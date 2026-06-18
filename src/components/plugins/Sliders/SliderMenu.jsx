@@ -80,7 +80,9 @@ const Sidebar = (prop) => {
     } else {
       document.body.style.overflow = `unset`;
     }
-    return () => {};
+
+    //   Activate Search Input ******************************
+    //   Activate Search Input ******************************
   }, [prop.isOpen]);
 
   //Search Result height Resize ******************************
