@@ -149,7 +149,6 @@ function OrderForm(prop) {
                 <div className="form-floating state-selection w-40">
                   <select
                     name="state"
-                    id="state"
                     className="form-select fs-14"
                     id="state"
                     required

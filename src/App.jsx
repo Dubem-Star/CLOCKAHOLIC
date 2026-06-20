@@ -63,13 +63,16 @@ function App() {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await fetch(`/api/get_products`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://clockaholic-store.vercel.app/api/get_products`,
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: "Get me all the products" }),
         },
-        body: JSON.stringify({ message: "Get me all the products" }),
-      });
+      );
       const data = await response.json();
       if (data.status) {
         setProducts(data.data);
@@ -212,16 +215,19 @@ function App() {
     text.style.opacity = "0";
     loader.style.opacity = "1";
 
-    const response = await fetch(`/api/handle_order`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://clockaholic-store.vercel.app/api/handle_order`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: order,
+          totalAmount: total,
+        }),
       },
-      body: JSON.stringify({
-        items: order,
-        totalAmount: total,
-      }),
-    });
+    );
 
     const res = await response.json();
     if (res.status) {

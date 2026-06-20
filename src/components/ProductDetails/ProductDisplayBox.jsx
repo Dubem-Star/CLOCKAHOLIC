@@ -21,8 +21,14 @@ function ProductDisplayBox(prop) {
   useEffect(() => {
     window.scrollTo(0, 0);
     prop.activatePopup(false);
+
     document.title = "Product Details | Clockaholic";
-  }, []);
+  }, [product]);
+
+  // useEffect(() => {
+  //   prop.activatePopup(false);
+  //   document.title = "Product Details | Clockaholic";
+  // }, []);
 
   useEffect(() => {
     if (product) {
