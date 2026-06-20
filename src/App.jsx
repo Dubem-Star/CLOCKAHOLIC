@@ -121,13 +121,16 @@ function App() {
         return;
       }
 
-      const response = await fetch(`/api/search`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `https://clockaholic-store.vercel.app/api/search`,
+        {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: value }),
         },
-        body: JSON.stringify({ query: value }),
-      });
+      );
 
       const results = await response.json();
 
