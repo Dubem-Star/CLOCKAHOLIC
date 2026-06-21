@@ -54,6 +54,7 @@ function ProductDetails(prop) {
             handleOrder={prop.handleOrder}
             bin={prop.bin}
             setBin={prop.setBin}
+            setSearchResults={prop.setSearchResults}
           />
         </div>
         <Footer />

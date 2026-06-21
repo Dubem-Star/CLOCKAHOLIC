@@ -17,11 +17,9 @@ function ProductDisplayBox(prop) {
   const [products, setProducts] = useState([]);
 
   const product = products.find((product) => product.id == id);
-
+  prop.activatePopup(false);
   useEffect(() => {
     window.scrollTo(0, 0);
-    prop.activatePopup(false);
-
     document.title = "Product Details | Clockaholic";
   }, [product]);
 
@@ -40,6 +38,8 @@ function ProductDisplayBox(prop) {
         prev.classList.remove("lay");
       }
     }
+
+    prop.setSearchResults([]);
 
     return () => {};
   }, [product]);
