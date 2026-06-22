@@ -263,7 +263,7 @@ function App() {
 
       <CartPopup
         popup={popup}
-        toggle={activatePopup}
+        activatePopup={activatePopup}
         cart={cart}
         setCart={setCart}
         handleOrder={handleOrder}

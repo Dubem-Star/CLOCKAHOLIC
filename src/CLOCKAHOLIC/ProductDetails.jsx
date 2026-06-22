@@ -55,6 +55,8 @@ function ProductDetails(prop) {
             bin={prop.bin}
             setBin={prop.setBin}
             setSearchResults={prop.setSearchResults}
+            setDarken={prop.setDarken}
+            darken={prop.darken}
           />
         </div>
         <Footer />

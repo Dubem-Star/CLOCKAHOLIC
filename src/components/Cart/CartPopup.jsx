@@ -53,7 +53,7 @@ function CartPopup(prop) {
           className="position-absolute copy-button  p-1 "
           src={close}
           style={closeBtnStyle}
-          onClick={() => prop.toggle(false)}
+          onClick={() => prop.activatePopup(false)}
         />
 
         {prop.cart.length < 1 ? (

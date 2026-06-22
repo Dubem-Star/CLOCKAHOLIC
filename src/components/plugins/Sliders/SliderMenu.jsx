@@ -8,7 +8,11 @@ const Sidebar = (prop) => {
   const [search, setSearch] = useState(null);
   const searchResultsCont = useRef(null);
   const searchInput = useRef(null);
+  const isOpenRef = useRef(prop.isOpen);
 
+  useEffect(() => {
+    isOpenRef.current = prop.isOpen;
+  }, [prop.isOpen]);
   // Define the animation states
   const sidebarVariants = {
     open: {
@@ -39,7 +43,7 @@ const Sidebar = (prop) => {
         if (prop.isOpen) {
           prop.setDarken(true);
         } else {
-          prop.setDarken(false);
+          // prop.setDarken(false);
           prop.setIsSearchMode(false);
           if (prop.searchResults.length > 0) {
             prop.setIsOpen(true);
@@ -141,6 +145,10 @@ const Sidebar = (prop) => {
               placeholder="Search for a product"
               data-input="sliderMenu"
               ref={searchInput}
+              onClick={() => {
+                console.log("Search input clicked");
+                prop.setDarken(true);
+              }}
             />
             <SearchIcon
               className="position-absolute top-50 "

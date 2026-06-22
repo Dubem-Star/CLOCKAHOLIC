@@ -17,8 +17,10 @@ function ProductDisplayBox(prop) {
   const [products, setProducts] = useState([]);
 
   const product = products.find((product) => product.id == id);
-  prop.activatePopup(false);
+
   useEffect(() => {
+    prop.activatePopup(false);
+    prop.setDarken(false);
     window.scrollTo(0, 0);
     document.title = "Product Details | Clockaholic";
   }, [product]);
