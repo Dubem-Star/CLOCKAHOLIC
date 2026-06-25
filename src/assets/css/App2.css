@@ -416,13 +416,18 @@ strong {
     padding: 0 !important;
   }
 
+  .user-form .policy,
   .user-form button {
     display: none !important;
   }
 
-  /* .checkout-container .product-details {
-    margin-top: 50px;
+  /* .product-details .container {
+    width: 100% !important;
   } */
+
+  .product-details .policy {
+    display: flex !important;
+  }
 
   .product-details button {
     display: block !important;
@@ -618,10 +623,10 @@ form.shipping-form input.form-control::placeholder,
 
 .mode-of-payment input:checked,
 .mode-of-payment input:checked:focus,
-.mode-of-payment
-  input:checked:focus-visible
-  .mode-of-payment
-  input:checked:active {
+.policy .checker:checked,
+.policy .checker:checked:focus,
+.checkout-container input:checked:focus-visible,
+.checkout-container input:checked:active {
   background-color: var(
     --sauce-color
   ) !important; /* Use your special green color */

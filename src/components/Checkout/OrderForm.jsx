@@ -6,7 +6,8 @@ function OrderForm(prop) {
   const bankTransferMod = useRef(null);
   const shippingForm = useRef(null);
   const [region, setRegion] = useState(null);
-
+  const [mod, setMod] = useState("Bank Transfer");
+  const [shippingFee, setShippingFee] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
     prop.activatePopup(false);
@@ -52,9 +53,59 @@ function OrderForm(prop) {
         input.closest(".mod-box").classList.remove("glow");
       }
     }
+
+    setMod(selectedMod);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = shippingForm.current;
+
+    if (form && !form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    prop.completeOrder(e, prop.orderDoc.orderId, mod);
   }
   /* ************************************************************* */
   /* ************************************************************* */
+
+  /* ********************PREPARE ORDER FOR APP.JSX******************** */
+  /* ********************PREPARE ORDER FOR APP.JSX******************** */
+  function prepareOrder(e, orderId, form, mod) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const shippingDetails = {
+      ...Object.fromEntries(formData.entries()),
+      modeOfPayment: mod,
+      orderId: orderId,
+      shippingFee: shippingFee,
+      totalAmount: prop.orderDoc.totalAmount,
+    };
+
+    prop.completeOrder(e, prop.orderDoc.orderId, shippingDetails);
+  }
+
+  const termsCheckbox = useRef(null);
+
+  useEffect(() => {
+    function handleTermsCheckboxChange(e) {
+      if (window.innerWidth < 768) {
+        termsCheckbox.current.checked = true;
+      }
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < 768) {
+          termsCheckbox.current.checked = true;
+        }
+      });
+    }
+
+    handleTermsCheckboxChange();
+  }, []);
 
   return (
     <>
@@ -76,6 +127,7 @@ function OrderForm(prop) {
               action="#"
               id="shippingAddressForm"
               className="form-control container-fluid checkout-form border-0 d-flex flex-column gap-3"
+              onSubmit={handleSubmit}
             >
               <div className="form-column d-flex flex-column  ">
                 <label className=" fs-4 " htmlFor="emailContact">
@@ -154,6 +206,16 @@ function OrderForm(prop) {
                     required
                     onChange={(e) => {
                       setRegion(e.currentTarget.value);
+                      const newShippingFee = prop.shippingPrice(
+                        e.currentTarget.value,
+                      );
+
+                      setShippingFee(newShippingFee);
+
+                      prop.orderDoc.totalAmount =
+                        prop.orderDoc.totalAmount -
+                        shippingFee +
+                        newShippingFee;
                     }}
                   >
                     <option value="" className="state-placeholder ">
@@ -271,7 +333,7 @@ function OrderForm(prop) {
                         htmlFor="codCheckbox"
                         className="form-check-label fs-14"
                       >
-                        Cash on Delivery (COD)
+                        Cash on Delivery
                       </label>
                     </div>
                     <p className="brief-desc grey-color">
@@ -281,12 +343,52 @@ function OrderForm(prop) {
                   </div>
                 </div>
 
+                <div className="policy mt-5 d-flex align-items-center gap-2">
+                  <input
+                    id="checkbox"
+                    type="checkbox"
+                    className="checker form-check-input m-0"
+                    name="termsCheckbox"
+                    required
+                    ref={termsCheckbox}
+                  />
+
+                  <span className="fs-15">
+                    I have read and agree to the{" "}
+                    <a
+                      href="#"
+                      className="text-decoration-none text-reset fw-bold fs-14"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        prop.setTermsOfService(true);
+                        prop.setIsShowLegal(true);
+                      }}
+                    >
+                      Terms and Condition
+                    </a>
+                  </span>
+                </div>
+
                 <button
                   type="submit"
-                  className="btn mt-5 banner-button w-100"
+                  className="btn mt-4 banner-button w-100 position-relative"
                   style={{ borderRadius: "6px" }}
+                  onClick={(e) => {
+                    const form = e.currentTarget.closest("form");
+
+                    if (form && !form.checkValidity()) {
+                      form.reportValidity();
+                      return;
+                    }
+
+                    prepareOrder(e, prop.orderDoc.orderId, form, mod);
+                  }}
                 >
-                  PLACE ORDER
+                  <div
+                    className="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+                    role="status"
+                  ></div>
+                  <span>COMPLETE ORDER</span>
                 </button>
               </div>
             </form>
@@ -298,6 +400,11 @@ function OrderForm(prop) {
             shippingForm={shippingForm}
             allStates={prop.allStates}
             region={region}
+            setTermsOfService={prop.setTermsOfService}
+            setIsShowLegal={prop.setIsShowLegal}
+            completeOrder={prop.completeOrder}
+            mod={mod}
+            prepareOrder={prepareOrder}
           />
         </div>
       </div>

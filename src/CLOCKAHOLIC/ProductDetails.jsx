@@ -59,7 +59,13 @@ function ProductDetails(prop) {
             darken={prop.darken}
           />
         </div>
-        <Footer />
+        <Footer
+          isShowLegal={prop.isShowLegal}
+          setIsShowLegal={prop.setIsShowLegal}
+          setTermsOfService={prop.setTermsOfService}
+          setPrivacyPolicy={prop.setPrivacyPolicy}
+          setReturnPolicy={prop.setReturnPolicy}
+        />
       </div>
     </>
   );

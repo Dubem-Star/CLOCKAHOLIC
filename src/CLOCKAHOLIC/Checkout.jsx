@@ -24,7 +24,6 @@ function Checkout(prop) {
   useEffect(() => {
     if (prop.order) {
       if (prop.order.products[0].bin) {
-        console.log(prop.order);
         localStorage.setItem("order", JSON.stringify({ ...prop.order }));
         return setOrderDoc(JSON.parse(localStorage.getItem("order")));
       } else {
@@ -97,7 +96,13 @@ function Checkout(prop) {
         >
           ⟵go back
         </Link>
-        <Footer />
+        <Footer
+          isShowLegal={prop.isShowLegal}
+          setIsShowLegal={prop.setIsShowLegal}
+          setTermsOfService={prop.setTermsOfService}
+          setPrivacyPolicy={prop.setPrivacyPolicy}
+          setReturnPolicy={prop.setReturnPolicy}
+        />
       </>
     );
   } else {
@@ -162,11 +167,16 @@ function Checkout(prop) {
             >
               ⟵go back
             </Link>
-            <Footer />
+            <Footer
+              isShowLegal={prop.isShowLegal}
+              setIsShowLegal={prop.setIsShowLegal}
+              setTermsOfService={prop.setTermsOfService}
+              setPrivacyPolicy={prop.setPrivacyPolicy}
+              setReturnPolicy={prop.setReturnPolicy}
+            />
           </>
         );
       }
-
       const cart = JSON.parse(localStorage.getItem("cart"));
       orderDoc.products = cart;
       orderDoc.totalAmount = JSON.parse(localStorage.getItem("cart")).reduce(
@@ -211,10 +221,18 @@ function Checkout(prop) {
             orderDoc={orderDoc}
             shippingPrice={prop.shippingPrice}
             allStates={prop.allStates}
+            setTermsOfService={prop.setTermsOfService}
+            setIsShowLegal={prop.setIsShowLegal}
+            completeOrder={prop.completeOrder}
           />
-          ;
         </div>
-        <Footer />
+        <Footer
+          isShowLegal={prop.isShowLegal}
+          setIsShowLegal={prop.setIsShowLegal}
+          setTermsOfService={prop.setTermsOfService}
+          setPrivacyPolicy={prop.setPrivacyPolicy}
+          setReturnPolicy={prop.setReturnPolicy}
+        />
       </div>
     </>
   );

@@ -1,15 +1,17 @@
+import { useRef } from "react";
 function OrderSummary(prop) {
+  const termsCheckbox = useRef(null);
   return (
     <>
       <div
-        className="product-details container w-md-50 w-100 pt-2 sticky-top mx-auto mt-5 mt-md-0"
-        style={{ maxHeight: "fit-content", top: "20px" }}
+        className="product-details   w-100 p-2 sticky-top mx-auto mt-5 mt-md-0"
+        style={{ maxHeight: "fit-content", top: "20px", width: "1000px" }}
       >
-        <div className="">
+        <div className="mb-3">
           <h4 className="fs-4 text-center fw-normal">Order Summary</h4>
         </div>
 
-        <div className="product-box container " id="productBox">
+        <div className="product-box p-3 mt-2 " id="productBox">
           {prop.orderDoc.products.map((product) => {
             return (
               <div key={product.id}>
@@ -43,7 +45,7 @@ function OrderSummary(prop) {
           })}
         </div>
 
-        <div className="d-flex flex-column container mt-3 mb-2">
+        <div className="d-flex flex-column p-3 mt-3 mb-2">
           <div className="d-flex justify-content-between">
             {" "}
             <p className="m-0">Subtotal: </p>{" "}
@@ -70,36 +72,63 @@ function OrderSummary(prop) {
           </div>
         </div>
 
+        <div
+          className="policy mt-4 d-flex align-items-center  px-3 d-none"
+          style={{ gap: "10px" }}
+        >
+          <input
+            id="checkbox"
+            type="checkbox"
+            className="checker form-check-input m-0"
+            ref={termsCheckbox}
+            required
+          />
+
+          <span className="fs-14">
+            I have read and agree to the{" "}
+            <a
+              href="#"
+              className="text-decoration-none text-reset fw-bold fs-14"
+              onClick={(e) => {
+                e.preventDefault();
+                prop.setTermsOfService(true);
+                prop.setIsShowLegal(true);
+              }}
+            >
+              Terms and Condition
+            </a>
+          </span>
+        </div>
+
         <button
           type="submit"
-          className="btn mt-4 mb-1 banner-button w-100 d-none"
+          className="btn mt-4 mb-1 banner-button w-100 d-none position-relative"
           style={{ borderRadius: "6px" }}
-          onClick={() => {
-            const formData = new FormData(prop.shippingForm.current);
-            const entries = Object.fromEntries(formData.entries());
-            const skipField = ["zip-code"];
-
-            for (const [key, value] of Object.entries(entries)) {
-              if (skipField.includes(key)) {
-                continue;
-              }
-              if (
-                value.trim() === "" ||
-                value === null ||
-                value === undefined
-              ) {
-                window.scrollTo({
-                  top: 0,
-                  left: 0,
-                  behavior: "smooth",
-                });
-                alert("Please fill all required fields.");
-                return;
-              }
+          onClick={(e) => {
+            if (
+              !prop.shippingForm.current.checkValidity() ||
+              !termsCheckbox.current.checked
+            ) {
+              prop.shippingForm.current.reportValidity();
+              alert(
+                "Please fill all required fields and accept the terms to proceed.",
+              );
+              return;
             }
+
+            prop.prepareOrder(
+              e,
+              prop.orderDoc.orderId,
+              prop.shippingForm.current,
+              prop.mod,
+            );
           }}
         >
-          PLACE ORDER
+          <div
+            className="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+            role="status"
+          ></div>
+          <span>COMPLETE ORDER</span>
         </button>
       </div>
     </>

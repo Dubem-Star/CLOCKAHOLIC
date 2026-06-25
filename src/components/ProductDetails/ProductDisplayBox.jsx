@@ -114,6 +114,14 @@ function ProductDisplayBox(prop) {
         >
           ⟵go back
         </Link>
+
+        <Footer
+          isShowLegal={prop.isShowLegal}
+          setIsShowLegal={prop.setIsShowLegal}
+          setTermsOfService={prop.setTermsOfService}
+          setPrivacyPolicy={prop.setPrivacyPolicy}
+          setReturnPolicy={prop.setReturnPolicy}
+        />
       </>
     );
   }

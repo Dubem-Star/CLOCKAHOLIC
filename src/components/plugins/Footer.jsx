@@ -4,7 +4,7 @@ import tiktokLogo from "@/assets/images/img_icons/tiktok.png";
 import facebookLogo from "@/assets/images/img_icons/facebook.png";
 import twitterLogo from "@/assets/images/img_icons/twitter.png";
 
-function Footer() {
+function Footer(prop) {
   return (
     <>
       <div className="Footer">
@@ -39,11 +39,7 @@ function Footer() {
                   Categories
                 </a>
               </li>
-              <li>
-                <a href="#" className="underline">
-                  News
-                </a>
-              </li>
+
               <li>
                 <a href="#" className="underline">
                   Contact Us
@@ -63,32 +59,42 @@ function Footer() {
             <h1>Legal</h1>
             <ul>
               <li>
-                <a href="#" className="underline">
+                <a
+                  href="#"
+                  className="underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prop.setPrivacyPolicy(true);
+                    prop.setIsShowLegal(true);
+                  }}
+                >
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="underline">
+                <a
+                  href="#"
+                  className="underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prop.setReturnPolicy(true);
+                    prop.setIsShowLegal(true);
+                  }}
+                >
                   Return Policy
                 </a>
               </li>
+
               <li>
-                <a href="#" className="underline">
-                  Refund Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="underline">
-                  Track Order
-                </a>
-              </li>
-              <li>
-                <a href="#" className="underline">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="underline">
+                <a
+                  href="#"
+                  className="underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prop.setTermsOfService(true);
+                    prop.setIsShowLegal(true);
+                  }}
+                >
                   Terms and Condition
                 </a>
               </li>

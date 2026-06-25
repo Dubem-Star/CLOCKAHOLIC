@@ -58,7 +58,13 @@ function Home(prop) {
         <OnSale atcHomePage={prop.atcHomePage} onSale={prop.onSale} />
         <ExploreBanner />
       </div>
-      <Footer />
+      <Footer
+        isShowLegal={prop.isShowLegal}
+        setIsShowLegal={prop.setIsShowLegal}
+        setTermsOfService={prop.setTermsOfService}
+        setPrivacyPolicy={prop.setPrivacyPolicy}
+        setReturnPolicy={prop.setReturnPolicy}
+      />
     </>
   );
 }

@@ -83,7 +83,7 @@ function ProductButtons(prop) {
             }}
           >
             <div
-              class="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
+              className="spinner-border text-white position-absolute start-0 end-0 top-0 bottom-0 m-auto w-22px h-22px "
               role="status"
             ></div>
             <span>BUY IT NOW</span>

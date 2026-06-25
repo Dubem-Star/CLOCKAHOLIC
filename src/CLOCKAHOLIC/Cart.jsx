@@ -43,7 +43,13 @@ function Cart(prop) {
             allStates={prop.allStates}
           />
         </div>
-        <Footer />
+        <Footer
+          isShowLegal={prop.isShowLegal}
+          setIsShowLegal={prop.setIsShowLegal}
+          setTermsOfService={prop.setTermsOfService}
+          setPrivacyPolicy={prop.setPrivacyPolicy}
+          setReturnPolicy={prop.setReturnPolicy}
+        />
       </div>
     </>
   );

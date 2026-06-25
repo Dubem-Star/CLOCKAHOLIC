@@ -4,6 +4,7 @@ import Home from "@/CLOCKAHOLIC/Home.jsx";
 import ProductDetails from "@/CLOCKAHOLIC/ProductDetails.jsx";
 import Cart from "./CLOCKAHOLIC/Cart";
 import Checkout from "./CLOCKAHOLIC/Checkout";
+import Legals from "./components/plugins/Legal/Legals";
 import {
   BrowserRouter,
   Routes,
@@ -22,6 +23,7 @@ import {
   northCentral,
 } from "./data/ShippingLocation";
 import CartPopup from "./components/Cart/CartPopup";
+import Footer from "./components/plugins/Footer";
 
 function App() {
   function reloadCart() {
@@ -46,7 +48,12 @@ function App() {
   const [order, setOrder] = useState(null);
   const [shippingFee, setShippingFee] = useState(null);
   const [bin, setBin] = useState(null);
+  const [isShowLegal, setIsShowLegal] = useState(false);
+  const [termsOfService, setTermsOfService] = useState(false);
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [returnPolicy, setReturnPolicy] = useState(false);
   const navigate = useNavigate();
+
   const allStates = [
     ...lagos,
     ...southEast,
@@ -244,6 +251,36 @@ function App() {
     }
   }
 
+  /* ********************COMPLETE ORDER FUNCTION******************** */
+  /* ********************COMPLETE ORDER FUNCTION******************** */
+  async function completeOrder(e, orderId, shippingDetails) {
+    const loader = e.currentTarget.querySelector(".spinner-border");
+    const text = e.currentTarget.querySelector("span");
+
+    text.style.opacity = "0";
+    loader.style.opacity = "1";
+
+    console.log(shippingDetails);
+
+    const response = await fetch(
+      "https://clockaholic-store.vercel.app/api/complete_order",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ shippingDetails }),
+      },
+    );
+
+    const res = await response.json();
+
+    console.log(res.data);
+
+    text.style.opacity = "1";
+    loader.style.opacity = "0";
+  }
+
   {
     /* *********************************************************************** */
     /* *********************************************************************** */
@@ -269,6 +306,19 @@ function App() {
         handleOrder={handleOrder}
         bin={bin}
         setBin={setBin}
+      />
+
+      <Legals
+        darken={darken}
+        setDarken={setDarken}
+        isShowLegal={isShowLegal}
+        setIsShowLegal={setIsShowLegal}
+        termsOfService={termsOfService}
+        setTermsOfService={setTermsOfService}
+        privacyPolicy={privacyPolicy}
+        setPrivacyPolicy={setPrivacyPolicy}
+        returnPolicy={returnPolicy}
+        setReturnPolicy={setReturnPolicy}
       />
 
       <Routes>
@@ -297,6 +347,11 @@ function App() {
               newlyArrived={newlyArrived}
               bestSelling={bestSelling}
               onSale={onSale}
+              isShowLegal={isShowLegal}
+              setIsShowLegal={setIsShowLegal}
+              setTermsOfService={setTermsOfService}
+              setPrivacyPolicy={setPrivacyPolicy}
+              setReturnPolicy={setReturnPolicy}
             />
           }
         />
@@ -333,6 +388,11 @@ function App() {
               handleOrder={handleOrder}
               bin={bin}
               setBin={setBin}
+              isShowLegal={isShowLegal}
+              setIsShowLegal={setIsShowLegal}
+              setTermsOfService={setTermsOfService}
+              setPrivacyPolicy={setPrivacyPolicy}
+              setReturnPolicy={setReturnPolicy}
             />
           }
         />
@@ -365,6 +425,11 @@ function App() {
               setBin={setBin}
               shippingPrice={shippingPrice}
               allStates={allStates}
+              isShowLegal={isShowLegal}
+              setIsShowLegal={setIsShowLegal}
+              setTermsOfService={setTermsOfService}
+              setPrivacyPolicy={setPrivacyPolicy}
+              setReturnPolicy={setReturnPolicy}
             />
           }
         />
@@ -395,6 +460,12 @@ function App() {
               bin={bin}
               setBin={setBin}
               allStates={allStates}
+              isShowLegal={isShowLegal}
+              setIsShowLegal={setIsShowLegal}
+              setTermsOfService={setTermsOfService}
+              setPrivacyPolicy={setPrivacyPolicy}
+              setReturnPolicy={setReturnPolicy}
+              completeOrder={completeOrder}
             />
           }
         />

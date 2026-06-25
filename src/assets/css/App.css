@@ -15,6 +15,13 @@
   color: white;
 }
 
+.legal-close-btn:focus,
+.legal-close-btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* ************************************************ */
 /*Font Size Styling*/
 /* ************************************************ */
