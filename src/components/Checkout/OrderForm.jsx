@@ -7,7 +7,7 @@ function OrderForm(prop) {
   const shippingForm = useRef(null);
   const [region, setRegion] = useState(null);
   const [mod, setMod] = useState("Bank Transfer");
-  const [shippingFee, setShippingFee] = useState(0);
+  const [finalAmt, setFinalAmt] = useState(0);
   useEffect(() => {
     window.scrollTo(0, 0);
     prop.activatePopup(false);
@@ -83,7 +83,7 @@ function OrderForm(prop) {
       modeOfPayment: mod,
       orderId: orderId,
       shippingFee: shippingFee,
-      totalAmount: prop.orderDoc.totalAmount,
+      totalAmount: finalAmt,
     };
 
     prop.completeOrder(e, prop.orderDoc.orderId, shippingDetails);
@@ -206,16 +206,6 @@ function OrderForm(prop) {
                     required
                     onChange={(e) => {
                       setRegion(e.currentTarget.value);
-                      const newShippingFee = prop.shippingPrice(
-                        e.currentTarget.value,
-                      );
-
-                      setShippingFee(newShippingFee);
-
-                      prop.orderDoc.totalAmount =
-                        prop.orderDoc.totalAmount -
-                        shippingFee +
-                        newShippingFee;
                     }}
                   >
                     <option value="" className="state-placeholder ">
@@ -405,6 +395,7 @@ function OrderForm(prop) {
             completeOrder={prop.completeOrder}
             mod={mod}
             prepareOrder={prepareOrder}
+            setFinalAmt={setFinalAmt}
           />
         </div>
       </div>

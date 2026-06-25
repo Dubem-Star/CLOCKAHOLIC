@@ -262,6 +262,8 @@ function App() {
 
     console.log(shippingDetails);
 
+    return;
+
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/complete_order",
       {

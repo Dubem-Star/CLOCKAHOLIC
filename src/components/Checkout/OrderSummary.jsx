@@ -1,6 +1,12 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 function OrderSummary(prop) {
   const termsCheckbox = useRef(null);
+
+  useEffect(() => {
+    prop.setFinalAmt(
+      prop.orderDoc.totalAmount + prop.shippingPrice(prop.region),
+    );
+  }, [prop.region]);
   return (
     <>
       <div
