@@ -22,7 +22,7 @@ async function completeOrder(req, res) {
     //   reference: transactionReference
     // }
 
-    const updatedOrder = await Order.updateOne(
+    const updatedOrder = await Order.findOneAndUpdate(
       { orderId: shippingDetails.orderId },
       {
         $set: {
