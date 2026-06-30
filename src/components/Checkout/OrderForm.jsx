@@ -82,7 +82,7 @@ function OrderForm(prop) {
       ...Object.fromEntries(formData.entries()),
       modeOfPayment: mod,
       orderId: orderId,
-      shippingFee: shippingFee,
+      shippingFee: prop.shippingPrice(region),
       totalAmount: finalAmt,
     };
 

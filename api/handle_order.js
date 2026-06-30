@@ -14,7 +14,7 @@ const handleOrder = async (req, res) => {
     const { items, totalAmount } = req.body;
     console.log(items);
 
-    const order = await Order.insertOne({
+    const order = await Order.create({
       products: items,
       totalAmount,
     });

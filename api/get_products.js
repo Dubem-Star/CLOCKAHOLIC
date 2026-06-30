@@ -2,6 +2,7 @@ import "dotenv/config";
 import { Product, Order } from "../models.js";
 import connectDb from "./db.js";
 import setCors from "./cors.js";
+
 const getProducts = async (req, res) => {
   try {
     setCors(res);

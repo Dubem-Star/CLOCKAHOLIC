@@ -1,4 +1,4 @@
-import { Order, Product } from "../models.js";
+import { Order, Product, DeliveryDetail } from "../models.js";
 import connectDb from "./db.js";
 import setCors from "./cors.js";
 import { v4 as uuidv4 } from "uuid";
@@ -14,6 +14,11 @@ async function completeOrder(req, res) {
     await connectDb();
     const { shippingDetails } = req.body;
 
+    if (!shippingDetails.email || !shippingDetails.firstName) {
+      return res.status(400).send("Missing required shipping details.");
+    }
+    await DeliveryDetail.create(shippingDetails);
+
     // const transactionReference = uuidv4();
 
     // const paystackPayload = {
@@ -28,6 +33,8 @@ async function completeOrder(req, res) {
         $set: {
           orderOwner: `${shippingDetails.firstname} ${shippingDetails.lastname}`,
           totalAmount: shippingDetails.totalAmount,
+          shippingFee: shippingDetails.shippingFee,
+          deliveryDetails: shippingDetails,
         },
       },
 
@@ -35,6 +42,7 @@ async function completeOrder(req, res) {
     );
 
     if (!updatedOrder) return res.status(404).send("Order not found");
+    console.log(updatedOrder.shippingFee);
 
     res.status(200).json({ ok: true, data: updatedOrder });
     console.log(`Your order is updated: ${updatedOrder}`);

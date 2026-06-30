@@ -20,6 +20,24 @@ const productsSchema = new mongoose.Schema({
   strapColor: { type: String },
 });
 
+const deliveryDetailsSchema = new mongoose.Schema(
+  {
+    email: { type: String },
+    firstName: { type: String },
+    lastName: { type: String },
+    country: { type: String },
+    address: { type: String },
+    city: { type: String },
+    state: { type: String },
+    phoneNo: { type: String },
+    zipCode: { type: String },
+    modeOfPayment: { type: String },
+    shippingFee: { type: Number },
+    orderId: { type: String },
+  },
+  { timestamps: true },
+);
+
 const ordersSchema = new mongoose.Schema(
   {
     orderOwner: { type: String, default: "loading..." },
@@ -30,7 +48,9 @@ const ordersSchema = new mongoose.Schema(
         bin: { type: Boolean, default: false },
       },
     ],
+    deliveryDetails: { ...deliveryDetailsSchema.obj },
     totalAmount: { type: Number, required: true },
+
     status: { type: String, default: "pending..." },
     paystackRef: { type: String },
     orderId: { type: String, default: uuidv4 },
@@ -40,3 +60,7 @@ const ordersSchema = new mongoose.Schema(
 
 export const Product = mongoose.model("Products", productsSchema);
 export const Order = mongoose.model("Orders", ordersSchema);
+export const DeliveryDetails = mongoose.model(
+  "DeliveryDetails",
+  deliveryDetailsSchema,
+);
