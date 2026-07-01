@@ -14,7 +14,7 @@ async function completeOrder(req, res) {
     await connectDb();
     const { shippingDetails } = req.body;
 
-    if (!shippingDetails.email || !shippingDetails.firstName) {
+    if (!shippingDetails.email || !shippingDetails.firstname) {
       return res.status(400).send("Missing required shipping details.");
     }
     await DeliveryDetails.create(shippingDetails);
