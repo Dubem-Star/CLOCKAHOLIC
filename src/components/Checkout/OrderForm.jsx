@@ -169,14 +169,14 @@ function OrderForm(prop) {
                 <input
                   type="text"
                   className="form-control py-2 "
-                  name="firstname"
+                  name="firstName"
                   placeholder="First name:"
                   required
                 />
                 <input
                   type="text"
                   className="form-control"
-                  name="lastname"
+                  name="lastName"
                   placeholder="Last name:"
                   required
                 />
