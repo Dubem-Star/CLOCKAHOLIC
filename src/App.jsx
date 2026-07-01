@@ -275,7 +275,14 @@ function App() {
 
     const res = await response.json();
 
-    console.log(res.data);
+    if (res.ok) {
+      if (res.mod === "Cash on Delivery")
+        return alert("Cash on Delivery Override.");
+      window.location.href = res.data.authorization_url;
+    } else {
+      alert(res.data);
+      console.error(res.data);
+    }
 
     text.style.opacity = "1";
     loader.style.opacity = "0";
