@@ -1,4 +1,4 @@
-import { Order, Product, DeliveryDetail } from "../models.js";
+import { Order, Product, DeliveryDetails } from "../models.js";
 import connectDb from "./db.js";
 import setCors from "./cors.js";
 import { v4 as uuidv4 } from "uuid";
@@ -17,7 +17,7 @@ async function completeOrder(req, res) {
     if (!shippingDetails.email || !shippingDetails.firstName) {
       return res.status(400).send("Missing required shipping details.");
     }
-    await DeliveryDetail.create(shippingDetails);
+    await DeliveryDetails.create(shippingDetails);
 
     // const transactionReference = uuidv4();
 
