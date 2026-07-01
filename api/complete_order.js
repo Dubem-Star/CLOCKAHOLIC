@@ -14,7 +14,7 @@ async function completeOrder(req, res) {
     await connectDb();
     const { shippingDetails } = req.body;
 
-    if (!shippingDetails.email || !shippingDetails.firstname) {
+    if (!shippingDetails.email || !shippingDetails.firstName) {
       return res.status(400).send("Missing required shipping details.");
     }
     await DeliveryDetails.create(shippingDetails);
@@ -31,7 +31,7 @@ async function completeOrder(req, res) {
       { orderId: shippingDetails.orderId },
       {
         $set: {
-          orderOwner: `${shippingDetails.firstname} ${shippingDetails.lastname}`,
+          orderOwner: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
           totalAmount: shippingDetails.totalAmount,
           shippingFee: shippingDetails.shippingFee,
           deliveryDetails: shippingDetails,
