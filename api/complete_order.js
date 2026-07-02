@@ -29,8 +29,11 @@ async function completeOrder(req, res) {
       amount: shippingDetails.totalAmount * 100,
       reference: transactionReference,
     };
-    if (shippingDetails.modeOfPayment === "Bank Transfer")
+    if (shippingDetails.modeOfPayment === "Bank Transfer") {
       paystackPayload.channels = ["bank_transfer"];
+    } else if (shippingDetails.modeOfPayment === "Credit Card") {
+      paystackPayload.channels = ["card"];
+    }
 
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
@@ -51,6 +54,7 @@ async function completeOrder(req, res) {
           totalAmount: shippingDetails.totalAmount,
           shippingFee: shippingDetails.shippingFee,
           deliveryDetails: shippingDetails,
+          paystackRef: transactionReference,
         },
       },
 
@@ -65,7 +69,6 @@ async function completeOrder(req, res) {
       data: response.data.data,
       mod: shippingDetails.modeOfPayment,
     });
-    console.log(`Your order is updated: ${updatedOrder}`);
   } catch (e) {
     res.status(500).json({ ok: false, data: `Internal Error: ${e}` });
     console.log(`Error: ${e}`);

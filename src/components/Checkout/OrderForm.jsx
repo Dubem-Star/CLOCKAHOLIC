@@ -6,24 +6,42 @@ function OrderForm(prop) {
   const bankTransferMod = useRef(null);
   const shippingForm = useRef(null);
   const [region, setRegion] = useState(null);
-  const [mod, setMod] = useState("Bank Transfer");
+  const [mod, setMod] = useState(
+    localStorage.getItem("selectedMod") || "Bank Transfer",
+  );
   const [finalAmt, setFinalAmt] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     prop.activatePopup(false);
     document.title = "Checkout Page | Clockaholic";
-
-    /* ******************** Check Bank Transfer MOD by default******************** */
-    /* ******************** Check Bank Transfer MOD by default******************** */
-    if (bankTransferMod.current) {
-      bankTransferMod.current.checked = true;
-      bankTransferMod.current
-        .closest(".mod-box")
-        .querySelector(".brief-desc")
-        .classList.add("show");
-      bankTransferMod.current.closest(".mod-box").classList.add("glow");
-    }
   }, []);
+
+  /* ******************** Check Bank Transfer MOD by default******************** */
+  /* ******************** Check Bank Transfer MOD by default******************** */
+  useEffect(() => {
+    const inputs = bankTransferMod.current
+      .closest(".mode-of-payment")
+      .querySelectorAll("input");
+
+    for (let input of inputs) {
+      if (input.nextElementSibling.innerHTML === mod) {
+        input.checked = true;
+        input
+          .closest(".mod-box")
+          .querySelector(".brief-desc")
+          .classList.add("show");
+        input.closest(".mod-box").classList.add("glow");
+      } else {
+        input.checked = false;
+        input
+          .closest(".mod-box")
+          .querySelector(".brief-desc")
+          .classList.remove("show");
+        input.closest(".mod-box").classList.remove("glow");
+      }
+    }
+  }, [mod]);
 
   /* ********************HANDLE MOD FUNCTION******************** */
   /* ********************HANDLE MOD FUNCTION******************** */
@@ -53,7 +71,7 @@ function OrderForm(prop) {
         input.closest(".mod-box").classList.remove("glow");
       }
     }
-
+    localStorage.setItem("selectedMod", selectedMod);
     setMod(selectedMod);
   }
 
