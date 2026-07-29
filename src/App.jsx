@@ -281,6 +281,7 @@ function App() {
       if (res.mod === "Cash on Delivery")
         return alert("Cash on Delivery Override.");
       setReference(res.reference);
+      console.log(res.reference);
       window.location.href = res.data.authorization_url;
     } else {
       alert(res.data);

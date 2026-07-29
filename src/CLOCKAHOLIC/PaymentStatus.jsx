@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 function paymentStatus(prop) {
   const [isSuccessful, setIsSuccessful] = useState("fetching...");
 
+  console.log(prop.reference);
   async function verifyPayment() {
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/verify_payment",
@@ -28,6 +29,7 @@ function paymentStatus(prop) {
   }
 
   useEffect(() => {
+    console.log(prop.reference);
     verifyPayment();
   }, []);
 
@@ -53,17 +55,19 @@ function paymentStatus(prop) {
             {isSuccessful === "fetching..." ? (
               <div
                 id="loading"
-                class="spinner-border status-loader loading mx-auto "
+                className="spinner-border status-loader loading mx-auto "
                 role="status"
               ></div>
             ) : isSuccessful ? (
               // SUCCESSFUL
               <div>
-                <div class="success-icon   d-flex align-items-center justify-content-center fs-3 mx-auto mb-4">
+                <div className="success-icon   d-flex align-items-center justify-content-center fs-3 mx-auto mb-4">
                   ✓
                 </div>
-                <h1 class="status-title text-center mb-4">Order Confirmed!</h1>
-                <p class="status-sub text-center   mx-auto px-sm-5 px-lg-0 ">
+                <h1 className="status-title text-center mb-4">
+                  Order Confirmed!
+                </h1>
+                <p className="status-sub text-center   mx-auto px-sm-5 px-lg-0 ">
                   Thank you for your purchase. Your order has been received and
                   is being processed. You'll receive an email confirmation
                   shortly.
@@ -72,16 +76,16 @@ function paymentStatus(prop) {
             ) : (
               // FAILED
               <div>
-                <div class="  failed-icon  d-flex align-items-center justify-content-center fs-3 mx-auto mb-4">
+                <div className="  failed-icon  d-flex align-items-center justify-content-center fs-3 mx-auto mb-4">
                   ✕
                 </div>
                 <h1
-                  class="status-title text-center mb-4"
+                  className="status-title text-center mb-4"
                   style={{ color: "#991b1b" }}
                 >
                   Payment Failed
                 </h1>
-                <p class="status-sub text-center   mx-auto px-sm-5 px-lg-0 ">
+                <p className="status-sub text-center   mx-auto px-sm-5 px-lg-0 ">
                   We were unable to process your payment. Your order has not
                   been placed and you have not been charged.
                 </p>
