@@ -2,11 +2,12 @@ import "dotenv/config";
 import setCors from "./cors.js";
 import { Order } from "../models.js";
 import axios from "axios";
-
+import connectDb from "./db.js";
 async function verifyPayment(req, res) {
   try {
     setCors(res);
     if (req.method === "OPTIONS") return res.status(200).end();
+    await connectDb();
     const { reference } = req.body;
 
     const verificationResponse = await axios.get(

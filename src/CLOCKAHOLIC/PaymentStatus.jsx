@@ -1,12 +1,12 @@
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function paymentStatus(prop) {
   const [isSuccessful, setIsSuccessful] = useState("fetching...");
 
-  useEffect(async () => {
+  async function verifyPayment() {
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/verify_payment",
       {
@@ -25,6 +25,10 @@ function paymentStatus(prop) {
       setIsSuccessful(false);
       console.log(res.data);
     }
+  }
+
+  useEffect(() => {
+    verifyPayment();
   }, []);
 
   return (
