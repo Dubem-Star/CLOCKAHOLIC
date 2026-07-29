@@ -4,6 +4,7 @@ import Home from "@/CLOCKAHOLIC/Home.jsx";
 import ProductDetails from "@/CLOCKAHOLIC/ProductDetails.jsx";
 import Cart from "./CLOCKAHOLIC/Cart";
 import Checkout from "./CLOCKAHOLIC/Checkout";
+import PaymentStatus from "./CLOCKAHOLIC/PaymentStatus";
 import Legals from "./components/plugins/Legal/Legals";
 import {
   BrowserRouter,
@@ -52,6 +53,7 @@ function App() {
   const [termsOfService, setTermsOfService] = useState(false);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [returnPolicy, setReturnPolicy] = useState(false);
+  const [reference, setReference] = useState(false);
   const navigate = useNavigate();
 
   const allStates = [
@@ -278,6 +280,7 @@ function App() {
     if (res.ok) {
       if (res.mod === "Cash on Delivery")
         return alert("Cash on Delivery Override.");
+      setReference(res.reference);
       window.location.href = res.data.authorization_url;
     } else {
       alert(res.data);
@@ -473,6 +476,17 @@ function App() {
               setPrivacyPolicy={setPrivacyPolicy}
               setReturnPolicy={setReturnPolicy}
               completeOrder={completeOrder}
+            />
+          }
+        />
+
+        <Route
+          path="/paymentStatus"
+          element={
+            <PaymentStatus
+              searchResults={searchResults}
+              setSearchResults={setSearchResults}
+              reference={reference}
             />
           }
         />

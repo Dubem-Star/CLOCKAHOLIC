@@ -20,14 +20,11 @@ async function completeOrder(req, res) {
       return res.status(400).send("Missing required shipping details.");
     }
 
-    // if (!shippingDetails.modeOfPayment === "Cash on Delivery") {
-
-    // }
-
     const paystackPayload = {
       email: shippingDetails.email,
       amount: shippingDetails.totalAmount * 100,
       reference: transactionReference,
+      callback_url: "https://clockaholic-store.vercel.app/paymentStatus",
     };
     if (shippingDetails.modeOfPayment === "Bank Transfer") {
       paystackPayload.channels = ["bank_transfer"];
@@ -68,6 +65,7 @@ async function completeOrder(req, res) {
       ok: true,
       data: response.data.data,
       mod: shippingDetails.modeOfPayment,
+      reference: transactionReference,
     });
   } catch (e) {
     res.status(500).json({ ok: false, data: `Internal Error: ${e}` });

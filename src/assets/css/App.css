@@ -88,6 +88,41 @@
   font-size: 23px !important;
 }
 
+.status-loader {
+  width: 30px;
+  height: 30px;
+  color: #b8860b;
+}
+
+.success-icon {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+.failed-icon {
+  background: #fef2f2;
+  border: 2px solid #fca5a5;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.status-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.status-sub {
+  color: #666;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  width: fit-content;
+  max-width: 700px;
+  width: 90%;
+}
+
 /* ************************************************ */
 /* Header Liner Styling*/
 /* ************************************************ */
@@ -1653,8 +1688,14 @@ a {
     gap: 5px;
   }
 }
-
+.status-sub {
+  font-size: 16px !important;
+}
 @media (max-width: 575px) {
+  .status-sub {
+    font-size: 15px !important;
+  }
+
   .Navbar {
     height: 80px;
   }
