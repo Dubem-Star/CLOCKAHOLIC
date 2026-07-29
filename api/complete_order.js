@@ -24,7 +24,7 @@ async function completeOrder(req, res) {
       email: shippingDetails.email,
       amount: shippingDetails.totalAmount * 100,
       reference: transactionReference,
-      callback_url: "https://clockaholic-store.vercel.app/paymentStatus",
+      callback_url: "http://localhost:5173/paymentStatus",
     };
     if (shippingDetails.modeOfPayment === "Bank Transfer") {
       paystackPayload.channels = ["bank_transfer"];

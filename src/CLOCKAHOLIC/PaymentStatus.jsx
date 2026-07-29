@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 function paymentStatus(prop) {
   const [isSuccessful, setIsSuccessful] = useState("fetching...");
 
-  console.log(prop.reference);
+  return console.log(prop.reference);
+
   async function verifyPayment() {
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/verify_payment",
