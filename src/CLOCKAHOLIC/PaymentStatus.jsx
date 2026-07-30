@@ -1,12 +1,12 @@
 import Navbar from "@/components/plugins/Navbar";
 import Footer from "@/components/plugins/Footer";
-
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function paymentStatus(prop) {
   const [isSuccessful, setIsSuccessful] = useState("fetching...");
 
-  return console.log(prop.reference);
+  const reference = localStorage.getItem("reference");
 
   async function verifyPayment() {
     const response = await fetch(
@@ -16,7 +16,7 @@ function paymentStatus(prop) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ reference: prop.reference }),
+        body: JSON.stringify({ reference: reference }),
       },
     );
 
@@ -73,6 +73,11 @@ function paymentStatus(prop) {
                   is being processed. You'll receive an email confirmation
                   shortly.
                 </p>
+
+                <button className=" mx-auto d-block btn banner-button">
+                  {" "}
+                  keep shopping
+                </button>
               </div>
             ) : (
               // FAILED
