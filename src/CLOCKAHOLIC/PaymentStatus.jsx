@@ -48,7 +48,7 @@ function paymentStatus(prop) {
           style={{ maxWidth: "1400px", width: "100% " }}
         >
           <div
-            className="position-absolute top-50 start-50 w-100  d-flex justify-content-center"
+            className="position-absolute top-50 start-50 w-100 content-cont d-flex justify-content-center"
             style={{
               transform: "translate(-50%,-50%)",
             }}
@@ -73,11 +73,12 @@ function paymentStatus(prop) {
                   is being processed. You'll receive an email confirmation
                   shortly.
                 </p>
-
-                <button className=" mx-auto d-block btn banner-button">
-                  {" "}
-                  keep shopping
-                </button>
+                <Link
+                  className="mx-auto d-flex justify-content-center text-decoration-none text-reset"
+                  to="/"
+                >
+                  <button className="  btn banner-button">keep shopping</button>
+                </Link>
               </div>
             ) : (
               // FAILED
