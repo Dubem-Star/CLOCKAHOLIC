@@ -22,7 +22,7 @@ function paymentStatus(prop) {
 
     const res = await response.json();
     if (res.data.status === "success") {
-      setIsSuccessful(false);
+      setIsSuccessful(true);
     } else {
       setIsSuccessful(false);
       console.log(res.data);
