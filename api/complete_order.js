@@ -37,7 +37,7 @@ async function completeOrder(req, res) {
       paystackPayload,
       {
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_TEST_SECRET_KEY}`,
+          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
           "Content-Type": "application/json",
         },
       },

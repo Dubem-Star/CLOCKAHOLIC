@@ -22,7 +22,7 @@ function paymentStatus(prop) {
 
     const res = await response.json();
     if (res.data.status === "success") {
-      setIsSuccessful(true);
+      setIsSuccessful(false);
     } else {
       setIsSuccessful(false);
       console.log(res.data);
@@ -96,6 +96,12 @@ function paymentStatus(prop) {
                   We were unable to process your payment. Your order has not
                   been placed and you have not been charged.
                 </p>
+                <Link
+                  className="mx-auto d-flex justify-content-center text-decoration-none text-reset"
+                  to="/checkout"
+                >
+                  <button className="  btn banner-button">Retry Payment</button>
+                </Link>
               </div>
             )}
           </div>

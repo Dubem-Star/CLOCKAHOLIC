@@ -122,6 +122,8 @@ function OrderForm(prop) {
       });
     }
 
+    setMod("Bank Transfer");
+
     handleTermsCheckboxChange();
   }, []);
 
