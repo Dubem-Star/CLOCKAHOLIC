@@ -29,7 +29,7 @@ const deliveryDetailsSchema = new mongoose.Schema(
     address: { type: String },
     city: { type: String },
     state: { type: String },
-    phoneNo: { type: Number },
+    phoneNo: { type: String },
     zipCode: { type: String },
     modeOfPayment: { type: String },
     shippingFee: { type: Number },

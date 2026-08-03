@@ -46,34 +46,33 @@ async function verifyPayment(req, res) {
           from: "Clockaholic Store",
           to: process.env.EMAIL,
           subject: `New Order from Clockaholic Store`,
-          text: `
-A new order has been successfully placed!
+          html: `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; width:100%; text-align:center; padding: 20px;"> 
+            <h2>A new order has been successfully placed!</h2>
+            <h3>--- ORDER DETAILS ---</h3>
+            <p><strong>Order ID:</strong> ${order.orderId}</p>
+            <p><strong>Customer Name:</strong> ${order.orderOwner}</p>
+            <p><strong>Email:</strong> ${order.deliveryDetails.email}</p>
+            <p><strong>Phone Number:</strong> ${order.deliveryDetails.phoneNo}</p>
 
---- ORDER DETAILS ---
-Order ID:       ${order.orderId}
-Customer Name:  ${order.orderOwner}
-Email:          ${order.deliveryDetails.email}
-Phone Number:   ${order.deliveryDetails.phoneNo}
-
-
---- ITEMS BOUGHT ---
-${order.products
-  .map((p, i) => {
-    return `• ${p.version} | (Qty: ${p.quantity}) - ₦${p.price.toLocaleString()} each`;
-  })
-  .join("\n")}
-
-
---- PAYMENT INFO ---
-Total Amount:   ${order.totalAmount.toLocaleString()}
-Payment Status: Paid
-Reference:      ${order.paystackRef}
+             <h3>--- ITEMS BOUGHT ---</h3>
+             ${order.products
+               .map((p, i) => {
+                 return `
+    <p>• ${p.version} (Qty: ${p.quantity}) - ₦${p.price.toLocaleString()} each</p>`;
+               })
+               .join("")}
+    
+            <h3>--- PAYMENT INFO ---</h3>
+<p><strong>Total Amount:</strong> ₦${order.totalAmount.toLocaleString()}</p>
+<p><strong>Payment Status:</strong> Paid</p>
+<p><strong>Reference:</strong> ${order.paystackRef}</p>
 
 
-  --- SHIPPING ADDRESS ---
-  Address:        ${order.deliveryDetails.address}
-City / State:   ${order.deliveryDetails.city} / ${order.deliveryDetails.state}
-  `.trim(),
+  <h3>--- SHIPPING ADDRESS ---</h3>
+  <p><strong>Address:</strong> ${order.deliveryDetails.address}</p>
+  <p><strong>City / State:</strong> ${order.deliveryDetails.city} / ${order.deliveryDetails.state}</p>
+</div>
+            </div>`,
         };
 
         await transporter.sendMail(mailStructure);
