@@ -23,6 +23,8 @@ async function verifyPayment(req, res) {
 
     const response = await verificationResponse.data.data;
     console.log(verificationResponse);
+    console.log(process.env.EMAIL_KEY);
+    console.log(process.env.EMAIL);
 
     if (response.status === "success") {
       await Order.findOneAndUpdate(
@@ -31,20 +33,20 @@ async function verifyPayment(req, res) {
       );
 
       const order = await Order.findOne({ paystackRef: reference });
+      try {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_KEY,
+          },
+        });
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.EMAIL_KEY,
-        },
-      });
-
-      const mailStructure = {
-        from: "Clockaholic Store",
-        to: process.env.EMAIL,
-        subject: `New Order from Clockaholic Store`,
-        text: `
+        const mailStructure = {
+          from: "Clockaholic Store",
+          to: process.env.EMAIL,
+          subject: `New Order from Clockaholic Store`,
+          text: `
 A new order has been successfully placed!
 
 --- ORDER DETAILS ---
@@ -72,9 +74,12 @@ Reference:      ${order.paystackRef}
   Address:        ${order.deliveryDetails.address}
 City / State:   ${order.deliveryDetails.city} / ${order.deliveryDetails.state}
   `.trim(),
-      };
+        };
 
-      await transporter.sendMail(mailStructure);
+        await transporter.sendMail(mailStructure);
+      } catch (e) {
+        console.log("Error:", e);
+      }
     }
 
     res.status(200).json({ data: response });
