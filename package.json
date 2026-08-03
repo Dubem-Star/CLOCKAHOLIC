@@ -22,6 +22,7 @@
     "framer-motion": "^12.38.0",
     "glightbox": "^3.3.1",
     "mongoose": "^9.6.2",
+    "nodemailer": "^9.0.3",
     "paystack-sdk": "^3.8.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

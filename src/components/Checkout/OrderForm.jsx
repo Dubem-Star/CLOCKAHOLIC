@@ -94,8 +94,9 @@ function OrderForm(prop) {
   /* ********************PREPARE ORDER FOR APP.JSX******************** */
   function prepareOrder(e, orderId, form, mod) {
     e.preventDefault();
-
     const formData = new FormData(form);
+    console.log(Object.fromEntries(formData.entries()));
+
     const shippingDetails = {
       ...Object.fromEntries(formData.entries()),
       modeOfPayment: mod,
@@ -256,7 +257,7 @@ function OrderForm(prop) {
                 type="number"
                 className="form-control py-2"
                 placeholder="Phone "
-                name="phonenumber"
+                name="phoneNo"
                 required
               />
 

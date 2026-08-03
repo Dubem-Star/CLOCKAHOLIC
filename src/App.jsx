@@ -262,8 +262,6 @@ function App() {
     text.style.opacity = "0";
     loader.style.opacity = "1";
 
-    console.log(shippingDetails);
-
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/complete_order",
       {
