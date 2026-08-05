@@ -58,7 +58,7 @@ async function verifyPayment(req, res) {
 
       <!-- Body Content -->
       <div style="padding: 30px; text-align: left;">
-        <p style="font-size: 16px; margin-top: 0; color: #111111;">Hello Store Owner,</p>
+        <p style="font-size: 16px; margin-top: 0; color: #111111;">Hello Chidera,</p>
         <p style="font-size: 15px; color: #555555; line-height: 1.5; margin-bottom: 25px;">A new order has been successfully placed and paid for.</p>
 
         <!-- Order Details Section -->

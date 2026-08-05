@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import PaystackIcon from "@/assets/images/img_icons/paystack_logo.png";
 import OrderSummary from "./OrderSummary";
 import BackToTop from "@/components/plugins/btns/BackToTop";
+import { useNavigate } from "react-router-dom";
 function OrderForm(prop) {
+  const navigate = useNavigate();
   const bankTransferMod = useRef(null);
   const shippingForm = useRef(null);
   const [region, setRegion] = useState(null);
@@ -10,6 +12,7 @@ function OrderForm(prop) {
     localStorage.getItem("selectedMod") || "Bank Transfer",
   );
   const [finalAmt, setFinalAmt] = useState(0);
+  const shippingFormBlock = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -128,6 +131,203 @@ function OrderForm(prop) {
     handleTermsCheckboxChange();
   }, []);
 
+  // useEffect(() => {
+  //   if (prop.showCodConfirmation) {
+  //     const shippingData = new FormData(shippingForm.current);
+  //     shippingFormBlock.current.scrollIntoView({ behavior: "smooth" });
+  //     shippingFormBlock.current.innerHTML = `
+  //     <div class="d-flex flex-column align-items-start py-4 px-2 w-100" >
+
+  //       <!-- Checkmark -->
+  //       <div class="d-flex  justify-content-center align-items-center rounded-circle border border-success mb-3"
+  //         style="width:48px; height:48px; flex-shrink:0;">
+  //         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+  //           stroke="#198754" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  //           <polyline points="20 6 9 17 4 12"/>
+  //         </svg>
+  //       </div>
+
+  //       <!-- Heading -->
+  //       <h5 class="fw-bold mb-1" style="font-size:1.1rem;">
+  //         Thank you, ${shippingData.get("firstName")}!
+  //       </h5>
+  //       <p class="text-muted mb-3" style="font-size:13px;">
+  //         Your order is confirmed.
+  //       </p>
+
+  //       <!-- Divider -->
+  //       <hr class="w-100 my-2"/>
+
+  //       <!-- Order details -->
+  //       <div class="w-100 mb-3">
+  //         <p class="mb-1" style="font-size:13px;">
+  //           <span class="text-muted">Order number:</span>
+  //           <strong class="ms-1">${prop.orderDoc?.orderId || ""}</strong>
+  //         </p>
+  //         <p class="mb-1" style="font-size:13px;">
+  //           <span class="text-muted">Confirmation sent to:</span>
+  //           <strong class="ms-1">${shippingData.get("email")}</strong>
+  //         </p>
+  //         <p class="mb-1" style="font-size:13px;">
+  //           <span class="text-muted">Payment:</span>
+  //           <strong class="ms-1">Cash on Delivery</strong>
+  //         </p>
+  //         <p class="mb-0" style="font-size:13px;">
+  //           <span class="text-muted">Delivering to:</span>
+  //           <strong class="ms-1">
+  //             ${shippingData.get("address") || ""},
+  //             ${shippingData.get("city") || ""},
+  //             ${shippingData.get("state") || ""}
+  //           </strong>
+  //         </p>
+  //       </div>
+
+  //       <hr class="w-100 my-2"/>
+
+  //       <!-- CTA -->
+  //       <a href="/" class="btn btn-dark w-100 mt-2" style="font-size:13px; letter-spacing:0.05em;">
+  //         Continue Shopping
+  //       </a>
+  //     </div>
+  //   `;
+  //   }
+  // }, [prop.showCodConfirmation]);
+
+  useEffect(() => {
+    if (prop.showCodConfirmation) {
+      const shippingData = new FormData(shippingForm.current);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      // shippingFormBlock.current.scrollIntoView({ behavior: "smooth" });
+      shippingFormBlock.current.innerHTML = `
+      <div class="w-100 py-4">
+
+        <!-- Header -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <div class="d-flex align-items-center justify-content-center rounded-circle  flex-shrink-0"
+            style="width:52px; height:52px; border:2px solid #b8860b;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+              stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div>
+          
+            <h5 class="fw-bold mb-0" style="font-size:1.3rem;">
+              Thank you, ${shippingData.get("firstName")}!
+            </h5>
+          </div>
+        </div>
+
+        <!-- Confirmed box -->
+        <div class="border rounded p-3 mb-3">
+          <p class="fw-semibold mb-1" style="font-size:14px;">Your order is confirmed</p>
+       <p class="text-muted mb-0" style="font-size:13px;">
+  Kindly send us a message on
+  <a href="https://wa.me/2347030468478"
+     style="color:#b8860b;"
+     class="text-decoration-none fw-semibold">
+     WhatsApp
+  </a>
+  and
+  <span
+    id="copyOrderId"
+    style="color:#b8860b; cursor:pointer; font-weight:600;"
+  >
+    Click here 
+  </span>
+  to copy your Order ID to include in your message.
+</p>
+        </div>
+
+        <!-- Order details box -->
+        <div class="border rounded p-3 mb-4">
+          <p class="fw-semibold mb-3" style="font-size:14px;">Order details</p>
+          <div class="row g-3">
+
+            <!-- Contact -->
+            <div class="col-6">
+              <p class="text-muted mb-1" style="font-size:12px; font-weight:600;">Contact information</p>
+              <p class="mb-0" style="font-size:13px;">${shippingData.get("email")}</p>
+            </div>
+
+            <!-- Payment method -->
+            <div class="col-6">
+              <p class="text-muted mb-1" style="font-size:12px; font-weight:600;">Payment method</p>
+              <p class="mb-0" style="font-size:13px;">
+                Cash on Delivery (COD) · 
+               
+              </p>
+            </div>
+
+            <!-- Shipping address -->
+            <div class="col-6">
+              <p class="text-muted mb-1" style="font-size:12px; font-weight:600;">Shipping address</p>
+              <p class="mb-0" style="font-size:13px; line-height:1.7; color: #b8860b">
+                ${shippingData.get("firstName")} ${shippingData.get("lastName")}<br/>
+                ${shippingData.get("address")}<br/>
+                ${shippingData.get("city")}<br/>
+                ${shippingData.get("state")} ${shippingData.get("zip") || ""}<br/>
+                ${shippingData.get("country")}<br/>
+                ${shippingData.get("phoneNo")}
+              </p>
+            </div>
+
+            <!-- Shipping method -->
+            <div class="col-6">
+              <p class="text-muted mb-1" style="font-size:12px; font-weight:600;">Shipping method</p>
+              <p class="mb-0" style="font-size:13px; color: #b8860b">Dispatch</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <p class="mb-0 d-none" style="font-size:13px;">
+            Need help? 
+            <a href="https://wa.me/2348020919409" class="text-danger text-decoration-none fw-semibold">Contact us</a>
+          </p>
+
+         
+
+          <a  id="continueShoppingBtn" class="btn continue-shopping-btn text-white px-4" style="font-size:13px; letter-spacing:0.05em; background-color:#b8860b; ">
+            Continue shopping
+          </a>
+          
+        </div>
+
+      </div>
+    `;
+    }
+
+    const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+    const copyOrderIdBtn = document.getElementById("copyOrderId");
+
+    if (continueShoppingBtn) {
+      continueShoppingBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        prop.setShowCodConfirmation(false);
+        navigate("/");
+      });
+    }
+
+    if (copyOrderIdBtn) {
+      copyOrderIdBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(prop.orderDoc?.orderId || "");
+
+          copyOrderIdBtn.textContent = "✅ Order ID copied!";
+
+          setTimeout(() => {
+            copyOrderIdBtn.textContent = "Click here ";
+          }, 3000);
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    }
+  }, [prop.showCodConfirmation]);
+
   return (
     <>
       <BackToTop />
@@ -142,7 +342,7 @@ function OrderForm(prop) {
           {/*SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM 
         SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM SHIPPING FORM */}
 
-          <div className="user-form w-md-50 w-100">
+          <div className="user-form w-md-50 w-100" ref={shippingFormBlock}>
             <form
               ref={shippingForm}
               action="#"

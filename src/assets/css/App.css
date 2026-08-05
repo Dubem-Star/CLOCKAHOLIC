@@ -1364,7 +1364,8 @@ a {
   }
 
   .banner-button:hover,
-  .second-btn:hover {
+  .second-btn:hover,
+  .continue-shopping-btn:hover {
     background-color: #f3b200 !important;
     border-color: white !important;
     color: white !important;

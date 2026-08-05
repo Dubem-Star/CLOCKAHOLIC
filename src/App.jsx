@@ -33,6 +33,8 @@ function App() {
   const [popup, activatePopup] = useState(false);
   const [darken, setDarken] = useState(false);
   const [cart, setCart] = useState(reloadCart());
+  const [confirmedOrder, setConfirmedOrder] = useState(false);
+  const [isCheckout, setIsCheckout] = useState(false);
   const [id, setId] = useState(0);
   const [prodQty, setProdQty] = useState(1);
   const loadCart = reloadCart();
@@ -54,6 +56,7 @@ function App() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [returnPolicy, setReturnPolicy] = useState(false);
   const [reference, setReference] = useState(false);
+  const [showCodConfirmation, setShowCodConfirmation] = useState(false);
   const navigate = useNavigate();
 
   const allStates = [
@@ -276,10 +279,12 @@ function App() {
     const res = await response.json();
 
     if (res.ok) {
-      if (res.mod === "Cash on Delivery")
-        return alert("Cash on Delivery Override.");
-      // setReference(res.reference);
-      // console.log(res.reference);
+      if (res.mod === "Cash on Delivery") {
+        localStorage.setItem("setConfirmedOrder", true);
+        setShowCodConfirmation(true);
+        return;
+      }
+
       localStorage.setItem("reference", res.reference);
       window.location.href = res.data.authorization_url;
     } else {
@@ -362,6 +367,8 @@ function App() {
               setTermsOfService={setTermsOfService}
               setPrivacyPolicy={setPrivacyPolicy}
               setReturnPolicy={setReturnPolicy}
+              confirmedOrder={confirmedOrder}
+              setConfirmedOrder={setConfirmedOrder}
             />
           }
         />
@@ -476,6 +483,9 @@ function App() {
               setPrivacyPolicy={setPrivacyPolicy}
               setReturnPolicy={setReturnPolicy}
               completeOrder={completeOrder}
+              showCodConfirmation={showCodConfirmation}
+              setShowCodConfirmation={setShowCodConfirmation}
+              reference={reference}
             />
           }
         />
@@ -487,6 +497,8 @@ function App() {
               searchResults={searchResults}
               setSearchResults={setSearchResults}
               reference={reference}
+              cart={cart}
+              setCart={setCart}
             />
           }
         />

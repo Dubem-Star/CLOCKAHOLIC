@@ -224,6 +224,9 @@ function Checkout(prop) {
             setTermsOfService={prop.setTermsOfService}
             setIsShowLegal={prop.setIsShowLegal}
             completeOrder={prop.completeOrder}
+            showCodConfirmation={prop.showCodConfirmation}
+            setShowCodConfirmation={prop.setShowCodConfirmation}
+            reference={prop.reference}
           />
         </div>
         <Footer

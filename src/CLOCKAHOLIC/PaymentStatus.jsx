@@ -5,9 +5,8 @@ import { useState, useEffect } from "react";
 
 function paymentStatus(prop) {
   const [isSuccessful, setIsSuccessful] = useState("fetching...");
-
   const reference = localStorage.getItem("reference");
-
+  localStorage.setItem("cart", JSON.stringify([]));
   async function verifyPayment() {
     const response = await fetch(
       "https://clockaholic-store.vercel.app/api/verify_payment",
@@ -23,6 +22,7 @@ function paymentStatus(prop) {
     const res = await response.json();
     if (res.data.status === "success") {
       setIsSuccessful(true);
+      prop.setCart([]);
     } else {
       setIsSuccessful(false);
       console.log(res.data);

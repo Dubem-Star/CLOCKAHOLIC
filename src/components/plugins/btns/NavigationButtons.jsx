@@ -46,7 +46,6 @@ export const ViewMore = () => {
       <button
         className="btn banner-button mt-5"
         style={{ width: "clamp(100px ,15vw, 130px)" }}
-        onClick={() => alert("calm down fool.")}
       >
         View All
       </button>

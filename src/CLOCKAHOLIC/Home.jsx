@@ -13,6 +13,11 @@ import { useEffect } from "react";
 function Home(prop) {
   useEffect(() => {
     prop.activatePopup(false);
+    if (localStorage.getItem("setConfirmedOrder") === "true") {
+      prop.setAppCart([]);
+      localStorage.setItem("cart", JSON.stringify([]));
+      localStorage.removeItem("setConfirmedOrder");
+    }
   }, []);
   return (
     <>
