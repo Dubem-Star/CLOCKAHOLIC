@@ -222,20 +222,20 @@ function OrderForm(prop) {
         <div class="border rounded p-3 mb-3">
           <p class="fw-semibold mb-1" style="font-size:14px;">Your order is confirmed</p>
        <p class="text-muted mb-0" style="font-size:13px;">
-  Kindly send us a message on
-  <a href="https://wa.me/2347030468478"
-     style="color:#b8860b;"
-     class="text-decoration-none fw-semibold">
-     WhatsApp
-  </a>
-  and
-  <span
+  Kindly  <span
     id="copyOrderId"
     style="color:#b8860b; cursor:pointer; font-weight:600;"
   >
     Click here 
-  </span>
-  to copy your Order ID to include in your message.
+  </span> to copy your Order ID and include it in your message to us on  
+  <a href="https://wa.me/2347030468478"
+     style="color:#b8860b; font-weight:600; font-size:13px;"
+     class="text-decoration-none ">
+     WhatsApp
+  </a>
+  
+ 
+ 
 </p>
         </div>
 

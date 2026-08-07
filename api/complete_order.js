@@ -4,7 +4,8 @@ import connectDb from "./db.js";
 import setCors from "./cors.js";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-// import {Paystack} from "paystack-sdk"
+import nodemailer from "nodemailer";
+import sendEmail from "./mail.js";
 
 async function completeOrder(req, res) {
   try {
@@ -26,22 +27,6 @@ async function completeOrder(req, res) {
       reference: transactionReference,
       callback_url: "https://clockaholic-store.vercel.app/paymentStatus",
     };
-    if (shippingDetails.modeOfPayment === "Bank Transfer") {
-      paystackPayload.channels = ["bank_transfer"];
-    } else if (shippingDetails.modeOfPayment === "Credit Card") {
-      paystackPayload.channels = ["card"];
-    }
-
-    const response = await axios.post(
-      "https://api.paystack.co/transaction/initialize",
-      paystackPayload,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
 
     const updatedOrder = await Order.findOneAndUpdate(
       { orderId: shippingDetails.orderId },
@@ -56,6 +41,25 @@ async function completeOrder(req, res) {
       },
 
       { new: true },
+    );
+
+    if (shippingDetails.modeOfPayment === "Bank Transfer") {
+      paystackPayload.channels = ["bank_transfer"];
+    } else if (shippingDetails.modeOfPayment === "Credit Card") {
+      paystackPayload.channels = ["card"];
+    } else if (shippingDetails.modeOfPayment === "Cash on Delivery") {
+      await sendEmail("black", "Cash on Delivery", updatedOrder);
+    }
+
+    const response = await axios.post(
+      "https://api.paystack.co/transaction/initialize",
+      paystackPayload,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
+          "Content-Type": "application/json",
+        },
+      },
     );
 
     if (!updatedOrder) return res.status(404).send("Order not found.");
