@@ -75,7 +75,7 @@ function ProductButtons(prop) {
                     }
 
                     setColor(c.colorName);
-                    prop.setColor4Cart(c.colorName);
+                    // prop.setColor4Cart(c.colorName);
                   }}
                   className=" rounded product-colors-preview"
                   style={{
