@@ -15,11 +15,23 @@ function ExploreRelated(prop) {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const mainProduct = products.find((product) => product.id == id);
+  const exploreRelated = useRef(null);
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    if (exploreRelated.current) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [mainProduct]);
 
   function handleCardClick(e, id) {
     if (e.target.classList.contains("product-nav")) {
       return;
     }
+    prop.setIsColorClicked(false);
     navigate(`/product/${id}`);
   }
 
@@ -27,10 +39,10 @@ function ExploreRelated(prop) {
     setProducts(prop.products);
   }, [prop.products]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    return () => {};
-  }, [mainProduct]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //   return () => {};
+  // }, [mainProduct]);
 
   const leftSlider = useRef(null);
   const rightSlider = useRef(null);
@@ -188,8 +200,7 @@ function ExploreRelated(prop) {
     <>
       <div
         className="display-container d-flex flex-column align-items-center gap-4 overflow-x-hidden explore-related-container position-relative w-100 h-auto"
-        // data-aos="fade-up"
-        // data-aos-delay="100"
+        ref={exploreRelated}
         style={{ marginTop: "150px" }}
       >
         <div className="middle-liner " style={{ maxWidth: "1200px" }}>

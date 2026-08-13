@@ -24,7 +24,9 @@ function CartPopup(prop) {
   function removeItem(e) {
     e.preventDefault();
     e.stopPropagation();
-    const newCart = prop.cart.filter((item) => item.id != e.target.dataset.id);
+    const newCart = prop.cart.filter(
+      (item) => item.images[0] !== e.target.dataset.img,
+    );
 
     localStorage.setItem("cart", JSON.stringify(newCart));
     prop.setCart(newCart);
@@ -115,7 +117,7 @@ function CartPopup(prop) {
             <div className="d-flex flex-column gap-2 ps-2 pe-2 flex-grow-1  overflow-y-auto no-scrollbar">
               {prop.cart.map((item, index) => {
                 return (
-                  <Fragment key={item.id}>
+                  <Fragment key={`${item.id}-${item.images[0]}`}>
                     <Link
                       to={`/product/${item.id}`}
                       className="text-reset text-decoration-none cart-item-link"
@@ -136,6 +138,32 @@ function CartPopup(prop) {
                           >
                             {item.version}
                           </p>
+
+                          {item.colors ? (
+                            <div className="d-flex align-items-center gap-1">
+                              <span
+                                style={{
+                                  fontSize: "11px",
+                                  color: "#333",
+                                  fontWeight: "500",
+                                }}
+                              >
+                                Color:
+                              </span>
+
+                              <span
+                                style={{
+                                  fontSize: "11px",
+
+                                  color: "#72716e",
+                                  fontWeight: "500",
+                                }}
+                              >
+                                {item.pickedColor}
+                              </span>
+                            </div>
+                          ) : null}
+
                           <QuantityPill
                             isCart={true}
                             cart={prop.cart}
@@ -160,6 +188,7 @@ function CartPopup(prop) {
                           className="me-1 text-danger text-center copy-button ms-auto"
                           onClick={removeItem}
                           data-id={item.id}
+                          data-img={item.images[0]}
                         >
                           x
                         </span>

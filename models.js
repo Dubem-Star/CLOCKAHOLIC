@@ -18,6 +18,7 @@ const productsSchema = new mongoose.Schema({
   dialColor: { type: String },
   dialShape: { type: String },
   strapColor: { type: String },
+  colors: [{ type: String }],
 });
 
 const deliveryDetailsSchema = new mongoose.Schema(

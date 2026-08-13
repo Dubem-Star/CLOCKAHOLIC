@@ -14,6 +14,8 @@ const getProducts = async (req, res) => {
     await connectDb();
     const dbProducts = await Product.find({});
 
+    const dbFemaleProducts = await Product.find({ gender: "Female" });
+
     res.status(200).json({ status: true, data: dbProducts });
     console.log("sent products to frontend");
     return;

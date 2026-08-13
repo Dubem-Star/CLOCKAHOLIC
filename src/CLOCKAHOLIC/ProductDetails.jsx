@@ -3,9 +3,11 @@ import Footer from "@/components/plugins/Footer";
 import BackToTop from "@/components/plugins/btns/BackToTop";
 import ProductDisplayBox from "@/components/ProductDetails/ProductDisplayBox";
 import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 function ProductDetails(prop) {
   const [is404, setIs404] = useState(false);
+  const [isColorClicked, setIsColorClicked] = useState(false);
+
   return (
     <>
       <div className="Details-Page d-flex flex-column vh-100 align-items-center ">
@@ -57,6 +59,12 @@ function ProductDetails(prop) {
             setSearchResults={prop.setSearchResults}
             setDarken={prop.setDarken}
             darken={prop.darken}
+            currentImage={prop.currentImage}
+            setImage={prop.setImage}
+            isColorClicked={isColorClicked}
+            setIsColorClicked={setIsColorClicked}
+            color={prop.color}
+            setColor={prop.setColor}
           />
         </div>
         <Footer

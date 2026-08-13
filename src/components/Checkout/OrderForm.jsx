@@ -131,68 +131,6 @@ function OrderForm(prop) {
     handleTermsCheckboxChange();
   }, []);
 
-  // useEffect(() => {
-  //   if (prop.showCodConfirmation) {
-  //     const shippingData = new FormData(shippingForm.current);
-  //     shippingFormBlock.current.scrollIntoView({ behavior: "smooth" });
-  //     shippingFormBlock.current.innerHTML = `
-  //     <div class="d-flex flex-column align-items-start py-4 px-2 w-100" >
-
-  //       <!-- Checkmark -->
-  //       <div class="d-flex  justify-content-center align-items-center rounded-circle border border-success mb-3"
-  //         style="width:48px; height:48px; flex-shrink:0;">
-  //         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
-  //           stroke="#198754" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-  //           <polyline points="20 6 9 17 4 12"/>
-  //         </svg>
-  //       </div>
-
-  //       <!-- Heading -->
-  //       <h5 class="fw-bold mb-1" style="font-size:1.1rem;">
-  //         Thank you, ${shippingData.get("firstName")}!
-  //       </h5>
-  //       <p class="text-muted mb-3" style="font-size:13px;">
-  //         Your order is confirmed.
-  //       </p>
-
-  //       <!-- Divider -->
-  //       <hr class="w-100 my-2"/>
-
-  //       <!-- Order details -->
-  //       <div class="w-100 mb-3">
-  //         <p class="mb-1" style="font-size:13px;">
-  //           <span class="text-muted">Order number:</span>
-  //           <strong class="ms-1">${prop.orderDoc?.orderId || ""}</strong>
-  //         </p>
-  //         <p class="mb-1" style="font-size:13px;">
-  //           <span class="text-muted">Confirmation sent to:</span>
-  //           <strong class="ms-1">${shippingData.get("email")}</strong>
-  //         </p>
-  //         <p class="mb-1" style="font-size:13px;">
-  //           <span class="text-muted">Payment:</span>
-  //           <strong class="ms-1">Cash on Delivery</strong>
-  //         </p>
-  //         <p class="mb-0" style="font-size:13px;">
-  //           <span class="text-muted">Delivering to:</span>
-  //           <strong class="ms-1">
-  //             ${shippingData.get("address") || ""},
-  //             ${shippingData.get("city") || ""},
-  //             ${shippingData.get("state") || ""}
-  //           </strong>
-  //         </p>
-  //       </div>
-
-  //       <hr class="w-100 my-2"/>
-
-  //       <!-- CTA -->
-  //       <a href="/" class="btn btn-dark w-100 mt-2" style="font-size:13px; letter-spacing:0.05em;">
-  //         Continue Shopping
-  //       </a>
-  //     </div>
-  //   `;
-  //   }
-  // }, [prop.showCodConfirmation]);
-
   useEffect(() => {
     if (prop.showCodConfirmation) {
       const shippingData = new FormData(shippingForm.current);
@@ -232,7 +170,7 @@ function OrderForm(prop) {
      style="color:#b8860b; font-weight:600; font-size:13px;"
      class="text-decoration-none ">
      WhatsApp
-  </a>
+  </a>.
   
  
  
@@ -316,10 +254,10 @@ function OrderForm(prop) {
         try {
           await navigator.clipboard.writeText(prop.orderDoc?.orderId || "");
 
-          copyOrderIdBtn.textContent = "✅ Order ID copied!";
+          copyOrderIdBtn.textContent = "Copied!";
 
           setTimeout(() => {
-            copyOrderIdBtn.textContent = "Click here ";
+            copyOrderIdBtn.textContent = "Click here";
           }, 3000);
         } catch (err) {
           console.error(err);

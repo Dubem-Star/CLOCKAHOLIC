@@ -113,6 +113,14 @@
 /* ***********************Product Buttons*********************** */
 /* ***********************Product Buttons*********************** */
 
+.product-colors-preview {
+  overflow: "hidden" !important;
+  width: "56px" !important;
+  height: "56px" !important;
+  padding: "3px" !important;
+  cursor: "pointer" !important;
+}
+
 .quantity-buttons button {
   border-width: 2px !important;
   color: black;

@@ -10,7 +10,6 @@ import ExploreRelated from "@/components/ProductDetails/ExploreRelated";
 
 function ProductDisplayBox(prop) {
   const { id } = useParams();
-  const [currentImage, setImage] = useState(null);
   const imgPreviewCont = useRef(null);
   const productImageContainer = useRef(null);
   const productImage = useRef(null);
@@ -21,18 +20,16 @@ function ProductDisplayBox(prop) {
   useEffect(() => {
     prop.activatePopup(false);
     prop.setDarken(false);
-    window.scrollTo(0, 0);
+    // if (!prop.isColorClicked) {
+    //   window.scrollTo(0, 0);
+    // }
+
     document.title = "Product Details | Clockaholic";
   }, [product]);
 
-  // useEffect(() => {
-  //   prop.activatePopup(false);
-  //   document.title = "Product Details | Clockaholic";
-  // }, []);
-
   useEffect(() => {
     if (product) {
-      setImage(product.images[0]);
+      prop.setImage(product.images[0]);
     }
     if (imgPreviewCont.current) {
       const previews = imgPreviewCont.current.querySelectorAll(".img-preview ");
@@ -135,7 +132,7 @@ function ProductDisplayBox(prop) {
     for (let prev of previews) {
       prev.classList.remove("lay");
     }
-    setImage(e.currentTarget.dataset.src);
+    prop.setImage(e.currentTarget.dataset.src);
     e.currentTarget.classList.add("lay");
   }
   /* ************************************************ */
@@ -209,7 +206,7 @@ function ProductDisplayBox(prop) {
                   onPointerMove={handleImgContPointerOver}
                 >
                   <img
-                    src={currentImage}
+                    src={prop.currentImage}
                     className="w-100 h-100"
                     ref={productImage}
                     style={{ transformOrigin: "var(--mouse-x) var(--mouse-y)" }}
@@ -298,6 +295,11 @@ function ProductDisplayBox(prop) {
                 handleOrder={prop.handleOrder}
                 bin={prop.bin}
                 setBin={prop.setBin}
+                setImage={prop.setImage}
+                isColorClicked={prop.isColorClicked}
+                setIsColorClicked={prop.setIsColorClicked}
+                color={prop.color}
+                setColor={prop.setColor}
               />
               <hr className="m-0" />
               <ProductInfo
@@ -311,6 +313,8 @@ function ProductDisplayBox(prop) {
           <ExploreRelated
             atcHomePage={prop.atcHomePage}
             products={prop.products}
+            isColorClicked={prop.isColorClicked}
+            setIsColorClicked={prop.setIsColorClicked}
           />
         </div>
       </main>

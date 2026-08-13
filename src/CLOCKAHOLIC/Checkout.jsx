@@ -24,7 +24,11 @@ function Checkout(prop) {
   useEffect(() => {
     if (prop.order) {
       if (prop.order.products[0].bin) {
+        prop.order.products[0].images[0] = prop.currentImage;
         localStorage.setItem("order", JSON.stringify({ ...prop.order }));
+        // const binOrder = (JSON.parse(
+        //   localStorage.getItem("order"),
+        // ).products.images[0] = prop.currentImage);
         return setOrderDoc(JSON.parse(localStorage.getItem("order")));
       } else {
         localStorage.setItem("order", JSON.stringify({ ...prop.order }));
@@ -227,6 +231,8 @@ function Checkout(prop) {
             showCodConfirmation={prop.showCodConfirmation}
             setShowCodConfirmation={prop.setShowCodConfirmation}
             reference={prop.reference}
+            // currentImage={prop.currentImage}
+            // setImage={prop.setImage}
           />
         </div>
         <Footer

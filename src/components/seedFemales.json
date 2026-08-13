@@ -1,0 +1,146 @@
+[
+  {
+    "id": "j29-a-ef775d7c-a0f8c-fe4d-425d7c",
+
+    "brandName": "SCOTTIE",
+    "price": 45000,
+    "version": "Luxury Scottie Women's Oval Watch",
+
+    "images": [
+      "/scottie_brown.png",
+      "/scottie_colors.png",
+      "/scottie_held_black_face.jpg",
+      "/scottie_held_silver.jpg",
+      "/scottie_held_gold.jpg"
+    ],
+    "colors": [
+      { "colorName": "Brown", "colorImage": "/scottie_brown.png" },
+      { "colorName": "Gold", "colorImage": "/scottie_gold.png" },
+      {
+        "colorName": "Silver with Blue dial",
+        "colorImage": "/scottie_blue_face.png"
+      },
+      {
+        "colorName": "Gold and Silver",
+        "colorImage": "/scottie_gold_silver.png"
+      },
+      {
+        "colorName": "Silver with Pink dial",
+        "colorImage": "/scottie_pink_face.png"
+      },
+      {
+        "colorName": "Gold with Black dial",
+        "colorImage": "/scottie_black_face.png"
+      },
+
+      {
+        "colorName": "Silver with White dial",
+        "colorImage": "/scottie_white_face.png"
+      }
+    ],
+    "description": "Elevate your style with the Scottie Boutique Oval Silhouette. This is not just a watch; it is a statement of sophisticated taste. Designed for the woman who appreciates vintage-inspired aesthetics, this timepiece features a stunning oval dial and a polished, pebble-link alloy bracelet that catches the light beautifully from every angle.",
+    "gender": "Female",
+    "status": "On sale",
+    "category": "Wrist Watch",
+    "dialShape": "Oval",
+    "display": "Analog",
+    "strap": "Stainless Steel"
+  },
+
+  {
+    "id": "e90a0f8c-fe4d-4229-a-ea2347f75d7c",
+
+    "brandName": "NAVIFORCE",
+    "price": 35000,
+    "version": "Naviforce NF5045T Lovie Women Watch - Blue",
+
+    "images": [
+      "../assets/images/blue_female.png",
+      "../assets/images/blue_female_2.png"
+    ],
+    "description": "This silver cross pendant necklace features a bold Naviforce inspired.",
+    "gender": "Female",
+    "status": "On sale",
+    "category": "Wrist Watch",
+    "badge": "New",
+    "dialColor": "Blue",
+    "dialShape": "Circle",
+    "strapColor": "Blue",
+    "display": "Day-Date Analog",
+    "strap": "Rubber"
+  },
+
+  {
+    "id": "hf-d7c075-29-a-ef7d-4229-a-ef75d7c",
+
+    "brandName": "CURREN",
+    "price": 65000,
+    "version": "CURREN 9081 Luxury Women Watches Top Leather",
+
+    "images": [
+      "/curren_blanche.png",
+      "/curren_blanche_2.png",
+      "curren_blanche_3.jpg",
+      "/curren_blanche_4.jpg",
+      "/curren_blanche_5.jpeg"
+    ],
+    "colors": [
+      { "colorName": "Brown", "colorImage": "/curren_blanche.png" },
+      { "colorName": "Red", "colorImage": "/curren_blanche_red.png" },
+      { "colorName": "Green", "colorImage": "/curren_blanche_green.png" },
+      { "colorName": "Coffee", "colorImage": "/curren_blanche_coffe.png" }
+    ],
+    "description": "A timeless women’s watch designed with a vintage-inspired look and a refined, elegant finish. The CURREN 9081 features a classic analog dial paired with a comfortable leather-style strap, making it easy to style with both casual and formal outfits.",
+    "gender": "Female",
+    "status": "Best Selling",
+    "category": "Wrist Watch",
+    "dialShape": "Circle",
+    "display": "Analog",
+    "strap": "Leather"
+  },
+
+  {
+    "id": "fe4d-4229-ae90a0f8c--ea2347f75d7c",
+
+    "brandName": "NAVIFORCE",
+    "price": 95000,
+    "version": "Naviforce 5004 Nebula Classic Women Watch - Black",
+
+    "images": [
+      "../assets/images/rose_female.png",
+      "../assets/images/rose_female_2.png"
+    ],
+    "description": "This silver cross pendant necklace features a bold Naviforce inspired.",
+    "gender": "Female",
+    "status": "Best Selling",
+    "category": "Wrist Watch",
+    "dialColor": "Black",
+    "dialShape": "Circle",
+    "strapColor": "Silver",
+    "display": "Analog",
+    "strap": "Elastic Steel"
+  },
+
+  {
+    "id": "gt66-4229-ae90a0f8c--ea2347f75d7c",
+
+    "brandName": "NAVIFORCE",
+    "price": 50000,
+    "version": "Naviforce 5065 Classique Women Watch - Silver",
+
+    "images": [
+      "../assets/images/steel_female.png",
+      "../assets/images/steel_female_2.png"
+    ],
+    "description": "This silver cross pendant necklace features a bold Naviforce inspired.",
+    "gender": "Female",
+    "status": "New Arrival",
+    "category": "Wrist Watch",
+    "badge": "Hot",
+    "dialColor": "Silver",
+    "dialShape": "Square",
+    "strapColor": "Silver",
+    "display": "Analog",
+    "strap": "Stainless Steel"
+  }
+]

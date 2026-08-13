@@ -17,6 +17,7 @@ function Home(prop) {
       prop.setAppCart([]);
       localStorage.setItem("cart", JSON.stringify([]));
       localStorage.removeItem("setConfirmedOrder");
+      prop.setShowCodConfirmation(false);
     }
   }, []);
   return (
@@ -49,6 +50,7 @@ function Home(prop) {
         <NewArrivals
           atcHomePage={prop.atcHomePage}
           newlyArrived={prop.newlyArrived}
+          newlyArrivedFemale={prop.newlyArrivedFemale}
         />
         <BestSellers
           atcHomePage={prop.atcHomePage}

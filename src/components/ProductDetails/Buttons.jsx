@@ -16,12 +16,19 @@ function ProductButtons(prop) {
   const { id } = useParams();
   const space = "    ";
   const checkRef = useRef(null);
+  const [color, setColor] = useState(
+    prop.product.colors ? prop.product.colors[0].colorName : null,
+  );
 
   // console.log(prop.bin);
 
   useEffect(() => {
     prop.setId(id);
   }, [id]);
+
+  useEffect(() => {
+    prop.setColor(color);
+  }, [color]);
 
   /* ********************Add-to-Wishlist Function******************** */
   /* ********************Add-to-Wishlist Function******************** */
@@ -44,6 +51,59 @@ function ProductButtons(prop) {
 
   return (
     <>
+      {/* *********************Color(s)********************* */}
+      {/* *********************Color(s)********************* */}
+      <div>
+        {prop.product.colors ? (
+          <>
+            <p class="mb-2" style={{ fontSize: "14px" }}>
+              <strong className="me-1">Color:</strong> {color}
+            </p>
+            <div className="d-flex flex-wrap gap-2">
+              {prop.product.colors.map((c) => (
+                <div
+                  key={c.colorName}
+                  onClick={(e) => {
+                    prop.setImage(e.currentTarget.firstElementChild.src);
+                    prop.setIsColorClicked(true);
+                    if (window.innerWidth < 768) {
+                      window.scrollTo(0, 0);
+                    }
+                    const previews = document.querySelectorAll(".img-preview ");
+                    for (let prev of previews) {
+                      prev.classList.remove("lay");
+                    }
+
+                    setColor(c.colorName);
+                    prop.setColor4Cart(c.colorName);
+                  }}
+                  className=" rounded product-colors-preview"
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    padding: "3px",
+                    cursor: "pointer",
+                    border:
+                      color === c.colorName
+                        ? "2px solid #111010 "
+                        : "1px solid #d5cdcd",
+
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={c.colorImage}
+                    alt={c.colorName}
+                    className="w-100 h-100"
+                    style={{ objectFit: "cover", borderRadius: "3px" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+
       <div className="w-100 mt-3 d-flex gap-3  mb-3 Buttons">
         {/* *********************Quantity********************* */}
         {/* *********************Quantity********************* */}
@@ -118,18 +178,6 @@ function ProductButtons(prop) {
             Add to WishList
           </span>
         </div>
-
-        {/* ************Product Views************ */}
-        {/* <p className="d-flex align-items-start gap-1 pt-2 product-views">
-          <img className=" me-1 rounded-circle cool-icon " src={viewIcon} />{" "}
-          <span className="ps-1" style={{ color: "#72716e" }}>
-            <strong className="text-black me-1">{product.id}</strong>
-            {space}
-            {product.id > 1
-              ? `customers are currently viewing this product`
-              : `customer is currently viewing this product`}
-          </span>
-        </p> */}
       </div>
     </>
   );

@@ -6,12 +6,14 @@ import {
 } from "@/components/plugins/productCard/ProductCardBadges";
 import { Link, useNavigate } from "react-router-dom";
 import { SkeletonLayout } from "../plugins/SkeletonLayout";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function NewArrivals(prop) {
   const [products, setProducts] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const navigate = useNavigate();
+  const men = useRef(null);
+  const women = useRef(null);
 
   function handleCardClick(e, id) {
     if (e.target.classList.contains("product-nav")) {
@@ -22,7 +24,16 @@ function NewArrivals(prop) {
 
   useEffect(() => {
     if (prop.newlyArrived.length) {
-      setProducts(prop.newlyArrived);
+      if (localStorage.getItem("genderClicked") === "male") {
+        setProducts(prop.newlyArrived);
+        men.current.classList.add("default");
+      } else if (localStorage.getItem("genderClicked") === "female") {
+        setProducts(prop.newlyArrivedFemale);
+        women.current.classList.add("default");
+      } else {
+        setProducts(prop.newlyArrived);
+        men.current.classList.add("default");
+      }
       setisLoading(false);
     }
   }, [prop.newlyArrived]);
@@ -42,8 +53,32 @@ function NewArrivals(prop) {
 
         <div className="gender-option-container">
           <h1 className="d-flex justify-content-center gap-5 mt-3">
-            <span className="underline default">MEN'S</span>
-            <span className="underline">WOMEN'S</span>
+            <span
+              ref={men}
+              className="underline"
+              onClick={(e) => {
+                setProducts(prop.newlyArrived);
+                e.currentTarget.classList.add("default");
+                localStorage.setItem("genderClicked", "male");
+                e.currentTarget.nextElementSibling.classList.remove("default");
+              }}
+            >
+              MEN'S
+            </span>
+            <span
+              ref={women}
+              className="underline"
+              onClick={(e) => {
+                setProducts(prop.newlyArrivedFemale);
+                e.currentTarget.classList.add("default");
+                localStorage.setItem("genderClicked", "female");
+                e.currentTarget.previousElementSibling.classList.remove(
+                  "default",
+                );
+              }}
+            >
+              WOMEN'S
+            </span>
           </h1>
         </div>
 
@@ -99,7 +134,13 @@ function NewArrivals(prop) {
                         ></a>
                       </div>
                                          {" "}
-                      <div>{product.badge === "Hot" ? <HotBadge /> : null}</div>
+                      <div>
+                        {product.badge === "Hot" ? (
+                          <HotBadge />
+                        ) : product.badge === "New" ? (
+                          <NewBadge />
+                        ) : null}
+                      </div>
                                          {" "}
                       <ProductCardNav
                         product={product}

@@ -47,6 +47,7 @@ function App() {
   const [newlyArrived, setNewlyArrived] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+  const [newlyArrivedFemale, setNewlyArrivedFemale] = useState([]);
   const [products, setProducts] = useState([]);
   const [order, setOrder] = useState(null);
   const [shippingFee, setShippingFee] = useState(null);
@@ -57,7 +58,9 @@ function App() {
   const [returnPolicy, setReturnPolicy] = useState(false);
   const [reference, setReference] = useState(false);
   const [showCodConfirmation, setShowCodConfirmation] = useState(false);
+  const [currentImage, setImage] = useState(null);
   const navigate = useNavigate();
+  const [color, setColor] = useState(null);
 
   const allStates = [
     ...lagos,
@@ -91,11 +94,15 @@ function App() {
         setNewlyArrived(data.data.slice(0, 8));
         setBestSelling(data.data.slice(8, 15));
         setOnSale(data.data.slice(15));
+
+        const femaleProducts = data.data.filter((p) => p.gender === "Female");
+        setNewlyArrivedFemale(femaleProducts);
       } else {
         console.log(`Error, failed fetching products: ${data.message}`);
       }
     }
 
+    localStorage.removeItem("genderClicked");
     getProducts();
   }, []);
 
@@ -171,17 +178,32 @@ function App() {
     activatePopup(true);
 
     const product = products.find((product) => product.id == id);
+    const cloneProduct = { ...product, images: [...product.images] };
 
     const loadCart = reloadCart();
-    const existing = loadCart.find((item) => item.id == product.id);
+    const existing = loadCart.find(
+      (item) => item.id == cloneProduct.id && item.images[0] === currentImage,
+    );
+    // When an item exists in cart
     if (existing) {
       existing.quantity = existing.quantity + prodQty;
       setCart([...loadCart]);
-    } else {
-      loadCart.push({ ...product, quantity: prodQty });
+    }
+    //  When an item doesn't exist in cart
+    else {
+      cloneProduct.images[0] = currentImage;
+      if (cloneProduct.colors) {
+        if (!color) {
+          setColor(cloneProduct.colors[0].colorName);
+        }
+      }
+      loadCart.push({
+        ...cloneProduct,
+        quantity: prodQty,
+        pickedColor: cloneProduct.colors ? color : null,
+      });
       setCart([...loadCart]);
     }
-
     localStorage.setItem("cart", JSON.stringify(loadCart));
   }
 
@@ -192,15 +214,20 @@ function App() {
   function atcHomePage(product) {
     activatePopup(true);
     const loadCart = reloadCart();
-    const existing = loadCart.find((item) => item.id === product.id);
+    const existing = loadCart.find(
+      (item) => item.id === product.id && item.images[0] === product.images[0],
+    );
 
     if (existing) {
       existing.quantity += 1;
       setCart([...loadCart]);
     } else {
-      loadCart.push({ ...product, quantity: 1 });
+      setColor(product.colors[0].colorName);
+
+      loadCart.push({ ...product, quantity: 1, pickedColor: color });
       setCart([...loadCart]);
     }
+
     localStorage.setItem("cart", JSON.stringify(loadCart));
   }
 
@@ -360,6 +387,7 @@ function App() {
               isResult={isResult}
               setIsResult={setIsResult}
               newlyArrived={newlyArrived}
+              newlyArrivedFemale={newlyArrivedFemale}
               bestSelling={bestSelling}
               onSale={onSale}
               isShowLegal={isShowLegal}
@@ -369,6 +397,8 @@ function App() {
               setReturnPolicy={setReturnPolicy}
               confirmedOrder={confirmedOrder}
               setConfirmedOrder={setConfirmedOrder}
+              showCodConfirmation={showCodConfirmation}
+              setShowCodConfirmation={setShowCodConfirmation}
             />
           }
         />
@@ -410,6 +440,10 @@ function App() {
               setTermsOfService={setTermsOfService}
               setPrivacyPolicy={setPrivacyPolicy}
               setReturnPolicy={setReturnPolicy}
+              currentImage={currentImage}
+              setImage={setImage}
+              color={color}
+              setColor={setColor}
             />
           }
         />
@@ -486,6 +520,8 @@ function App() {
               showCodConfirmation={showCodConfirmation}
               setShowCodConfirmation={setShowCodConfirmation}
               reference={reference}
+              currentImage={currentImage}
+              setImage={setImage}
             />
           }
         />

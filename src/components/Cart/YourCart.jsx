@@ -34,7 +34,9 @@ function YourCart(prop) {
   /* ********************REMOVE CART ITEM******************** */
 
   function removeItem(e) {
-    const newCart = prop.cart.filter((item) => item.id != e.target.dataset.id);
+    const newCart = prop.cart.filter(
+      (item) => item.images[0] !== e.target.dataset.img,
+    );
 
     localStorage.setItem("cart", JSON.stringify(newCart));
     prop.setAppCart([...newCart]);
@@ -182,9 +184,34 @@ function YourCart(prop) {
                         />
                         <Link
                           to={`/product/${item.id}`}
-                          className="text-reset text-decoration-none"
+                          className="text-reset text-decoration-none d-block"
                         >
-                          <p className="product-version">{item.version}</p>
+                          <p className="product-version mb-1">{item.version}</p>
+
+                          {Array.isArray(item.colors) &&
+                          item.colors.length > 0 ? (
+                            <div className="d-flex align-items-center gap-2 mt-1">
+                              <span
+                                style={{
+                                  fontSize: "12px",
+                                  color: "#333",
+                                  fontWeight: "500",
+                                }}
+                              >
+                                Color:
+                              </span>
+
+                              <span
+                                style={{
+                                  fontSize: "12px",
+                                  color: "#72716e",
+                                  fontWeight: "500",
+                                }}
+                              >
+                                {item.pickedColor || item.colors[0]?.colorName}
+                              </span>
+                            </div>
+                          ) : null}
                         </Link>
                       </div>
                     </td>
@@ -216,6 +243,7 @@ function YourCart(prop) {
                         onClick={removeItem}
                         style={{ top: "44%" }}
                         data-id={item.id}
+                        data-img={item.images[0]}
                       >
                         x
                       </span>
