@@ -95,6 +95,8 @@ function App() {
         setBestSelling(data.data.slice(8, 15));
         setOnSale(data.data.slice(15));
 
+        console.log(data.data);
+
         const femaleProducts = data.data.filter((p) => p.gender === "Female");
         setNewlyArrivedFemale(femaleProducts);
       } else {

@@ -20,6 +20,8 @@ function ProductButtons(prop) {
     prop.product.colors ? prop.product.colors[0].colorName : null,
   );
 
+  console.log(prop.product);
+
   // console.log(prop.bin);
 
   useEffect(() => {
@@ -75,7 +77,6 @@ function ProductButtons(prop) {
                     }
 
                     setColor(c.colorName);
-                    // prop.setColor4Cart(c.colorName);
                   }}
                   className=" rounded product-colors-preview"
                   style={{
