@@ -26,9 +26,7 @@ function Checkout(prop) {
       if (prop.order.products[0].bin) {
         prop.order.products[0].images[0] = prop.currentImage;
         localStorage.setItem("order", JSON.stringify({ ...prop.order }));
-        // const binOrder = (JSON.parse(
-        //   localStorage.getItem("order"),
-        // ).products.images[0] = prop.currentImage);
+
         return setOrderDoc(JSON.parse(localStorage.getItem("order")));
       } else {
         localStorage.setItem("order", JSON.stringify({ ...prop.order }));

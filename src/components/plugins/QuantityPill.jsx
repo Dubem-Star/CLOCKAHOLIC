@@ -18,6 +18,10 @@ function QuantityPill(prop) {
 
   useEffect(() => {
     setQuantity(1);
+  }, [prop.color]);
+
+  useEffect(() => {
+    setQuantity(1);
   }, [id]);
 
   function handleIncrement(e) {
@@ -26,7 +30,10 @@ function QuantityPill(prop) {
     if (prop.isCart || prop.yourCart) {
       setCartItemQuantity((prev) => prev + 1);
       const newQty = itemQuantity + 1;
-      prop.cart.find((item) => item.id == prop.item.id).quantity = newQty;
+      prop.cart.find(
+        (item) =>
+          item.id == prop.item.id && item.images[0] === prop.item.images[0],
+      ).quantity = newQty;
 
       prop.setAppCart([...prop.cart]);
 
@@ -42,7 +49,10 @@ function QuantityPill(prop) {
     if (prop.isCart || prop.yourCart) {
       setCartItemQuantity((prev) => (prev < 2 ? prev : prev - 1));
       const newQty = itemQuantity < 2 ? itemQuantity : itemQuantity - 1;
-      prop.cart.find((item) => item.id == prop.item.id).quantity = newQty;
+      prop.cart.find(
+        (item) =>
+          item.id == prop.item.id && item.images[0] === prop.item.images[0],
+      ).quantity = newQty;
 
       prop.setAppCart([...prop.cart]);
       localStorage.setItem("cart", JSON.stringify([...prop.cart]));

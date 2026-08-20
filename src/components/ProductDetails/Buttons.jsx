@@ -17,12 +17,8 @@ function ProductButtons(prop) {
   const space = "    ";
   const checkRef = useRef(null);
   const [color, setColor] = useState(
-    prop.product.colors ? prop.product.colors[0].colorName : null,
+    prop.product.colors[0] ? prop.product.colors[0].colorName : null,
   );
-
-  console.log(prop.product);
-
-  // console.log(prop.bin);
 
   useEffect(() => {
     prop.setId(id);
@@ -58,7 +54,7 @@ function ProductButtons(prop) {
       <div>
         {prop.product.colors ? (
           <>
-            <p class="mb-2" style={{ fontSize: "14px" }}>
+            <p className="mb-2" style={{ fontSize: "14px" }}>
               <strong className="me-1">Color:</strong> {color}
             </p>
             <div className="d-flex flex-wrap gap-2">
@@ -113,6 +109,7 @@ function ProductButtons(prop) {
           isCart={false}
           setProdQty={prop.setProdQty}
           setAppCart={prop.setAppCart}
+          color={color}
         />
 
         <div className="d-flex gap-3 purchase-btn" style={{ width: "80%" }}>

@@ -224,9 +224,11 @@ function App() {
       existing.quantity += 1;
       setCart([...loadCart]);
     } else {
-      setColor(product.colors[0].colorName);
-
-      loadCart.push({ ...product, quantity: 1, pickedColor: color });
+      loadCart.push({
+        ...product,
+        quantity: 1,
+        pickedColor: product.colors[0].colorName,
+      });
       setCart([...loadCart]);
     }
 
