@@ -196,7 +196,9 @@ function App() {
       cloneProduct.images[0] = currentImage;
       if (cloneProduct.colors) {
         if (!color) {
-          setColor(cloneProduct.colors[0].colorName);
+          if (cloneProduct.colors[0]) {
+            setColor(cloneProduct.colors[0].colorName);
+          }
         }
       }
       loadCart.push({

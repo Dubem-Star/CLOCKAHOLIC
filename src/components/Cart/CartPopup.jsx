@@ -30,7 +30,6 @@ function CartPopup(prop) {
 
     localStorage.setItem("cart", JSON.stringify(newCart));
     prop.setCart(newCart);
-    // prop.setAppCart(newCart);
 
     if (!localStorage.getItem("cart").length) {
       localStorage.removeItem("order");
