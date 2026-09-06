@@ -6,6 +6,7 @@ import Cart from "./CLOCKAHOLIC/Cart";
 import Checkout from "./CLOCKAHOLIC/Checkout";
 import PaymentStatus from "./CLOCKAHOLIC/PaymentStatus";
 import Legals from "./components/plugins/Legal/Legals";
+import { Analytics } from "@vercel/analytics/react";
 import {
   BrowserRouter,
   Routes,
@@ -345,7 +346,7 @@ function App() {
           overflow: "hidden",
         }}
       ></div>
-
+      <Analytics />
       <CartPopup
         popup={popup}
         activatePopup={activatePopup}
